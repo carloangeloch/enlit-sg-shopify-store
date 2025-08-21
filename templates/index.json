@@ -1,0 +1,106 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_banner_xKKA79": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Main-BAnner.png",
+        "title": "Welcome to Our Store",
+        "subtitle": "Discover the latest trends and exclusive deals.",
+        "button_text": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "image_height": "medium",
+        "content-alignment": "center",
+        "has_container": true,
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "image_and_text_banner_MW6had": {
+      "type": "image-and-text-banner",
+      "name": "Image and Text Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/ChatGPT_Image_Aug_11_2025_11_12_45_AM_f88b93ee-3b14-4f45-9272-dc97c3b77de2.png",
+        "image_height": "medium",
+        "section_bgcolor": "#ffffff",
+        "text-alignment": "start",
+        "caption": "Caption",
+        "title": "Add your title here",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+        "button_text": "Button Text",
+        "button_link": "shopify://collections/all",
+        "is_image_first": true,
+        "is_fullwidth": true,
+        "top_margin": 0,
+        "bottom_margin": 0
+      }
+    },
+    "rich_text_DeL7GQ": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "Welcome to Our Store",
+        "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+        "container-width": "medium",
+        "button_text1": "Button 1",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": ""
+      }
+    },
+    "multicolum_8ChqTM": {
+      "type": "multicolum",
+      "blocks": {
+        "column_yw79UH": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/karolina-grabowska-bOm2Pt_H8Rw-unsplash.jpg",
+            "image_height": "large",
+            "column_title": "123123",
+            "column_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
+            "column_button_text": "",
+            "column_button_link": ""
+          }
+        },
+        "column_eCwDUr": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/ChatGPT_Image_Aug_11_2025_11_04_05_AM.png",
+            "image_height": "large",
+            "column_title": "",
+            "column_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
+            "column_button_text": "",
+            "column_button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_yw79UH",
+        "column_eCwDUr"
+      ],
+      "name": "Multicolumn",
+      "settings": {
+        "title": "Multicolumn Section",
+        "section_width": "large",
+        "columns": 3
+      }
+    }
+  },
+  "order": [
+    "hero_banner_xKKA79",
+    "image_and_text_banner_MW6had",
+    "rich_text_DeL7GQ",
+    "multicolum_8ChqTM"
+  ]
+}

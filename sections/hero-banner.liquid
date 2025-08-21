@@ -1,0 +1,148 @@
+{% comment %} {% assign height_class = 'auto' %}
+{% case section.settings.image_height %}
+  {% when 'large' %}
+    {% assign height_class = '720px' %}
+  {% when 'medium' %}
+    {% assign height_class = '480px' %}
+  {% when 'small' %}
+    {% assign height_class = '320px' %}
+  {% else %}
+    {% assign height_class = 'auto' %}
+{% endcase %} {% endcomment %}
+
+<section id="hero-banner" class="p-0">
+    <img
+        src="{{ section.settings.background_image | image_url: height: 2048 }}"
+        alt="Hero Banner Background"
+        class="object-cover"
+        height="500"
+        width="100%"
+    >
+
+    {% comment %} <div id="hero-content" class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white">
+        <div class="text-center p-4">
+        <h1>{{ section.settings.title }}</h1>
+        <p>{{ section.settings.subtitle }}</p>
+        <a href="{{ section.settings.button_link }}" id="btn">{{ section.settings.button_text }}</a>
+        </div>
+    </div> {% endcomment %}
+</section>
+
+
+{% schema %}
+{
+    "name": "Hero Banner",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "background_image",
+            "label": "Background Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Welcome to Our Store"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Discover the latest trends and exclusive deals."
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link",
+            "default": "/collections/all"
+        },
+        {
+        "type": "select",
+        "id": "image_height",
+        "label": "Image Height",
+        "default": "large",
+        "options": [
+            {
+            "value": "auto",
+            "label": "Adapt to image height"
+            },
+            {
+            "value": "large",
+            "label": "Large"
+            },
+            {
+            "value": "medium",
+            "label": "Medium"
+            },
+            {
+            "value": "small",
+            "label": "Small"
+            }]
+        },
+        {
+            "type": "header",
+            "content": "Content Settings"
+        },
+        {
+            "type":"select",
+            "id": "content-alignment",
+            "label": "Content Alignment",
+            "default": "center",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "id": "has_container",
+            "default": true,
+            "label": "Use container for content"
+        },
+        {
+            "type":"header",
+            "content": "Spacing Settings"
+        },
+        {
+            "type": "range",
+            "id": "top-margin",
+            "label": "Top Margin",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "bottom-margin",
+            "label": "Bottom Margin",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        }
+    ],
+    "presets": [
+        {
+            "name": "Hero Banner",
+            "category": "General"
+        }
+    ]
+}
+{% endschema %}

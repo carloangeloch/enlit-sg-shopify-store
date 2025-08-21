@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% comment %} <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.title }}</title>
+</head>
+<body> {% endcomment %}
+
+{% assign lazada_link = {{ product.metafields.custom.lazada_product_link }} %}
+
+<div class="product-container">
+    <div class="product-image">
+        <img src="{{ product.featured_image | img_url: '1080x1080' }}" alt="{{ product.title }}">
+    </div>
+    <div class="product-details">
+        <div class="product-title">{{ product.title }}</div>
+        <div class="product-price">{{ product.price | money }}</div>
+        <div class="product-price">{{ product.compare_at_price | money }}</div>
+        
+        {% comment %} {%  form "product", product %}
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+        {% endform %} {% endcomment %}
+
+        <a class="add-to-cart-btn" target="_blank" href="{{ lazada_link }}" onclick="window.open({{ lazada_link }}); return false;">Lazada</a>
+        <a class="add-to-cart-btn" target="_blank" href="{{ lazada_link }}" onclick="window.open({{ lazada_link }}); return false;">Shopee</a>
+        <div class="accordion">
+            <div class="accordion-title">Basic Information</div>
+            <div class="accordion-content">
+                {{ product.description | default: "No description available." }}
+            </div>
+        </div>
+        <div class="accordion">
+            <div class="accordion-title">How to Use</div>
+            <div class="accordion-content">
+                {{ product.metafields.custom.how_to_use | default: "No how to use information available." }}
+            </div>
+        </div>
+        <div class="accordion">
+            <div class="accordion-title">Care Instructions</div>
+            <div class="accordion-content">
+                {{ product.metafields.custom.care_instructions | default: "No care instructions available." }}
+            </div>
+        </div>
+        <div class="accordion">
+            <div class="accordion-title">Why Shop with Us</div>
+            <div class="accordion-content">
+                {{ product.metafields.custom.why_shop_with_us | default: "No information available." }}
+            </div>
+        </div>
+        <div class="accordion">
+            <div class="accordion-title">Product Specification</div>
+            <div class="accordion-content">
+                {{ product.metafields.custom.specification | default: "No specification available." }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .product-container {
+        display: flex;
+        gap: 40px;
+        max-width: 900px;
+        margin: 40px auto;
+        align-items: flex-start;
+    }
+    .product-image {
+        flex: 1;
+        max-width: 400px;
+    }
+    .product-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .product-details {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .product-title {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .product-price {
+        font-size: 1.5rem;
+        color: #2d7a2d;
+        margin-bottom: 10px;
+    }
+    .add-to-cart-btn {
+        background: #2d7a2d;
+        color: #fff;
+        border: none;
+        padding: 12px 32px;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    .accordion {
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    .accordion-title {
+        background: #f7f7f7;
+        padding: 14px 20px;
+        cursor: pointer;
+        font-weight: 500;
+        border-bottom: 1px solid #e0e0e0;
+        user-select: none;
+    }
+    .accordion-content {
+        display: none;
+        padding: 16px 20px;
+        background: #fff;
+    }
+    .accordion.active .accordion-content {
+        display: block;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.accordion-title').forEach(function(title) {
+            title.addEventListener('click', function() {
+                const accordion = this.parentElement;
+                accordion.classList.toggle('active');
+            });
+        });
+    });
+</script>

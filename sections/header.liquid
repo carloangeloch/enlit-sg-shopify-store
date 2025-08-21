@@ -1,0 +1,19 @@
+{% assign menu_link = linklists['main-menu'] %}
+
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-white shadow">
+    <div class="flex justify-between items-center h-16 p-4">
+        <div id="header-logo">
+            <a href="{{ shop.url }}" title="{{ shop.name }}">
+                <img src="{{ settings.logo_image | image_url: width: settings.logo_width }}" alt="{{ shop.name }}" width="{{ settings.logo_width }}" height="{{ settings.logo_height }}" />
+            </a>
+        </div>
+        <div id="header-menu-desktop" class="flex gap-x-2 items-center justify-center">
+            {% for link in menu_link.links %}
+                <a href="{{ link.url }}" class="block decoration-0 px-4" title="{{ link.title }}">
+                    {{ link.title }}
+                </a>
+            {%  endfor %}
+        </div>
+    </div>
+</header>

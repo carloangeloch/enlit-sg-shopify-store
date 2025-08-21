@@ -1,0 +1,203 @@
+{% assign image_height = '' %}
+{% assign image_width = 1600 %}
+{% case section.settings.image_height %}
+  {% when 'large' %}
+    {% assign image_height = 540 %}
+  {% when 'medium' %}
+    {% assign image_height = 360 %}
+  {% when 'small' %}
+    {% assign image_height = 240 %}
+  {% else %}
+    {% assign image_height = 'auto' %}
+{% endcase %}
+
+{% assign text_align = '' %}
+{% case section.settings.text-alignment %}
+    {% when 'start' %}
+        {% assign text_align = 'left' %}
+    {% when 'center' %}
+        {% assign text_align = 'center' %}
+    {% when 'end' %}
+        {% assign text_align = 'left' %}
+    {% else %}
+        {% assign text_align = 'left' %}
+{% endcase %}
+
+
+<section id="image-text-banner" class="w-full">
+    <div id="section-container"
+        style="margin-top: {{ section.settings.top_margin }}px;
+        margin-bottom: {{ section.settings.bottom_margin }}px;
+        width: {% if section.settings.is_fullwidth%} 100% {% else %} 1024px {% endif %};
+        background-color: {{ section.settings.section_bgcolor  }};
+        flex-direction: {% if section.settings.is_image_first %} row {% else %} row-reverse {% endif %};"
+        class="flex items-center p-8"
+    >
+        <div class="w-1/2">
+            <img
+                src="{{ section.settings.background_image | image_url: width: image_width }}"
+                alt="Banner Background"
+                class="w-full object-cover {% if image_height != 'auto' %}block{% endif %}"
+                width="{{ image_width }}"
+                height="{{ image_height }}"
+                {% if image_height != 'auto' %}
+                    style="max-height: {{ image_height }}px;"
+                {% else %}
+                    style="height: auto;"
+                {% endif %}
+            />
+
+        </div>
+        <div class="w-1/2 p-4 flex flex-col justify-center gap-2" style="align-items: {{ section.settings.text-alignment }};">
+            {% if section.settings.caption != blank %}
+                <div class="text-sm opacity-70">{{ section.settings.caption }}</div>
+            {% endif %}
+            {% if section.settings.title != blank %}
+                <h2 class="text-3xl">{{ section.settings.title }}</h2>
+            {% endif %}
+            {% if section.settings.description != blank %}
+                <div class=" opacity-70" style="text-align:{{ text_align }}">{{ section.settings.description }}</div>
+            {% endif %}
+            {% if section.settings.button_text != blank %}
+                <div class="py-4"><a class="py-2 px-8 border-1 border-slate-700" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a></div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Image and Text Banner",
+    "settings":[
+        {
+            "type": "header",
+            "content": "Banner Contents"
+        },
+        {
+            "type":"image_picker",
+            "id": "background_image",
+            "label": "Background Image"
+        },
+        {
+        "type": "select",
+        "id": "image_height",
+        "label": "Image Height",
+        "default": "large",
+        "options": [
+            {
+            "value": "auto",
+            "label": "Adapt to image height"
+            },
+            {
+            "value": "large",
+            "label": "Large"
+            },
+            {
+            "value": "medium",
+            "label": "Medium"
+            },
+            {
+            "value": "small",
+            "label": "Small"
+            }]
+        },
+        {
+            "type":"color",
+            "id": "section_bgcolor",
+            "label": "Section BG Color",
+            "default": "#ffffff"
+        },
+        {
+            "type":"select",
+            "id": "text-alignment",
+            "label": "Text Alignment",
+            "default": "start",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+           "type": "text",
+           "id": "caption",
+           "default": "Caption",
+           "label": "Caption"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Add your title here",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+            "label": "Description"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "default": "Button Text",
+            "label": "Button Text"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "default": "/collections/all",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Banner Setting"
+        },
+        {
+            "type":"checkbox",
+            "id": "is_image_first",
+            "label": "Image First",
+            "default": true
+        },
+        {
+            "type":"checkbox",
+            "id": "is_fullwidth",
+            "label": "Full Width",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "top_margin",
+            "label": "Top Margin",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 5
+        },
+        {
+            "type": "range",
+            "id": "bottom_margin",
+            "label": "Bottom Margin",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 5
+        }
+    ],
+    "presets": [
+        {
+            "name": "Image and Text Banner",
+            "category": "General"
+        }
+    ]
+}
+{% endschema %}

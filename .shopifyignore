@@ -1,0 +1,39 @@
+# Node modules and lockfiles
+node_modules
+package.json
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Git-related
+.git
+.gitignore
+.gitattributes
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build tools / configs / output
+webpack.config.js
+tailwind.config.js
+postcss.config.js
+vite.config.js
+babel.config.js
+eslintrc.js
+.prettier*
+stylelint.config.js
+tsconfig.json
+rollup.config.js
+
+# Theme development artifacts
+*.log
+*.tmp
+*.DS_Store
+.vscode
+.idea
+
+# Output folders (optional)
+dist
+build

@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>{{ page_title }}</title>
+        {{ content_for_header }}
+        {{ 'tailwind.output.css' | asset_url | stylesheet_tag }}
+        {% style %}
+          {{ settings.heading_font | font_face: font_display: 'swap' }}
+          {{ settings.body_font | font_face: font_display: 'swap' }}
+          :root{
+            --font-heading--family: {{ settings.heading_font }},{{ settings.heading_font.fallback_families }};
+            --font-body--family: {{ settings.body_font }},{{ settings.body_font.fallback_families }};
+          }
+        {% endstyle %}
+    </head>
+    <body>
+        {% sections 'header-group' %}
+        {{ content_for_layout }}
+        {% sections 'footer-group' %}
+    </body>
+</html>

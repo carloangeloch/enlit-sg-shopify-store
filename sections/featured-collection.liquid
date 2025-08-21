@@ -1,0 +1,109 @@
+{% if section.settings.featured_collection != blank %}
+    {% assign collection = collections[section.settings.featured_collection] %}
+    {% if collection != nil and collection.products_count > 0 %}
+        <div class="featured-collection-section">
+            <h2>{{ collection.title }}</h2>
+            <div class="featured-collection-products">
+                {% for product in collection.products limit: section.settings.products_limit %}
+                    <div class="featured-collection-product">
+                        <a href="{{ product.url }}">
+                            {% if product.featured_image %}
+                                <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                            {% endif %}
+                            <h3>{{ product.title }}</h3>
+                            <span>{{ product.price | money }}</span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No products found in this collection.</p>
+    {% endif %}
+{% else %}
+    <p>Please select a collection to feature.</p>
+{% endif %}
+
+<style>
+    .featured-collection-section {
+        margin: 2rem 0;
+        padding: 2rem 1rem;
+        background: #fafbfc;
+        border-radius: 8px;
+    }
+    .featured-collection-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .featured-collection-products {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+    }
+    .featured-collection-product {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 1rem;
+        width: 220px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        text-align: center;
+        transition: box-shadow 0.2s;
+    }
+    .featured-collection-product:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .featured-collection-product img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+    .featured-collection-product h3 {
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+        color: #222;
+    }
+    .featured-collection-product span {
+        display: block;
+        color: #008060;
+        font-weight: 600;
+        margin-top: 0.25rem;
+    }
+    @media (max-width: 700px) {
+        .featured-collection-products {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .featured-collection-product {
+            width: 100%;
+        }
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Featured Collection",
+    "settings": [
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Select Collection"
+        },
+        {
+            "type": "number",
+            "id": "products_limit",
+            "label": "Number of Products to Show",
+            "default": 4
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured Collection",
+            "category": "General"
+        }
+    ]
+}
+{% endschema %}

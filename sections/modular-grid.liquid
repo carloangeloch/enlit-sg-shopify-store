@@ -1,0 +1,315 @@
+{% assign cont_width = '' %}
+{% assign column_width = '' %}
+{% case section.settings.section_width %}
+  {% when 'xlarge' %}
+    {% assign cont_width = '1240px' %}
+    {% assign column_width = 'calc(1240px / ' | append: section.settings.columns | append: ')' %}
+  {% when 'large' %}
+    {% assign cont_width = '1024px' %}
+    {% assign column_width = 'calc(1024px / ' | append: section.settings.columns | append: ')' %}
+  {% when 'medium' %}
+    {% assign cont_width = '768px' %}
+    {% assign column_width = 'calc(768px / ' | append: section.settings.columns | append: ')' %}
+  {% when 'small' %}
+    {% assign cont_width = '640px' %}
+    {% assign column_width = 'calc(640px / ' | append: section.settings.columns | append: ')' %}
+  {% else %}
+    {% assign column_width = 'calc(100% / ' | append: section.settings.columns | append: ')' %}
+    {% assign cont_width = '100%' %}
+{% endcase %}
+
+{% assign content_align = 'left'%}
+{% case section.settings.content_alignment %}
+  {% when 'center' %}
+    {% assign content_align = 'center' %}
+  {% when 'end' %}
+    {% assign content_align = 'right' %}
+  {% else %}
+    {% assign content_align = 'left' %}
+{% endcase %}
+
+<section id="modular-grid">
+    <div id="section-container" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
+        {% if section.settings.title != blank %}
+            <h1 id="section-title" class="text-2xl">{{ section.settings.title }}</h1>
+        {% endif %}
+        <div class="flex flex-wrap flex-row items-center mx-auto" style="width:{{ cont_width }}; justify-content: {{ section.settings.column_alignment}};">
+            {% for block in section.blocks %}
+                <div class="p-4" style="width:{{ column_width }}; height:{{ column_width }};">
+                    <div class="p-4 flex flex-col justify-end w-full h-full" style="background-image: url({{ block.settings.column_image | image_url: width: 300 }}); background-size: cover; background-position: center; align-items:{{ section.settings.content_alignment }};">
+                        {% if block.settings.column_caption != blank %}
+                            <div id="column-title">
+                                <span class="text-sm my-2 opacity-70">
+                                    {{ block.settings.column_caption }}
+                                </span>
+                            </div>
+                        {% endif %}
+                        {% if block.settings.column_title != blank %}
+                            <div id="column-title">
+                                <h2 class="text-2xl my-2">
+                                    {{ block.settings.column_title }}
+                                </h2>
+                            </div>
+                        {% endif %}
+                        
+                        {% if block.settings.column_content != blank %}
+                            <div id="column-content" class="opacity-70 my-2" style="text-align: {{ content_align }};">
+                                {{ block.settings.column_content }}
+                            </div>
+                        {% endif %}
+    
+                        
+                        {% assign bg_opacity = block.settings.background_opacity | divided_by: 100.0 %}
+                        {% if block.settings.column_button_text != blank %}
+                            <div id="column-btn" class="py-4 flex gap-4 items-center justify-start">
+                                <a class="py-2 px-8" href="{{ block.settings.column_button_link }}"
+                                    style="border: {% if block.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                    border-color: {{ block.settings.button_border_color }};
+                                    color: {{ block.settings.button_text_color }};
+                                    background-color: {{ block.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                    {{ block.settings.column_button_text }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+{% schema %}
+{
+    "name": "Modular Grid",
+    "settings": [
+        {
+            "type":"text",
+            "id": "title",
+            "label": "Title",
+            "default": "Modular Grid Section"
+        },
+        {
+            "type":"select",
+            "id": "section_width",
+            "label": "Section Width",
+            "default": "large",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full Width"
+                },
+                {
+                    "value": "xlarge",
+                    "label": "Extra Large (1240px)"
+                },
+                {
+                    "value": "large",
+                    "label": "Large (1024px)"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium (768px)"
+                },
+                {
+                    "value": "small",
+                    "label": "Small (640px)"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "column_alignment",
+            "label": "Column Alignment",
+            "default": "center",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "content_alignment",
+            "label": "Content Alignment",
+            "default": "start",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "columns",
+            "label": "Number of Columns",
+            "default": 3,
+            "min": 1,
+            "max": 6,
+            "step": 1
+        },
+        {
+            "type": "color",
+            "id": "column_bgcolor",
+            "label": "Column Background Color",
+            "default": "#91a1ba"
+        },
+        {
+            "type":"header",
+            "content": "Section Margin"
+        },
+        {
+            "type": "range",
+            "id": "margin_top",
+            "label": "Top Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Bottom Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        }
+    ],
+    "blocks": [
+        {
+            "type": "column",
+            "name": "Column",
+            "settings": [
+                {
+                    "type":"image_picker",
+                    "id": "column_image",
+                    "label": "Column Image"
+                },
+                {
+                "type": "select",
+                "id": "image_height",
+                "label": "Image Height",
+                "default": "medium",
+                "options": [
+                    {
+                    "value": "auto",
+                    "label": "Adapt to image height"
+                    },
+                    {
+                    "value": "large",
+                    "label": "Large"
+                    },
+                    {
+                    "value": "medium",
+                    "label": "Medium"
+                    },
+                    {
+                    "value": "small",
+                    "label": "Small"
+                    }]
+                },
+                {
+                    "type": "header",
+                    "content": "Column Details"
+                },
+                {
+                    "type": "text",
+                    "id": "column_caption",
+                    "label": "Column Caption",
+                    "default": "caption"
+                },
+                {
+                    "type": "text",
+                    "id": "column_title",
+                    "label": "Column Title",
+                    "default": "title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "column_content",
+                    "label": "Column Content",
+                    "default": "<p></p>"
+                },
+                {
+                    "type":"color",
+                    "id": "column_text_color",
+                    "label": "Column Text Color",
+                    "default": "#c9c9c9"
+                },
+                {
+                    "type": "text",
+                    "id": "column_button_text",
+                    "label": "Column Button Text"
+                },
+                {
+                    "type": "url",
+                    "id": "column_button_link",
+                    "label": "Column Button Link"
+                },
+                {
+                    "type":"color",
+                    "id": "button_text_color",
+                    "label": "Button Text Color",
+                    "default": "#c9c9c9"
+                },
+                {
+                    "type":"color",
+                    "id": "button_bgcolor",
+                    "label": "Button BG Color",
+                    "default": "#c9c9c9"
+                },
+                {
+                    "type":"range",
+                    "id": "button_bg_alpha",
+                    "label": "Button BG Alpha",
+                    "default": 100,
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "type":"checkbox",
+                    "id": "has_border",
+                    "label": "Button Border",
+                    "default": true
+                },
+                {
+                    "type":"color",
+                    "id": "button_border_color",
+                    "label": "Button Border Color",
+                    "default": "#c9c9c9"
+                }
+
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Modular Grid",
+            "category": "General"
+        }
+    ]
+}
+{% endschema %}
