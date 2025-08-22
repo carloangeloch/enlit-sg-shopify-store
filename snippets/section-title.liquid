@@ -1,0 +1,7 @@
+{% assign title_cls = title_class | default: "text-2xl mt-2 mb-4"  %}
+{% assign title_stl = title_style | default: ""  %}
+{% assign attr = title_attr | default: ""  %}
+
+<h2 class="{{ title_cls }}" style="{{ title_stl }}" {{ attr }}>
+    {{ title | default: section.settings.title }}
+</h2>

@@ -56,7 +56,9 @@
         "button_text2": "",
         "button_link2": "",
         "button_text3": "",
-        "button_link3": ""
+        "button_link3": "",
+        "margin_top": 16,
+        "margin_bottom": 16
       }
     },
     "multicolum_8ChqTM": {
@@ -66,22 +68,22 @@
           "type": "column",
           "settings": {
             "column_image": "shopify://shop_images/karolina-grabowska-bOm2Pt_H8Rw-unsplash.jpg",
-            "image_height": "large",
+            "image_height": "small",
             "column_title": "123123",
-            "column_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
-            "column_button_text": "",
-            "column_button_link": ""
+            "column_content": "<p>Lorem ipsum dolor sit amet</p>",
+            "column_button_text": "test",
+            "column_button_link": "#"
           }
         },
         "column_eCwDUr": {
           "type": "column",
           "settings": {
             "column_image": "shopify://shop_images/ChatGPT_Image_Aug_11_2025_11_04_05_AM.png",
-            "image_height": "large",
-            "column_title": "",
+            "image_height": "small",
+            "column_title": "123151",
             "column_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
-            "column_button_text": "",
-            "column_button_link": ""
+            "column_button_text": "testtt",
+            "column_button_link": "#"
           }
         }
       },
@@ -92,8 +94,79 @@
       "name": "Multicolumn",
       "settings": {
         "title": "Multicolumn Section",
+        "section_width": "full",
+        "column_alignment": "center",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "columns": 3,
+        "column_bgcolor": "#ffffff",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "modular_grid_Cdig4P": {
+      "type": "modular-grid",
+      "blocks": {
+        "column_mTtGKe": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/national-institute-of-allergy-and-infectious-diseases-oXh6ZUdW-gg-unsplash.jpg",
+            "image_height": "small",
+            "column_caption": "caption",
+            "column_title": "title",
+            "column_content": "",
+            "column_text_color": "#c9c9c9",
+            "column_button_text": "test",
+            "column_button_link": "#",
+            "button_text_color": "#000000",
+            "button_bgcolor": "#df4444",
+            "button_bg_alpha": 14,
+            "has_border": true,
+            "button_border_color": "#000000"
+          }
+        },
+        "column_qVnaLU": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/angelica-echeverry-KPI0ApYdzUI-unsplash.jpg",
+            "image_height": "small",
+            "column_caption": "caption",
+            "column_title": "title 2",
+            "column_content": "",
+            "column_text_color": "#c9c9c9",
+            "column_button_text": "click",
+            "column_button_link": "#",
+            "button_text_color": "#c9c9c9",
+            "button_bgcolor": "#c9c9c9",
+            "button_bg_alpha": 100,
+            "has_border": true,
+            "button_border_color": "#c9c9c9"
+          }
+        }
+      },
+      "block_order": [
+        "column_mTtGKe",
+        "column_qVnaLU"
+      ],
+      "name": "Modular Grid",
+      "settings": {
+        "title": "Modular Grid Section",
         "section_width": "large",
-        "columns": 3
+        "column_alignment": "center",
+        "column_position": "center",
+        "content_alignment": "start",
+        "columns": 3,
+        "column_bgcolor": "#91a1ba",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "featured_collection_a7rYxt": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "featured_collection": "hand-and-body-wash",
+        "products_limit": 4
       }
     }
   },
@@ -101,6 +174,8 @@
     "hero_banner_xKKA79",
     "image_and_text_banner_MW6had",
     "rich_text_DeL7GQ",
-    "multicolum_8ChqTM"
+    "multicolum_8ChqTM",
+    "modular_grid_Cdig4P",
+    "featured_collection_a7rYxt"
   ]
 }

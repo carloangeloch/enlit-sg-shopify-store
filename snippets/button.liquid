@@ -1,7 +1,23 @@
-<button>Test me</button>
+{% comment %} 
+Creates a button with customizable styles and attributes.
+btn_text: The text displayed on the button.
+btn_link: The URL the button links to.
+btn_class: class for this button.
+btn_style: style for this button.
+btn_target: Specifies where to open the linked document.
+btn_attrs: Additional attributes for the button, such as data attributes.
+{% endcomment %}
 
-<script>
-  document.querySelector('button').addEventListener('click', function() {
-    alert('Button clicked!');
-  });
-</script>
+{% assign button_class = btn_class | default: 'py-2 px-8 border-1 border-slate-800' %}
+{% assign button_target = btn_target | default: '_self' %}
+
+{% if btn_text != blank %}
+  <a class="{{ button_class }}"
+    style="{{ btn_style }}"
+    target="{{ button_target }}"
+    href="{{ btn_link }}"
+    {{ btn_attrs }}
+  >
+      {{ btn_text }}
+  </a>
+{%  endif %}

@@ -33,7 +33,9 @@ rollup.config.js
 *.DS_Store
 .vscode
 .idea
+todo.md
 
 # Output folders (optional)
 dist
 build
+

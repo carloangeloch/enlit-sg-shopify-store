@@ -1,102 +1,203 @@
-{% if section.settings.featured_collection != blank %}
-    {% assign collection = collections[section.settings.featured_collection] %}
-    {% if collection != nil and collection.products_count > 0 %}
-        <div class="featured-collection-section">
-            <h2>{{ collection.title }}</h2>
-            <div class="featured-collection-products">
-                {% for product in collection.products limit: section.settings.products_limit %}
-                    <div class="featured-collection-product">
-                        <a href="{{ product.url }}">
-                            {% if product.featured_image %}
-                                <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-                            {% endif %}
-                            <h3>{{ product.title }}</h3>
-                            <span>{{ product.price | money }}</span>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    {% else %}
-        <p>No products found in this collection.</p>
-    {% endif %}
-{% else %}
-    <p>Please select a collection to feature.</p>
-{% endif %}
+{% assign collection = collections[section.settings.featured_collection] %}
 
-<style>
-    .featured-collection-section {
-        margin: 2rem 0;
-        padding: 2rem 1rem;
-        background: #fafbfc;
-        border-radius: 8px;
-    }
-    .featured-collection-section h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-    .featured-collection-products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-    }
-    .featured-collection-product {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        padding: 1rem;
-        width: 220px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        text-align: center;
-        transition: box-shadow 0.2s;
-    }
-    .featured-collection-product:hover {
-        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    }
-    .featured-collection-product img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-    }
-    .featured-collection-product h3 {
-        font-size: 1.1rem;
-        margin: 0.5rem 0;
-        color: #222;
-    }
-    .featured-collection-product span {
-        display: block;
-        color: #008060;
-        font-weight: 600;
-        margin-top: 0.25rem;
-    }
-    @media (max-width: 700px) {
-        .featured-collection-products {
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .featured-collection-product {
-            width: 100%;
-        }
-    }
-</style>
+{% assign cont_width = '' %}
+{% assign column_width = '' %}
+{% case section.settings.section_width %}
+  {% when 'large' %}
+    {% assign cont_width = '1024px' %}
+    {% assign column_width = 'calc(1024px / ' | append: section.settings.columns | append: ')' %}
+  {% when 'medium' %}
+    {% assign cont_width = '768px' %}
+    {% assign column_width = 'calc(768px / ' | append: section.settings.columns | append: ')' %}
+  {% when 'small' %}
+    {% assign cont_width = '640px' %}
+    {% assign column_width = 'calc(640px / ' | append: section.settings.columns | append: ')' %}
+  {% else %}
+    {% assign column_width = 'calc(100% / ' | append: section.settings.columns | append: ')' %}
+    {% assign cont_width = '100%' %}
+{% endcase %}
+
+<section id="featured-collection">
+    <div id="section-container" class="w-full" style="margin-top:{{ section.settings.margin_top }}; margin-bottom: {{ section.settings.margin_bottom }}">
+        {%  if section.settings.title != blank %}
+            {% render 'section-title',
+                title: collection.title,
+                title_class: '',
+                title_style: '',
+                title_attr: ''
+            %}
+        {% endif %}
+        <div id="collection-container" class="py-8 flex flex-wrap items-start justify-center mx-auto" style="width:{{ cont_width }}; background-color: {{ section.settings.section_bgcolor }}">
+            {% for product in collection.products limit: section.settings.products_limit %}
+                <div id="card-container" class="p-4" style="width:{{ column_width }};">
+                    <a id="product-card" href="{{ product.url }}" class="bg-slate-400">
+                        {% if product.featured_image %}
+                            <img src="{{ product.featured_image | image_url: width: 640, height: 640 }}"
+                                alt="{{ product.title }}"
+                                width="100%"
+                                height="100%"
+                                class="object-cover mb-2 block">
+                        {% endif %}
+                        <div id="product-details">
+                            <div id="product-title">{{ product.title }}</div>
+                            {% if section.settings.show_product_price %}
+                                <div id="product-price">{{ product.price | money }} {{ product.compare_at_price | money }}</div>
+                            {% endif %}
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="py-4 w-full text-center">   
+            <a href="{{ section.settings.button_link }}" class="border-1 border-slate-600 p-4">{{ section.settings.button_text }}</a>
+        </div>
+    </div>
+</section>
 
 {% schema %}
 {
     "name": "Featured Collection",
     "settings": [
         {
+            "type":"text",
+            "id": "title",
+            "label": "Title",
+            "default": "Featured Collection"
+        },
+        {
             "type": "collection",
             "id": "featured_collection",
             "label": "Select Collection"
+        },
+        {
+            "type":"range",
+            "id": "columns",
+            "label": "Number of Columns",
+            "default": 4,
+            "min": 1,
+            "max": 12,
+            "step": 1
+        },
+        {
+            "type":"select",
+            "id": "section_width",
+            "label": "Section Width",
+            "default": "large",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full Width"
+                },
+                {
+                    "value": "large",
+                    "label": "Large (1024px)"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium (768px)"
+                },
+                {
+                    "value": "small",
+                    "label": "Small (640px)"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "column_postition",
+            "label": "Column Position",
+            "default": "center",
+            "info": "Aligns the content cards within the section.",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "content_alignment",
+            "label": "Content Alignment",
+            "default": "start",
+            "info": "Aligns the contents inside the cards.",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
         },
         {
             "type": "number",
             "id": "products_limit",
             "label": "Number of Products to Show",
             "default": 4
+        },
+        {
+            "type": "color",
+            "id": "section_bgcolor",
+            "label": "Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "header",
+            "content": "Product Settings"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_product_price",
+            "label": "Show Product Price",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Button Text"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type":"header",
+            "content": "Section Margin"
+        },
+        {
+            "type": "range",
+            "id": "margin_top",
+            "label": "Top Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Bottom Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
         }
     ],
     "presets": [

@@ -25,10 +25,6 @@
     {% assign content_align = 'left' %}
 {% endcase %}
 
-{% comment %}
-  TODO: add control for column vertical alignment (top, center, bottom)
-{% endcomment %}
-
 
 
 
@@ -37,7 +33,7 @@
         {% if section.settings.title != blank %}
             <h1 id="section-title" class="text-2xl">{{ section.settings.title }}</h1>
         {% endif %}
-        <div class="flex flex-wrap flex-row items-center mx-auto" style="width:{{ cont_width }}; justify-content: {{ section.settings.column_alignment}};">
+        <div class="flex flex-wrap flex-row mx-auto" style="width:{{ cont_width }}; justify-content: {{ section.settings.column_postition}};  align-items: {{ section.settings.column_alignment  }};">
             {% for block in section.blocks %}
                 
                 {% assign img_height = '' %}
@@ -83,9 +79,14 @@
     
                             {% if block.settings.column_button_text != blank %}
                                 <div id="column-btn" class="py-4 flex gap-4 items-center justify-start">
-                                    <a class="py-2 px-8 border-1 border-slate-800" href="{{ block.settings.column_button_link }}">
-                                        {{ block.settings.column_button_text }}
-                                    </a>
+                                    {% render 'button', 
+                                        btn_text: block.settings.column_button_text,
+                                        btn_link: block.settings.column_button_link,
+                                        btn_class: 'py-2 px-8 border-1 border-slate-800',
+                                        btn_style: '',
+                                        btn_target: '_self',
+                                        btn_attrs: ''
+                                    %}
                                 </div>
                             {% endif %}
                         </div>
@@ -136,6 +137,28 @@
             "id": "column_alignment",
             "label": "Column Alignment",
             "default": "center",
+            "info": "Aligns the content cards within each column horizontally.",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "column_postition",
+            "label": "Column Position",
+            "default": "center",
+            "info": "Aligns the content cards within the section.",
             "options": [
                 {
                     "value": "start",
@@ -156,6 +179,7 @@
             "id": "content_alignment",
             "label": "Content Alignment",
             "default": "start",
+            "info": "Aligns the contents inside the cards.",
             "options": [
                 {
                     "value": "start",
