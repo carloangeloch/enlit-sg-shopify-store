@@ -14,13 +14,15 @@
       "name": "Hero Banner",
       "settings": {
         "background_image": "shopify://shop_images/Main-BAnner.png",
-        "title": "Welcome to Our Store",
-        "subtitle": "Discover the latest trends and exclusive deals.",
-        "button_text": "Shop Now",
+        "title": "",
+        "subtitle": "",
+        "button_text": "",
         "button_link": "shopify://collections/all",
         "image_height": "medium",
         "content-alignment": "center",
-        "has_container": true,
+        "has_container": false,
+        "content-bgcolor": "#ffffff",
+        "content_position": "middle-center",
         "top-margin": 0,
         "bottom-margin": 0
       }
@@ -165,8 +167,43 @@
       "type": "featured-collection",
       "name": "Featured Collection",
       "settings": {
+        "title": "Featured Collection",
         "featured_collection": "hand-and-body-wash",
-        "products_limit": 4
+        "columns": 4,
+        "section_width": "large",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 4,
+        "section_bgcolor": "#ffffff",
+        "show_product_price": true,
+        "button_text": "Button Text",
+        "button_link": "",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "contact_form_kgngKp": {
+      "type": "contact-form",
+      "name": "Contact Form",
+      "settings": {
+        "heading": "Contact Us for Questions",
+        "submit_text": "Send Message",
+        "button_position": "start",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "blog_post_TJb4MD": {
+      "type": "blog-post",
+      "name": "Featured Blog Posts",
+      "settings": {
+        "heading": "From Our Blog",
+        "blog": "blog-articles",
+        "post_limit": 3,
+        "columns": 3,
+        "read_more_label": "Read More →",
+        "margin_top": 16,
+        "margin_bottom": 16
       }
     }
   },
@@ -176,6 +213,8 @@
     "rich_text_DeL7GQ",
     "multicolum_8ChqTM",
     "modular_grid_Cdig4P",
-    "featured_collection_a7rYxt"
+    "featured_collection_a7rYxt",
+    "contact_form_kgngKp",
+    "blog_post_TJb4MD"
   ]
 }

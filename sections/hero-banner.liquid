@@ -1,31 +1,83 @@
-{% comment %} {% assign height_class = 'auto' %}
-{% case section.settings.image_height %}
-  {% when 'large' %}
-    {% assign height_class = '720px' %}
-  {% when 'medium' %}
-    {% assign height_class = '480px' %}
-  {% when 'small' %}
-    {% assign height_class = '320px' %}
-  {% else %}
-    {% assign height_class = 'auto' %}
-{% endcase %} {% endcomment %}
+{% assign content_align = '' %}
+{% assign content_justify = '' %}
+{% assign text_justify = '' %}
+{% case section.settings.content_position%}
+    {% when 'top-left' %}
+        {% assign content_align = 'start' %}
+        {% assign content_justify = 'start' %}
+        {% assign text_justify = 'left' %}
+    {% when 'top-center' %}
+        {% assign content_align = 'start' %}
+        {% assign content_justify = 'center' %}
+        {% assign text_justify = 'center' %}
+    {% when 'top-right' %}
+        {% assign content_align = 'start' %}
+        {% assign content_justify = 'end' %}
+        {% assign text_justify = 'right' %}
+    {% when 'middle-left' %}
+        {% assign content_align = 'center' %}
+        {% assign content_justify = 'start' %}
+        {% assign text_justify = 'left' %}
+    {% when 'middle-center' %}
+        {% assign content_align = 'center' %}
+        {% assign content_justify = 'center' %}
+        {% assign text_justify = 'center' %}
+    {% when 'middle-right' %}
+        {% assign content_align = 'center' %}
+        {% assign content_justify = 'end' %}
+        {% assign text_justify = 'right' %}
+    {% when 'bottom-left' %}
+        {% assign content_align = 'end' %}
+        {% assign content_justify = 'start' %}
+        {% assign text_justify = 'left' %}
+    {% when 'bottom-center' %}
+        {% assign content_align = 'end' %}
+        {% assign content_justify = 'center' %}
+        {% assign text_justify = 'center' %}
+    {% when 'bottom-right' %}
+        {% assign content_align = 'end' %}
+        {% assign content_justify = 'end' %}
+        {% assign text_justify = 'right' %}
+    {% else %}
+        {% assign content_align = 'center' %}
+        {% assign content_justify = 'center' %}
+        {% assign text_justify = 'center' %}
+{% endcase %}
 
-<section id="hero-banner" class="p-0">
-    <img
-        src="{{ section.settings.background_image | image_url: height: 2048 }}"
-        alt="Hero Banner Background"
-        class="object-cover"
-        height="500"
-        width="100%"
-    >
+{% assign cbgcolor = 'none' %}
+{% if section.settings.has_container%}
+    {% assign cbgcolor = section.settings.content-bgcolor %}
+{% else %}
+    {% assign cbgcolor = 'none' %}
+{% endif %}
 
-    {% comment %} <div id="hero-content" class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white">
-        <div class="text-center p-4">
-        <h1>{{ section.settings.title }}</h1>
-        <p>{{ section.settings.subtitle }}</p>
-        <a href="{{ section.settings.button_link }}" id="btn">{{ section.settings.button_text }}</a>
+<section id="hero-banner" class="relative">
+    <div id="margin-container" style="margin-top: {{ section.settings.top-margin }}; margin-bottom: {{ section.settings.bottom-margin }}">
+        <div id="hero-content" class="absolute top-0 left-0 w-full h-full" >
+            <div id="hero-content-control" class="p-8 flex flex-colw-full h-full" style="align-items: {{ content_align }}; justify-content: {{ content_justify }}">
+                <div class="p-8" style="text-align: {{ text_justify }}; background-color: {{ cbgcolor }}">
+                    {% if section.settings.title != blank%}
+                        <h1 class="text-2xl">{{ section.settings.title }}</h1>
+                    {% endif %}                    
+                    {% if section.settings.subtitle != blank%}
+                        <p>{{ section.settings.subtitle }}</p>
+                    {% endif %}
+                    {% if section.settings.button_text != blank%}
+                        <div id="column-btn" class="py-4">
+                            <a href="{{ section.settings.button_link }}" id="content-button" class="px-6 py-2 border-1 border-slate-400">{{ section.settings.button_text }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div> {% endcomment %}
+        <img
+            src="{{ section.settings.background_image | image_url: height: 2048 }}"
+            alt="Hero Banner Background"
+            class="object-cover"
+            height="auto"
+            width="100%"
+        >
+    </div>
 </section>
 
 
@@ -59,8 +111,7 @@
         {
             "type": "url",
             "id": "button_link",
-            "label": "Button Link",
-            "default": "/collections/all"
+            "label": "Button Link"
         },
         {
         "type": "select",
@@ -114,6 +165,56 @@
             "id": "has_container",
             "default": true,
             "label": "Use container for content"
+        },
+        {
+            "type": "color",
+            "id": "content-bgcolor",
+            "default": "#ffffff",
+            "label": "Content Background Color"
+        },
+        {
+            "type": "select",
+            "id":"content_position",
+            "label": "Content Position",
+            "default":"middle-center",
+            "options": [
+                {
+                    "label": "Top Left",
+                    "value": "top-left"
+                },
+                {
+                    "label": "Top Center",
+                    "value": "top-center"
+                },
+                {
+                    "label": "Top Right",
+                    "value": "top-right"
+                },
+                {
+                    "label": "Middle Left",
+                    "value": "middle-left"
+                },
+                {
+                    "label": "Middle Center",
+                    "value": "middle-center"
+                },
+                {
+                    "label": "Middle Right",
+                    "value": "middle-right"
+                },
+                {
+                    "label": "Bottm Left",
+                    "value": "bottom-left"
+                },
+                {
+                    "label": "Bottom Center",
+                    "value": "bottom-center"
+                },
+                {
+                    "label": "Bottom Right",
+                    "value": "bottom-right"
+                }
+            ]
         },
         {
             "type":"header",
