@@ -1,13 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "Footer Group",
   "sections": {
-    "footer":{
-        "type":"footer",
-        "settings": {
+    "footer_link_qpy3ja": {
+      "type": "footer-link",
+      "blocks": {
+        "column_CpcNTR": {
+          "type": "column",
+          "settings": {
+            "menu_title": "Main Menu",
+            "menu_links": "main-menu"
+          }
+        },
+        "column_L4W77e": {
+          "type": "column",
+          "settings": {
+            "menu_title": "Company",
+            "menu_links": "footer-company-menu"
+          }
+        },
+        "column_X8Mkch": {
+          "type": "column",
+          "settings": {
+            "menu_title": "Social",
+            "menu_links": "social"
+          }
+        },
+        "column_6UJTVr": {
+          "type": "column",
+          "settings": {
+            "menu_title": "Policies",
+            "menu_links": "policies"
+          }
         }
+      },
+      "block_order": [
+        "column_CpcNTR",
+        "column_L4W77e",
+        "column_X8Mkch",
+        "column_6UJTVr"
+      ],
+      "name": "Footer Link Menu",
+      "settings": {
+        "title": "Footer Links"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "items_color": "#020202",
+        "show_newsletter": true,
+        "newsletter_heading": "Join Our Newsletter",
+        "newsletter_subheading": "Get updates on new products and sales directly to your inbox.",
+        "border_color": "#6d7175",
+        "button_bgcolor": "#0c0c0c",
+        "button_text": "Subscribe",
+        "button_textcolor": "#ffffff",
+        "social_media_title": "Our Social",
+        "show_social_icons": true,
+        "facebook_link": "https://www.facebook.com/profile.php?id=61577692885285",
+        "instagram_link": "https://www.facebook.com/profile.php?id=61577692885285",
+        "tiktok_link": "https://www.facebook.com/profile.php?id=61577692885285",
+        "linkedin_link": "https://www.facebook.com/profile.php?id=61577692885285"
+      }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer_link_qpy3ja",
+    "footer"
+  ]
 }
- 

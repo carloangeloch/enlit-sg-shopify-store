@@ -28,10 +28,10 @@
     <div id="section-container"
         style="margin-top: {{ section.settings.top_margin }}px;
         margin-bottom: {{ section.settings.bottom_margin }}px;
-        width: {% if section.settings.is_fullwidth%} 100% {% else %} 1024px {% endif %};
+        max-width: {% if section.settings.is_fullwidth%} 100% {% else %} 1240px {% endif %};
         background-color: {{ section.settings.section_bgcolor  }};
         flex-direction: {% if section.settings.is_image_first %} row {% else %} row-reverse {% endif %};"
-        class="flex items-center p-8"
+        class="flex items-center p-8 mx-auto"
     >
         <div class="w-1/2">
             <img

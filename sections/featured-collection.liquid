@@ -48,9 +48,11 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="py-4 w-full text-center">   
-            <a href="{{ section.settings.button_link }}" class="border-1 border-slate-600 p-4">{{ section.settings.button_text }}</a>
-        </div>
+        {% if section.settings.button_text != blank%}
+            <div class="py-4 w-full text-center">   
+                <a href="{{ section.settings.button_link }}" class="border-1 border-slate-600 p-4">{{ section.settings.button_text }}</a>
+            </div>
+        {% endif %}
     </div>
 </section>
 

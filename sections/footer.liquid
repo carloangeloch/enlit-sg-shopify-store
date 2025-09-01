@@ -1,1 +1,210 @@
-<h2>This is footer</h2>
+{% assign cont_width = '' %}
+{% case section.settings.section_width %}
+  {% when 'xlarge' %}
+    {% assign cont_width = '1240px' %}
+  {% when 'large' %}
+    {% assign cont_width = '1024px' %}
+  {% when 'medium' %}
+    {% assign cont_width = '768px' %}
+  {% when 'small' %}
+    {% assign cont_width = '640px' %}
+  {% else %}
+    {% assign cont_width = '100%' %}
+{% endcase %}
+
+
+
+<div class="py-8 px-4 text-center">
+    <div class="flex flex-col lg:flex-row justify-between mx-auto w-full lg:w-[{{ cont_width }}]">
+        {% if section.settings.show_newsletter %}
+            <div class="w-full lg:w-1/2 flex flex-col items-start justify-center">
+                <h2 class="text-xl font-bold mb-2" style="color: {{ section.settings.items_color }};">{{ section.settings.newsletter_heading }}</h2>
+                <p class="text-sm mb-4"  style="color: {{ section.settings.items_color }};">{{ section.settings.newsletter_subheading }}</p>
+                <div class="w-full">
+                    <form method="post" action="/contact#newsletter-footer" class="mb-4 flex gap-2">
+                        {% comment %}
+                            <input type="hidden" name="form_type" value="customer">
+                            <input type="hidden" name="utf8" value="✓">
+                        {% endcomment %}
+                        <input style="border-color: {{ section.settings.border_color }}" class="w-full border-1 p-2 rounded-md" type="email" name="contact[email]" placeholder="Enter your email" required>
+                        <button type="submit" class="px-6 py-2" style="background-color: {{ section.settings.button_bgcolor }}; color:{{ section.settings.button_textcolor }} ;">
+                            {{ section.settings.button_text }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    
+        {% if section.settings.show_social_icons %}
+            <div id="social-media-container">
+                {% if section.settings.social_media_title != blank %}
+                    <div class="w-full"  style="color: {{ section.settings.items_color }};">{{ section.settings.social_media_title }}</div>
+                {%  endif %}
+                <div class="flex justify-center space-x-4 mt-4">
+                {% if section.settings.facebook_link != blank %}
+                    <a href="{{ section.settings.facebook_link }}" target="_blank" aria-label="Facebook">
+                        <svg fill="{{ section.settings.items_color }}" width="24px" height="24px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg">
+                            <title>Facebook icon</title>
+                            <path d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if section.settings.instagram_link != blank %}
+                    <a href="{{ section.settings.instagram_link }}" target="_blank" aria-label="Instagram">
+                        <svg width="24px" height="24px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <title>Instagram Logo</title>
+                            <path d="M11 3.5H12M4.5 0.5H10.5C12.7091 0.5 14.5 2.29086 14.5 4.5V10.5C14.5 12.7091 12.7091 14.5 10.5 14.5H4.5C2.29086 14.5 0.5 12.7091 0.5 10.5V4.5C0.5 2.29086 2.29086 0.5 4.5 0.5ZM7.5 10.5C5.84315 10.5 4.5 9.15685 4.5 7.5C4.5 5.84315 5.84315 4.5 7.5 4.5C9.15685 4.5 10.5 5.84315 10.5 7.5C10.5 9.15685 9.15685 10.5 7.5 10.5Z" stroke="{{ section.settings.items_color }}"/>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if section.settings.tiktok_link != blank %}
+                    <a href="{{ section.settings.tiktok_link }}" target="_blank" aria-label="TikTok">
+                    <svg fill="{{ section.settings.items_color }}" width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <title>Tiktok Logo</title>
+                            <path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"></path>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if section.settings.linkedin_link != blank %}
+                    <a href="{{ section.settings.linkedin_link }}" target="_blank" aria-label="TikTok">
+                        <svg fill="{{ section.settings.items_color }}" width="24px" height="24px" viewBox="-2 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-linkedin">
+                            <path d='M19.959 11.719v7.379h-4.278v-6.885c0-1.73-.619-2.91-2.167-2.91-1.182 0-1.886.796-2.195 1.565-.113.275-.142.658-.142 1.043v7.187h-4.28s.058-11.66 0-12.869h4.28v1.824l-.028.042h.028v-.042c.568-.875 1.583-2.126 3.856-2.126 2.815 0 4.926 1.84 4.926 5.792zM2.421.026C.958.026 0 .986 0 2.249c0 1.235.93 2.224 2.365 2.224h.028c1.493 0 2.42-.989 2.42-2.224C4.787.986 3.887.026 2.422.026zM.254 19.098h4.278V6.229H.254v12.869z' />
+                            <title>LinkedIn Logo</title>
+                        </svg>
+                    </a>
+                {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+        {
+            "type":"select",
+            "id": "section_width",
+            "label": "Section Width",
+            "default": "large",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full Width"
+                },
+                {
+                    "value": "xlarge",
+                    "label": "Extra Large (1240px)"
+                },
+                {
+                    "value": "large",
+                    "label": "Large (1024px)"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium (768px)"
+                },
+                {
+                    "value": "small",
+                    "label": "Small (640px)"
+                }
+            ]
+        },
+        {
+            "type": "color",
+            "id": "items_color",
+            "label": "Items Color",
+            "default": "#020202"
+        },
+        {
+            "type":"checkbox",
+            "id": "show_newsletter",
+            "label": "Show Newsletter",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "newsletter_heading",
+            "label": "Newsletter Heading",
+            "default": "Join Our Newsletter"
+        },
+        {
+            "type": "text",
+            "id": "newsletter_subheading",
+            "label": "Newsletter Subheading",
+            "default": "Get updates on new products and sales directly to your inbox."
+        },
+        {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border Color",
+            "default": "#6d7175"
+        },
+        {
+            "type":"header",
+            "content": "Button Settings"
+        },
+        {
+            "type": "color",
+            "id": "button_bgcolor",
+            "label": "Background Color",
+            "default": "#0c0c0c"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Subscribe"
+        },
+        {
+            "type": "color",
+            "id": "button_textcolor",
+            "label": "Text Color",
+            "default": "#ffffff"
+        },
+        {
+            "type":"header",
+            "content": "Social Media Option"
+        },
+        {
+            "type": "text",
+            "id": "social_media_title",
+            "label": "Social Media Title",
+            "default": "Our Social"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_social_icons",
+            "label": "Show Social Icons",
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "facebook_link",
+            "label": "Facebook URL"
+        },
+        {
+            "type": "url",
+            "id": "instagram_link",
+            "label": "Instagram URL"
+        },
+        {
+            "type": "url",
+            "id": "tiktok_link",
+            "label": "TikTok URL"
+        },
+        {
+            "type": "url",
+            "id": "linkedin_link",
+            "label": "LinkedIn URL"
+        }
+  ],
+  "presets": [
+    {
+      "name": "Footer Newsletter + Social",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}

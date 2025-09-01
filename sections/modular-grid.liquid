@@ -37,7 +37,11 @@
         <div class="flex flex-wrap flex-row mx-auto" style="width:{{ cont_width }}; justify-content: {{ section.settings.column_position}};align-items: {{ section.settings.column_alignment }};">
             {% for block in section.blocks %}
                 <div class="p-4" style="width:{{ column_width }}; height:{{ column_width }};">
-                    <div class="p-4 flex flex-col justify-end w-full h-full" style="background-image: url({{ block.settings.column_image | image_url: width: 300 }}); background-size: cover; background-position: center; align-items:{{ section.settings.content_alignment }};">
+                    <div class="p-4 flex flex-col justify-end w-full h-full"
+                        style="background-image: url({{ block.settings.column_image | image_url: width: 300 }});
+                        background-size: cover; background-position: center; align-items:{{ section.settings.content_alignment }};
+                        color: {{ block.settings.column_text_color }};"
+                    >
                         {% if block.settings.column_caption != blank %}
                             <div id="column-title">
                                 <span class="text-sm my-2 opacity-70">
@@ -64,13 +68,17 @@
 
                         {% if block.settings.column_button_text != blank %}
                             <div id="column-btn" class="py-4 flex gap-4 items-center justify-start">
-                                <a class="py-2 px-8" href="{{ block.settings.column_button_link }}"
+                                <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                    href="{{ block.settings.column_button_link }}"
                                     style="border: {% if block.settings.has_border %} solid {% else %} none {% endif %} 1px;
-                                    border-color: {{ block.settings.button_border_color }};
-                                    color: {{ block.settings.button_text_color }};
-                                    background-color: {{ block.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
-                                    {{ block.settings.column_button_text }}
+                                            border-color: {{ block.settings.button_border_color }};
+                                            color: {{ block.settings.button_text_color }};
+                                            background-color: {{ block.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                    <span class="button-span inline-block transform transition-all duration-150">
+                                        {{ block.settings.column_button_text }}
+                                    </span>
                                 </a>
+
                             </div>
                         {% endif %}
                     </div>
@@ -80,6 +88,25 @@
     </div>
 </section>
 
+<style>
+    #column-btn a {
+        transition: all 0.3s ease;
+        opacity: 1;
+    }
+
+    #column-btn a:hover {
+        opacity: 0.8;
+    }
+
+    #column-btn a .button-span {
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    #column-btn a:hover .button-span {
+        transform: translateX(8px);
+    }
+</style>
 
 
 
@@ -298,6 +325,15 @@
                     "id": "button_text_color",
                     "label": "Button Text Color",
                     "default": "#c9c9c9"
+                },
+                {
+                    "type": "range",
+                    "id": "background_opacity",
+                    "label": "Background Opacity",
+                    "default": 100,
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
                 },
                 {
                     "type":"color",

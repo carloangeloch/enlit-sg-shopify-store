@@ -42,7 +42,8 @@
                     <textarea id="ContactForm-body" name="contact[body]" rows="4" class="w-full border-1 border-slate-400 p-2" required  placeholder="Your message here"></textarea>
                 </div>
                 
-                <div id="button-container" class="w-3/4 flex flex-row" style="align-items: {{ section.settings.button_position }}">
+                <div id="button-container" class="w-3/4 flex flex-row items-center"
+                    style="justify-content: {{ section.settings.button_position }}">
                     <button type="submit" class="bg-black hover:bg-slate-800 text-white px-6 py-2 duration-200 cursor-pointer">
                         {{ section.settings.submit_text}}
                     </button>
@@ -84,7 +85,7 @@
                     "value": "center"
                 },
                 {
-                    "label": "right",
+                    "label": "Right",
                     "value": "end"
                 }
             ]

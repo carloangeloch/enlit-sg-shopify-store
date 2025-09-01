@@ -1,3 +1,5 @@
+{{ 'base.css' | asset_url | stylesheet_tag }}
+
 {%  assign cont_width = '' %}
 {%  case section.settings.container-width %}
     {% when 'full'%}
@@ -14,12 +16,12 @@
 
 <section id="rich-text">
     <div id="rich-text-container" class="w-full" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
-        <div class="text-center p-4 mx-auto" style="width: {{ cont_width }};">
+        <div class="text-center px-4 py-2 mx-auto" style="width: {{ cont_width }};">
             {% if section.settings.title != blank %}
                 <h2 class="text-3xl">{{ section.settings.title }}</h2>
             {% endif %}
             {% if section.settings.content != blank %}
-                <div class="mt-4 text-lg opacity-70">{{ section.settings.content }}</div>
+                <div class="mt-4 text-lg opacity-70 richtext-content">{{ section.settings.content }}</div>
             {% endif %}
             {% if section.settings.button_text1 != blank %}
                 <div id="button-container" class="p-6 flex gap-6 items-center justify-center">

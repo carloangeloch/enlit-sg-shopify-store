@@ -49,19 +49,21 @@
                 {% endcase %}
                 <div class="p-4" style="width: {{ column_width }};">
                     <div class="p-4" style="background-color: {{ section.settings.column_bgcolor  }};">
-                        <div id="image-container" class="overflow-hidden bg-red-300" style="height: {{ img_height }}; width: 100%;">
-                            <img src="{{ block.settings.column_image | image_url: width: 300 }}"
-                                alt="{{ block.settings.column_title }}"
-                                class="w-full h-full object-cover"
-                                width="300"
-                                height="{{ img_height }}"
-                                {% if img_height != 'auto' %}
-                                    style="max-height: {{ img_height }}px;"
-                                {% else %}
-                                    style="height: auto;"
-                                {% endif %}
-                            />
-                        </div>
+                        {% if block.settings.column_image != blank%}
+                            <div id="image-container" class="overflow-hidden" style="height: {{ img_height }}; width: 100%;">
+                                <img src="{{ block.settings.column_image | image_url: width: 300 }}"
+                                    alt="{{ block.settings.column_title }}"
+                                    class="w-full h-full object-cover"
+                                    width="300"
+                                    height="{{ img_height }}"
+                                    {% if img_height != 'auto' %}
+                                        style="max-height: {{ img_height }}px;"
+                                    {% else %}
+                                        style="height: auto;"
+                                    {% endif %}
+                                />
+                            </div>
+                        {% endif %}
                         <div id="column-content" class="flex flex-col justify-center" style="align-items:{{ section.settings.content_alignment }};">
                             {% if block.settings.column_title != blank %}
                                 <div id="column-title">
@@ -72,7 +74,7 @@
                             {% endif %}
                             
                             {% if block.settings.column_content != blank %}
-                                <div id="column-content" class="opacity-70" style="text-align: {{ content_align }};">
+                                <div id="column-content" class="opacity-70 richtext-content" style="text-align: {{ content_align }};">
                                     {{ block.settings.column_content }}
                                 </div>
                             {% endif %}
@@ -141,7 +143,7 @@
             "options": [
                 {
                     "value": "start",
-                    "label": "Left"
+                    "label": "Top"
                 },
                 {
                     "value": "center",
@@ -149,7 +151,7 @@
                 },
                 {
                     "value": "end",
-                    "label": "Right"
+                    "label": "Bottom"
                 }
             ]
         },
