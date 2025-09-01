@@ -94,5 +94,16 @@
         "default": "#EF4444"  // Red
       }
     ]
+  },
+  {
+    "name": "Footer Background Color",
+    "settings": [
+      {
+        "type": "color",
+        "id": "footer_bgcolor",
+        "label": "Background Color",
+        "default": "#dcdfe1"  // Gray
+      }
+    ]
   }
 ]
