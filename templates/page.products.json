@@ -1,0 +1,26 @@
+{
+    "sections": {
+        "featured_collection_y72Yxt": {
+        "type": "featured-collection",
+        "name": "Featured Collection",
+        "settings": {
+            "title": "Featured Collection",
+            "featured_collection": "hand-and-body-wash",
+            "columns": 4,
+            "section_width": "large",
+            "column_postition": "center",
+            "content_alignment": "start",
+            "products_limit": 4,
+            "section_bgcolor": "#ffffff",
+            "show_product_price": true,
+            "button_text": "Button Text",
+            "button_link": "",
+            "margin_top": 16,
+            "margin_bottom": 16
+        }
+        }
+    },
+    "order": [
+        "featured_collection_y72Yxt"
+    ]
+}

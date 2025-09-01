@@ -1,0 +1,24 @@
+{
+    "sections": {
+        "rich_text_uVEwWx": {
+        "type": "rich-text",
+        "name": "Rich Text",
+        "settings": {
+            "title": "Our Latest Blogs",
+            "content": "",
+            "container-width": "medium",
+            "button_text1": "",
+            "button_link1": "",
+            "button_text2": "",
+            "button_link2": "",
+            "button_text3": "",
+            "button_link3": "",
+            "margin_top": 40,
+            "margin_bottom": 16
+        }
+        }
+    },
+    "order": [
+        "rich_text_uVEwWx"
+    ]
+}
