@@ -3,3 +3,15 @@
 [ ]: add color schema to sections
 
 [ ]: clean up code by creating posible snippets
+
+Done with mobile responsivenes
+- HEADER
+[x]: Header Banner
+
+- SECTIONS
+[x]: Hero Banner
+[x]: Hero Banner with Text
+
+- FOOTER
+[x]: Footer with Newsletter + Socials
+[x]: Footer Menu
