@@ -11,10 +11,18 @@
             --font-body--family: {{ settings.body_font }},{{ settings.body_font.fallback_families }};
           }
         {% endstyle %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        {% sections 'header-group' %}
-        {{ content_for_layout }}
-        {% sections 'footer-group' %}
+      <div class="min-h-screen w-full flex flex-col items-center justify-between">
+        <div class="w-full">
+          {% sections 'header-group' %}
+          {{ content_for_layout }}
+        </div>
+        <div class="w-full" style="background-color: {{ settings.footer_bgcolor }}">
+          {% sections 'footer-group' %}
+        </div>
+      </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 </html>
