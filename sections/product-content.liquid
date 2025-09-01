@@ -1,0 +1,276 @@
+{% assign specs = product.metafields.custom.specifications | split: '|' %}
+{% assign whybuy = product.metafields.custom.why_shop_with_us | split: '|' %}
+{% assign care_ints = product.metafields.custom.care_instructions | split: '|' %}
+
+
+<script src="{{ 'product-content.js' | asset_url }}" defer="defer"></script>
+
+<section id="product-content">
+    <div id="margin-container"
+        class="w-full"
+        style="margin-top: {{ section.settings.margin-top }};
+        margin-bottom: {{ section.settings.margin-bottom }};
+        ">
+        <div class="w-full p-4" >
+            {% if section.settings.section_title != blank %}
+                {{ section.settings.section_title }}   
+            {% endif %}
+            <div id="product-item" class="w-full flex flex-row justify-center">
+                <div class="images-container w-[600] p-2">
+                    <img id="image-box" src="{{ product.featured_image | image_url: width: 600 }}" width="600" height="600"/>
+                    
+                    <div class="flex gap-2 overflow-x-scroll mt-4">
+                        {% for image in product.images %}
+                            {% comment %} <p>{{ image }} - {{ forloop.index | minus: 1 }}</p> {% endcomment %}
+                            <img class="cursor-pointer" onclick="showImage('{{ image | image_url: width: 600}}')" src="{{ image | image_url: width:150}}" alt="{{ image | escape}}" width="150" height="150"/>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="product-details w-1/2 p-2">
+                    <div class="text-4xl">{{ product.title }}</div>
+                    {% if product.price != blank %}
+                        <div id="price-container"><strong class="text-2xl text-green-700">{{ product.price | money }}</strong> <span class="line-through text-slate-500">{{ product.compare_at_price | money }}</span></div>
+                    {% else %}
+                        <div id="price-container"><strong class="text-2xl text-green-700">{{ product.compare_at_price | money }}</strong></div>
+                    {% endif %}
+                    <div class="w-full flex gap-2">
+                        {% if section.settings.button1_text %}
+                            <div id="button1" class="py-2">
+                                <a class="px-6 py-2 bg-purple-500 text-white" target="_blank" href="{{ section.settings.button1_link }}" onclick="window.open({{ section.settings.button1_link }}); return false;">{{ section.settings.button1_text }}</a>
+                            </div>
+                        {% endif %}
+                        {% if section.settings.button2_text %}
+                            <div id="button1" class="py-2">
+                                <a class="px-6 py-2 bg-orange-400 text-white" target="_blank" href="{{ section.settings.button2_link }}" onclick="window.open({{ section.settings.button2_link }}); return false;">{{ section.settings.button2_text }}</a>
+                            </div>
+                        {%  endif %}
+                    </div>
+                    <div id="product_description" class="my-4">
+                        {{ product.description | default: "No description available." }}
+                    </div>
+                    <div id="accordion-container" class="my-2">                        
+                        <div class="w-full mb-2 accordion">
+                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                                <div class="">How to Use</div>
+                                <strong class="accordion-plus">+</strong>
+                            </div>
+                            <div class="accordion-content bg-slate-50">
+                                {{ product.metafields.custom.how_to_use | default: "No how to use information available." }}
+                            </div>
+                        </div>
+                        
+                        <div class="w-full mb-2 accordion">
+                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                                <div>Care Instructions</div>
+                                <strong class="accordion-plus">+</strong>
+                            </div>
+                            <div class="accordion-content bg-slate-50">
+                                {% for item in care_ints %}
+                                    <p>{{ item }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+    
+                        <div class="w-full mb-2 accordion">
+                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                                <div>Why Shop with Us</div>
+                                <strong class="accordion-plus">+</strong>
+                            </div>
+                            <div class="accordion-content bg-slate-50">
+                                {% for item in whybuy %}
+                                    <p>{{ item }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+    
+                        <div class="w-full mb-2 accordion">
+                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                                <div>Product Specification</div>
+                                <strong class="accordion-plus">+</strong>
+                            </div>
+                            <div class="accordion-content bg-slate-50">
+                                {% for item in specs %}
+                                    <p>{{ item }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>
+
+<style>
+    .accordion-title {
+        user-select: none;
+    }
+    .accordion-title {
+        cursor: pointer;
+    }
+    .accordion-content {
+        overflow: hidden;
+        height: 0;
+        opacity: 0;
+        padding: 0 1rem;
+    }
+    .images-container{
+        left: 0%;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accordions = document.querySelectorAll('.accordion');
+
+        accordions.forEach(acc => {
+            const title = acc.querySelector('.accordion-title');
+            const content = acc.querySelector('.accordion-content');
+            const plus = acc.querySelector('.accordion-plus');
+            let isOpen = false;
+
+            gsap.set(content, { height: 0, opacity: 0 });
+
+            title.addEventListener('click', function () {
+            // Close others if needed
+            accordions.forEach(other => {
+                if (other !== acc) {
+                    const otherContent = other.querySelector('.accordion-content');
+                    gsap.to(otherContent, { height: 0, opacity: 0, duration: 0.3, ease: "power2.out" });
+                    other.classList.remove('active');
+                    other.dataset.open = "false";
+                    other.querySelector('.accordion-plus').textContent = "+";
+                } else{
+                    other.querySelector('.accordion-plus').textContent = "-";
+                }
+            });
+
+            if (!isOpen) {
+                const fullHeight = content.scrollHeight;
+                gsap.to(content, {
+                    height: fullHeight,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+                acc.classList.add('active');
+                //Just to make sure that accordion-plus works fine if click same title to close
+                acc.querySelector('.accordion-plus').textContent = "-";
+            } else {
+                gsap.to(content, {
+                    height: 0,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.inOut"
+                });
+                acc.classList.remove('active');
+                //Just to make sure that accordion-plus works fine if click same title to close
+                acc.querySelector('.accordion-plus').textContent = "+";
+            }
+
+            isOpen = !isOpen;
+            });
+        });
+    });
+
+    
+    function showImage (img){
+        document.getElementById("image-box").src = img;
+    }
+</script>
+
+
+{% schema %}
+{
+    "name": "Product Content",
+    "settings":[
+        {
+            "type": "checkbox",
+            "id": "is_bgimage",
+            "label": "Is Background Image?",
+            "default": false
+        },
+        {
+            "type": "color",
+            "id": "bgcolor",
+            "label": "Background Color",
+            "default": "#89E7F1"
+        },
+        {
+            "type":"image_picker",
+            "label": "Background Image",
+            "id": "bgimage"
+        },
+        {
+            "type": "text",
+            "id": "section_title",
+            "label": "Section Title",
+            "default": "Product Content Section"
+        },
+        {
+            "type":"header",
+            "content":"Buttons"
+        },
+        {
+            "type": "image_picker",
+            "id": "button1_img",
+            "label": "Button 1 Image"
+        },
+        {
+            "type": "text",
+            "id": "button1_text",
+            "label": "Button 1 Text",
+            "default":"Button 1"
+        },
+        {
+            "type": "url",
+            "id": "button1_link",
+            "label": "Button 1 Link"
+        },
+        {
+            "type": "image_picker",
+            "id": "button2_img",
+            "label": "Button 2 Image"
+        },
+        {
+            "type": "text",
+            "id": "button2_text",
+            "label": "Button 2 Text",
+        },
+        {
+            "type": "url",
+            "id": "button2_link",
+            "label": "Button 2 Link"
+        },
+        {
+            "type":"header",
+            "content":"Margin Section"
+        },
+        {
+            "type":"range",
+            "id": "margin-top",
+            "label": "Top Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type":"range",
+            "id": "margin-bottom",
+            "label": "Bottom Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        }
+    ],
+    "presets":[
+        {
+            "name": "Product Content",
+            "category": "Products"
+        }
+    ]
+}
+{% endschema %}

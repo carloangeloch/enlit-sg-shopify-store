@@ -1,0 +1,224 @@
+{% assign cont_width = '' %}
+{% case section.settings.section_width %}
+  {% when 'xlarge' %}
+    {% assign cont_width = '1240px' %}
+  {% when 'large' %}
+    {% assign cont_width = '1024px' %}
+  {% when 'medium' %}
+    {% assign cont_width = '768px' %}
+  {% when 'small' %}
+    {% assign cont_width = '640px' %}
+  {% else %}
+    {% assign cont_width = '100%' %}
+{% endcase %}
+
+
+<section class="p-4">
+    <div id="margin-container" class="mx-auto w-full md:w-[{{ cont_width }}]" style="margin-top:{{ section.settings.margin_top }}; margin-bottom: {{ section.settings.margin_bottom }};">
+        {% if section.settings.title != blank  %}
+            <div>
+                {% render 'section-title',
+                    title: section.settings.title
+                %}
+            </div>
+        {% endif %}
+        <div id="menu-links-desktop" class="hidden lg:flex">
+            {% for block in section.blocks %}
+                <div id="menu-column" class="flex-auto">
+                    <div><em>{{ block.settings.menu_title }}</em></div>
+                    <div id="menu-links-container" >
+                        {% for link in block.settings.menu_links.links %}
+                            <a class="block my-2 hover:translate-x-1.5 duration-150 ease-in-out" href="{{ link.url }}">{{ link.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="menu-links-mobile" class="flex-col lg:hidden">
+            {% for block in section.blocks %}   
+                <div class="w-full mb-2 accordion">
+                    <div class="accordion-title flex justify-between p-4">
+                        <div><em>{{ block.settings.menu_title }}</em></div>
+                        <strong class="accordion-plus">+</strong>
+                    </div>
+                    <div class="accordion-content bg-slate-50">
+                        {% for link in block.settings.menu_links.links %}
+                            <a class="block my-6 hover:translate-x-1.5 duration-150 ease-in-out" href="{{ link.url }}">{{ link.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .accordion-title {
+        user-select: none;
+    }
+    .accordion-title {
+        cursor: pointer;
+    }
+    .accordion-content {
+        overflow: hidden;
+        height: 0;
+        opacity: 0;
+        padding: 0 1rem;
+    }
+    .images-container{
+        left: 0%;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accordions = document.querySelectorAll('.accordion');
+
+        accordions.forEach(acc => {
+            const title = acc.querySelector('.accordion-title');
+            const content = acc.querySelector('.accordion-content');
+            const plus = acc.querySelector('.accordion-plus');
+            let isOpen = false;
+
+            gsap.set(content, { height: 0, opacity: 0 });
+
+            title.addEventListener('click', function () {
+            // Close others if needed
+            accordions.forEach(other => {
+                if (other !== acc) {
+                    const otherContent = other.querySelector('.accordion-content');
+                    gsap.to(otherContent, { height: 0, opacity: 0, duration: 0.3, ease: "power2.out" });
+                    other.classList.remove('active');
+                    other.dataset.open = "false";
+                    other.querySelector('.accordion-plus').textContent = "+";
+                } else{
+                    other.querySelector('.accordion-plus').textContent = "-";
+                }
+            });
+
+            if (!isOpen) {
+                const fullHeight = content.scrollHeight;
+                gsap.to(content, {
+                    height: fullHeight,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+                acc.classList.add('active');
+                //Just to make sure that accordion-plus works fine if click same title to close
+                acc.querySelector('.accordion-plus').textContent = "-";
+            } else {
+                gsap.to(content, {
+                    height: 0,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.inOut"
+                });
+                acc.classList.remove('active');
+                //Just to make sure that accordion-plus works fine if click same title to close
+                acc.querySelector('.accordion-plus').textContent = "+";
+            }
+
+            isOpen = !isOpen;
+            });
+        });
+    });
+
+    
+    function showImage (img){
+        document.getElementById("image-box").src = img;
+    }
+</script>
+
+
+{% schema %}
+{
+    "name": "Footer Menu Links",
+    "settings": [
+        {
+            "type":"select",
+            "id": "section_width",
+            "label": "Section Width",
+            "default": "large",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full Width"
+                },
+                {
+                    "value": "xlarge",
+                    "label": "Extra Large (1240px)"
+                },
+                {
+                    "value": "large",
+                    "label": "Large (1024px)"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium (768px)"
+                },
+                {
+                    "value": "small",
+                    "label": "Small (640px)"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Footer Links"
+        },
+        {
+            "type":"header",
+            "content": "Section Margin"
+        },
+        {
+            "type": "range",
+            "id": "margin_top",
+            "label": "Top Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Bottom Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        }
+    ],
+    "blocks": [
+        {
+            "type": "column",
+            "name": "Column",
+            "limit": 4,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "menu_title",
+                    "label": "Menu Title",
+                    "default": "Menu"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu_links",
+                    "label": "Menu Link",
+                    "default": "main-menu"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Footer Link Menu",
+            "category": "Footer"
+        }
+    ]
+}
+{% endschema %}
