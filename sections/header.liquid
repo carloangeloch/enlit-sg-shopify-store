@@ -1,7 +1,7 @@
 {% assign menu_link = linklists[section.settings.menu_links] %}
 
 <!-- Header Section -->
-<header class="sticky top-0 z-50 bg-white shadow">
+<header class="sticky top-0 z-50 shadow" style="background-color: {{ section.settings.header_bgcolor }}">
     <div class="flex justify-between items-center h-16 p-4">
         <div id="header-logo">
             <a href="{{ shop.url }}" title="{{ shop.name }}">
@@ -24,7 +24,7 @@
                     </svg>
                 </div>
             </div>
-            <div id="mobile-menu-modal" class="side-panel fixed top-0 w-full h-screen bg-amber-300 z-50 p-4">
+            <div id="mobile-menu-modal" class="side-panel fixed top-0 w-full h-screen z-50 p-4" style="background-color: {{ section.settings.mobile_menu_bgcolor }}">
                 <div id="menu-close-btn" class="w-full flex items-end justify-end">
                     <svg width="32px" height="32px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.5 1.5L13.5 13.5M1.5 13.5L13.5 1.5" stroke="#000000"/>
@@ -80,6 +80,22 @@
             "id": "menu_links",
             "label": "Menu List",
             "default": "main-menu"
+        },
+        {
+            "type": "color",
+            "id": "header_bgcolor",
+            "label": "Header Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type":"header",
+            "content": "Mobile Settings"
+        },
+        {
+            "type": "color",
+            "id": "mobile_menu_bgcolor",
+            "label": "Menu Background Color",
+            "default": "#e2e6ea"
         }
     ],
     "presets": [

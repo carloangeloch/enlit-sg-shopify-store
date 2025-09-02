@@ -70,7 +70,7 @@
         <div id="hero-content-control"
             class="p-8 flex flex-col w-full h-full"
             style="align-items: {{ content_align }}; justify-content: {{ content_justify }};
-                    background:url({{ section.settings.background_image | image_url: height: image_width }}) no-repeat center;
+                    background:url({{ section.settings.background_image | image_url: height: 1600 }}) no-repeat center;
                     
                 ">
             {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
