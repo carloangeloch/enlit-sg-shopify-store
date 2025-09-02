@@ -11,6 +11,8 @@ Done with mobile responsivenes
 - SECTIONS
 [x]: Hero Banner
 [x]: Hero Banner with Text
+[x]: Contact Form
+[x]: Featured Collection
 
 - FOOTER
 [x]: Footer with Newsletter + Socials
