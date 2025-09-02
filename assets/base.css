@@ -7,3 +7,44 @@
 .richtext-content li {
   margin-bottom: 0.5rem;
 }
+
+
+/* featured-collection */
+#button-container button {
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+#button-container button:hover {
+    opacity: 0.8;
+}
+
+#button-container button .button-span {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+#button-container button:hover .button-span {
+    transform: translateX(8px);
+}
+
+
+/* modular-grid */
+/* featured-collection */
+#column-btn a {
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+#column-btn a:hover {
+    opacity: 0.8;
+}
+
+#column-btn a .button-span {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+#column-btn a:hover .button-span {
+    transform: translateX(8px);
+}
