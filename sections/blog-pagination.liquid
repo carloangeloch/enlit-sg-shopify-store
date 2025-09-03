@@ -1,0 +1,104 @@
+{{ 'base.css' | asset_url |stylesheet_tag }}
+
+{% assign blog_handle = section.settings.selected_blog | default: 'news' %}
+{% assign blogposts = blogs[blog_handle] %}
+
+
+<section id="blog-pagination">
+    {% paginate blogposts.articles by section.settings.posts_per_page %}
+        {% if section.settings.section_title != blank %}
+            {% render 'section-title',
+                title: section.settings.section_title
+            %}
+        {% endif %}
+
+        {% if blogposts.articles.size > 0 %}
+          <div class="flex flex-wrap flex-row items-start justify-center mx-auto">
+            {% for article in blogposts.articles%}
+                <div class="p-4 bg-white hover:bg-slate-100 duration-150 ease-in-out
+                    " >
+                    <a href="{{ article.url }}" class="flex flex-col items-center justify-start w-[320]">
+                        <div class=" max-w-[320] h-[320] overflow-hidden">
+                            <img src="{{ article.image | image_url: width: 600}}" width="600" height="600" class="object-cover object-center max-w-[320] h-[320]">
+                        </div>
+                        <div id="content-container" class="mt-4">
+                            <h3 class="text-xl font-semibold mb-2" style="color:{{ section.settings.blog_title_color }};">{{ article.title }}</h3>
+                            <div class="text-sm opacity-70 mb-2">
+                                {{ article.excerpt | strip_html | truncatewords: 20 }}
+                            </div>
+                            <div class="text-sm opacity-70 mb-2"><em>{{ article.published_at | date: "%B %d, %Y" }}</em></div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No blog posts found.</p>
+        {% endif %}
+
+
+    {% comment %} Pagination controls {% endcomment %}
+    <div class="pagination w-full flex mt-6">
+        <div class="mx-auto">
+            {% if paginate.previous %}
+                <a class="p-2 bg-slate-100 hover:bg-slate-200 duration-150 ease-in-out rounded-sm" href="{{ paginate.previous.url }}">Previous</a>
+            {% endif %}
+    
+            {% for part in paginate.parts %}
+                {% if part.is_link %}
+                    <a class="p-2 text-slate-500 duration-150 ease-in-out rounded-sm"  href="{{ part.url }}">
+                        {{ part.title }}
+                    </a>
+                {% else %}
+                    <span class="current-page text-blue-600"><strong>{{ part.title }}</strong></span>
+                {% endif %}
+            {% endfor %}
+    
+            {% if paginate.next %}
+                <a class="p-2 bg-slate-100 hover:bg-slate-200 duration-150 ease-in-out rounded-sm" href="{{ paginate.next.url }}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endpaginate %}
+
+</section>
+
+{% schema %}
+{
+  "name": "Blog Post List",
+  "settings": [
+    {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Blog Posts"
+    },
+    {
+        "type": "blog",
+        "id": "selected_blog",
+        "label": "Select Blog"
+    },
+    {
+        "type":"color",
+        "id": "blog_title_color",
+        "label": "Blog Title Color",
+        "default": "#020202"
+    },
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "label": "Posts per page",
+      "default": 6,
+      "min": 1,
+      "max": 24,
+      "step": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Post List",
+      "category": "Blog"
+    }
+  ]
+}
+{% endschema %}

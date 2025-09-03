@@ -1,0 +1,75 @@
+<div class="blog-article-container">
+  {% if article.image %}
+    <img 
+      src="{{ article.image | image_url: width: 1024 }}" 
+      alt="{{ article.title }}" 
+      class="blog-article-image"
+      width="{{ article.image.width }}"
+      height="{{ article.image.height }}"
+      loading="lazy"
+    >
+  {% endif %}
+
+  <h1 class="blog-article-title">{{ article.title }}</h1>
+
+  <!-- Share buttons -->
+  <div class="blog-article-share">
+    <span>Share:</span>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | prepend: shop.url }}" target="_blank" aria-label="Share on Facebook">
+      Facebook
+    </a>
+    <a href="https://twitter.com/intent/tweet?url={{ article.url | prepend: shop.url }}&text={{ article.title | url_encode }}" target="_blank" aria-label="Share on Twitter">
+      Twitter
+    </a>
+    <a href="https://pinterest.com/pin/create/button/?url={{ article.url | prepend: shop.url }}&media={{ article.image | image_url }}&description={{ article.title | url_encode }}" target="_blank" aria-label="Share on Pinterest">
+      Pinterest
+    </a>
+  </div>
+
+  <!-- Article content -->
+  <div class="blog-article-content">
+    {{ article.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Article",
+  "settings": [],
+  "presets": [
+    {
+        "name": "Blog Article",
+        "category": "Blog"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.blog-article-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.blog-article-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+.blog-article-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.blog-article-content {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.blog-article-share {
+  margin-top: 2rem;
+}
+.blog-article-share a {
+  margin-right: 10px;
+  text-decoration: none;
+}
+{% endstylesheet %}
