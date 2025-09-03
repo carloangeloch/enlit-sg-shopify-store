@@ -1,3 +1,6 @@
+{{ 'product-content.css' | asset_url |stylesheet_tag }}
+{{ 'base.css' | asset_url | stylesheet_tag }}
+
 {% assign specs = product.metafields.custom.specifications | split: '|' %}
 {% assign whybuy = product.metafields.custom.why_shop_with_us | split: '|' %}
 {% assign care_ints = product.metafields.custom.care_instructions | split: '|' %}
@@ -5,18 +8,24 @@
 
 <script src="{{ 'product-content.js' | asset_url }}" defer="defer"></script>
 
-<section id="product-content">
+<section id="product-content" class="relative">
+    <div class="w-full absolute -z-[5]">
+        <img src="{{ section.settings.bgimage | image_url: width: 2048 }}" width="100%" height="auto">
+    </div>
     <div id="margin-container"
         class="w-full"
         style="margin-top: {{ section.settings.margin-top }};
         margin-bottom: {{ section.settings.margin-bottom }};
+        {% if section.settings.is_bgimage == false%}
+            background-color: {{ section.settings.bgcolor }};
+        {% endif %}
         ">
-        <div class="w-full p-4" >
+        <div class="p-4" >
             {% if section.settings.section_title != blank %}
                 {{ section.settings.section_title }}   
             {% endif %}
-            <div id="product-item" class="w-full flex flex-row justify-center">
-                <div class="images-container w-[600] p-2">
+            <div id="product-item" class="flex flex-col lg:flex-row justify-center">
+                <div class="images-container shrink max-w-[600] p-2 bg-white mx-auto">
                     <img id="image-box" src="{{ product.featured_image | image_url: width: 600 }}" width="600" height="600"/>
                     
                     <div class="flex gap-2 overflow-x-scroll mt-4">
@@ -27,45 +36,75 @@
                     </div>
                 </div>
                 
-                <div class="product-details w-1/2 p-2">
-                    <div class="text-4xl">{{ product.title }}</div>
+                <div class="product-details w-full lg:w-1/2 ml-auto lg:ml-4 p-4 lg:min-w-[500px]" style="background-color: {{ section.settings.description_bgcolor }};">
+                    <div class="text-4xl mb-4" style="color: {{ section.settings.product_name_color }}">{{ product.title }}</div>
                     {% if product.price != blank %}
-                        <div id="price-container"><strong class="text-2xl text-green-700">{{ product.price | money }}</strong> <span class="line-through text-slate-500">{{ product.compare_at_price | money }}</span></div>
+                        <div id="price-container"><strong class="text-xl" style="color:{{ section.settings.price_color }} ;">{{ product.price | money }}</strong> <span class="line-through" style="color:{{ section.settings.compare_price_color }};">{{ product.compare_at_price | money }}</span></div>
                     {% else %}
-                        <div id="price-container"><strong class="text-2xl text-green-700">{{ product.compare_at_price | money }}</strong></div>
+                        <div id="price-container"><strong class="text-xl"  style="color:{{ section.settings.price_color }};">{{ product.compare_at_price | money }}</strong></div>
                     {% endif %}
-                    <div class="w-full flex gap-2">
-                        {% if section.settings.button1_text %}
-                            <div id="button1" class="py-2">
-                                <a class="px-6 py-2 bg-purple-500 text-white" target="_blank" href="{{ section.settings.button1_link }}" onclick="window.open({{ section.settings.button1_link }}); return false;">{{ section.settings.button1_text }}</a>
+
+                    <div id="button-container" class="w-full flex gap-2 mt-4">
+
+                        {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+
+                        {% if section.settings.button1_text != blank %}
+                            <div id="column-btn" class="flex gap-4 items-center justify-start">
+                                <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                    href="{{ section.settings.button1_link }}"
+                                    onclick="window.open({{ section.settings.button1_link }}); return false;"
+                                    style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                            border-color: {{ section.settings.button1_border_color }};
+                                            color: {{ section.settings.button1_text_color }};
+                                            background-color: {{ section.settings.button1_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                    <div class="button-span flex flex-row items-center gap-x-2 transform transition-all duration-150">
+                                        <div class="w-4 h-4 bg-no-repeat" style="background-image: url({{ section.settings.button1_img | image_url: width: 16 }});"></div>
+                                        <div>{{ section.settings.button1_text }}</div>
+                                    </div>
+                                </a>
+
                             </div>
                         {% endif %}
-                        {% if section.settings.button2_text %}
-                            <div id="button1" class="py-2">
-                                <a class="px-6 py-2 bg-orange-400 text-white" target="_blank" href="{{ section.settings.button2_link }}" onclick="window.open({{ section.settings.button2_link }}); return false;">{{ section.settings.button2_text }}</a>
+                        
+                        {% if section.settings.button2_text != blank %}
+                            <div id="column-btn" class="flex gap-4 items-center justify-start">
+                                <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                    href="{{ section.settings.button2_link }}"
+                                    onclick="window.open({{ section.settings.button2_link }}); return false;"
+                                    style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                            border-color: {{ section.settings.button2_border_color }};
+                                            color: {{ section.settings.button2_text_color }};
+                                            background-color: {{ section.settings.button2_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                    <div class="button-span flex flex-row items-center gap-x-2 transform transition-all duration-150">
+                                        <div class="w-4 h-4 bg-no-repeat" style="background-image: url({{ section.settings.button2_img | image_url: width: 16 }});"></div>
+                                        <div>{{ section.settings.button2_text }}</div>
+                                    </div>
+                                </a>
+
                             </div>
-                        {%  endif %}
+                        {% endif %}
                     </div>
+
                     <div id="product_description" class="my-4">
                         {{ product.description | default: "No description available." }}
                     </div>
                     <div id="accordion-container" class="my-2">                        
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
                                 <div class="">How to Use</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content bg-slate-50">
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
                                 {{ product.metafields.custom.how_to_use | default: "No how to use information available." }}
                             </div>
                         </div>
                         
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
                                 <div>Care Instructions</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content bg-slate-50">
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
                                 {% for item in care_ints %}
                                     <p>{{ item }}</p>
                                 {% endfor %}
@@ -73,11 +112,11 @@
                         </div>
     
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
                                 <div>Why Shop with Us</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content bg-slate-50">
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
                                 {% for item in whybuy %}
                                     <p>{{ item }}</p>
                                 {% endfor %}
@@ -85,11 +124,11 @@
                         </div>
     
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4 bg-blue-100">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
                                 <div>Product Specification</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content bg-slate-50">
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
                                 {% for item in specs %}
                                     <p>{{ item }}</p>
                                 {% endfor %}
@@ -101,24 +140,6 @@
         </div>
     </div>
 </section>
-
-<style>
-    .accordion-title {
-        user-select: none;
-    }
-    .accordion-title {
-        cursor: pointer;
-    }
-    .accordion-content {
-        overflow: hidden;
-        height: 0;
-        opacity: 0;
-        padding: 0 1rem;
-    }
-    .images-container{
-        left: 0%;
-    }
-</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -174,7 +195,6 @@
         });
     });
 
-    
     function showImage (img){
         document.getElementById("image-box").src = img;
     }
@@ -185,6 +205,30 @@
 {
     "name": "Product Content",
     "settings":[
+        {
+            "type": "text",
+            "id": "section_title",
+            "label": "Section Title",
+            "default": "Product Content Section"
+        },
+        {
+            "type": "color",
+            "id": "product_name_color",
+            "label": "Product Name Color",
+            "default": "#084d9b"
+        },
+        {
+            "type": "color",
+            "id": "price_color",
+            "label": "Price Color",
+            "default": "#2272ce"
+        },
+        {
+            "type": "color",
+            "id": "compare_price_color",
+            "label": "Compare Price Color",
+            "default": "#e8161a"
+        },
         {
             "type": "checkbox",
             "id": "is_bgimage",
@@ -200,13 +244,14 @@
         {
             "type":"image_picker",
             "label": "Background Image",
-            "id": "bgimage"
+            "id": "bgimage",
+            "info": "Under deve"
         },
         {
-            "type": "text",
-            "id": "section_title",
-            "label": "Section Title",
-            "default": "Product Content Section"
+            "type": "color",
+            "id": "description_bgcolor",
+            "label": "Description Card Color",
+            "default": "#ffffff"
         },
         {
             "type":"header",
@@ -229,6 +274,24 @@
             "label": "Button 1 Link"
         },
         {
+            "type":"color",
+            "id": "button1_text_color",
+            "label": "Button Text Color",
+            "default": "#001001"
+        },
+        {
+            "type":"color",
+            "id": "button1_bgcolor",
+            "label": "Button BG Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"color",
+            "id": "button1_border_color",
+            "label": "Button Border Color",
+            "default": "#c9c9c9"
+        },
+        {
             "type": "image_picker",
             "id": "button2_img",
             "label": "Button 2 Image"
@@ -244,6 +307,55 @@
             "label": "Button 2 Link"
         },
         {
+            "type":"color",
+            "id": "button2_text_color",
+            "label": "Button Text Color",
+            "default": "#001001"
+        },
+        {
+            "type":"color",
+            "id": "button2_bgcolor",
+            "label": "Button BG Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"color",
+            "id": "button2_border_color",
+            "label": "Button Border Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"checkbox",
+            "id": "has_border",
+            "label": "Button Border",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "background_opacity",
+            "label": "Background Opacity",
+            "default": 100,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type":"header",
+            "content":"Accordion Section"
+        },
+        {
+            "type": "color",
+            "id": "accordion_color",
+            "label": "Accordion Color",
+            "default": "#8bbbf2"
+        },
+        {
+            "type": "color",
+            "id": "accordion_content_color",
+            "label": "Content Color",
+            "default": "#ffffff"
+        },
+        {
             "type":"header",
             "content":"Margin Section"
         },
@@ -251,7 +363,7 @@
             "type":"range",
             "id": "margin-top",
             "label": "Top Margin",
-            "default": 16,
+            "default": 0,
             "min": 0,
             "max": 100,
             "step": 1
@@ -260,7 +372,7 @@
             "type":"range",
             "id": "margin-bottom",
             "label": "Bottom Margin",
-            "default": 16,
+            "default": 0,
             "min": 0,
             "max": 100,
             "step": 1

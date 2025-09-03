@@ -26,6 +26,17 @@
 {% endcase %}
 
 
+{% assign content_align_mobile = 'left'%}
+{% case section.settings.mobile_alignment %}
+  {% when 'center' %}
+    {% assign content_align_mobile = 'center' %}
+  {% when 'end' %}
+    {% assign content_align_mobile = 'right' %}
+  {% else %}
+    {% assign content_align_mobile = 'left' %}
+{% endcase %}
+
+
 
 
 <section id="multicolumn">
@@ -33,7 +44,9 @@
         {% if section.settings.title != blank %}
             <h1 id="section-title" class="text-2xl">{{ section.settings.title }}</h1>
         {% endif %}
-        <div class="flex flex-wrap flex-row mx-auto" style="width:{{ cont_width }}; justify-content: {{ section.settings.column_postition}};  align-items: {{ section.settings.column_alignment  }};">
+
+        {% comment %} Decktop Version {% endcomment %}
+        <div class="hidden lg:flex flex-wrap flex-row mx-auto" style="width:{{ cont_width }}; justify-content: {{ section.settings.column_postition}};  align-items: {{ section.settings.column_alignment  }};">
             {% for block in section.blocks %}
                 
                 {% assign img_height = '' %}
@@ -67,7 +80,7 @@
                         <div id="column-content" class="flex flex-col justify-center" style="align-items:{{ section.settings.content_alignment }};">
                             {% if block.settings.column_title != blank %}
                                 <div id="column-title">
-                                    <h2 class="text-2xl mt-4 mb-2">
+                                    <h2 class="text-xl mt-4 mb-2">
                                         {{ block.settings.column_title }}
                                     </h2>
                                 </div>
@@ -78,17 +91,92 @@
                                     {{ block.settings.column_content }}
                                 </div>
                             {% endif %}
-    
+
+                            {% assign bg_opacity = block.settings.background_opacity | divided_by: 100.0 %}
+
                             {% if block.settings.column_button_text != blank %}
-                                <div id="column-btn" class="py-4 flex gap-4 items-center justify-start">
-                                    {% render 'button', 
-                                        btn_text: block.settings.column_button_text,
-                                        btn_link: block.settings.column_button_link,
-                                        btn_class: 'py-2 px-8 border-1 border-slate-800',
-                                        btn_style: '',
-                                        btn_target: '_self',
-                                        btn_attrs: ''
-                                    %}
+                                <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
+                                    <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                        href="{{ block.settings.column_button_link }}"
+                                        style="border: {% if block.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                                border-color: {{ block.settings.button_border_color }};
+                                                color: {{ block.settings.button_text_color }};
+                                                background-color: {{ block.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                        <span class="button-span inline-block transform transition-all duration-150">
+                                            {{ block.settings.column_button_text }}
+                                        </span>
+                                    </a>
+
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        {% comment %} Mobile Version {% endcomment %}
+        <div class="flex lg:hidden flex-col mx-auto w-full" style="justify-content: {{ section.settings.column_postition}};  align-items: {{ section.settings.column_alignment  }};">
+            {% for block in section.blocks %}
+                
+                {% assign img_height_mobile = '' %}
+                {% case block.settings.image_height_mobile %}
+                {% when 'large' %}
+                    {% assign img_height_mobile = '540px' %}
+                {% when 'medium' %}
+                    {% assign img_height_mobile = '360px' %}
+                {% when 'small' %}
+                    {% assign img_height_mobile = '240px' %}
+                {% else %}
+                    {% assign img_height_mobile = 'auto' %}
+                {% endcase %}
+                <div class="p-4 w-full">
+                    <div class="p-4" style="background-color: {{ section.settings.column_bgcolor  }};">
+                        {% if block.settings.column_image != blank%}
+                            <div id="image-container" class="overflow-hidden" style="height: {{ img_height_mobile }}; width: 100%;">
+                                <img src="{{ block.settings.column_image | image_url: width: 300 }}"
+                                    alt="{{ block.settings.column_title }}"
+                                    class="w-full h-full object-cover"
+                                    width="300"
+                                    height="{{ img_height_mobile }}"
+                                    {% if img_height_mobile != 'auto' %}
+                                        style="max-height: {{ img_height_mobile }}px;"
+                                    {% else %}
+                                        style="height: auto;"
+                                    {% endif %}
+                                />
+                            </div>
+                        {% endif %}
+                        <div id="column-content" class="flex flex-col justify-center" style="align-items:{{ section.settings.mobile_alignment }};">
+                            {% if block.settings.column_title != blank %}
+                                <div id="column-title">
+                                    <h2 class="text-xl mt-4 mb-2">
+                                        {{ block.settings.column_title }}
+                                    </h2>
+                                </div>
+                            {% endif %}
+                            
+                            {% if block.settings.column_content != blank %}
+                                <div id="column-content" class="opacity-70 richtext-content" style="text-align: {{ content_align_mobile }};">
+                                    {{ block.settings.column_content }}
+                                </div>
+                            {% endif %}
+
+                            {% assign bg_opacity = block.settings.background_opacity | divided_by: 100.0 %}
+
+                            {% if block.settings.column_button_text != blank %}
+                                <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
+                                    <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                        href="{{ block.settings.column_button_link }}"
+                                        style="border: {% if block.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                                border-color: {{ block.settings.button_border_color }};
+                                                color: {{ block.settings.button_text_color }};
+                                                background-color: {{ block.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                        <span class="button-span inline-block transform transition-all duration-150">
+                                            {{ block.settings.column_button_text }}
+                                        </span>
+                                    </a>
+
                                 </div>
                             {% endif %}
                         </div>
@@ -214,6 +302,31 @@
         },
         {
             "type":"header",
+            "content": "Mobile Settings"
+        },
+        {
+            "type": "select",
+            "id": "mobile_alignment",
+            "label": "Content Alignment",
+            "default": "center",
+            "info": "Aligns the contents inside the cards on mobile view.",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type":"header",
             "content": "Section Margin"
         },
         {
@@ -269,6 +382,29 @@
                     }]
                 },
                 {
+                "type": "select",
+                "id": "image_height_mobile",
+                "label": "Mobile Image Height",
+                "default": "small",
+                "options": [
+                    {
+                    "value": "auto",
+                    "label": "Adapt to image height"
+                    },
+                    {
+                    "value": "large",
+                    "label": "Large"
+                    },
+                    {
+                    "value": "medium",
+                    "label": "Medium"
+                    },
+                    {
+                    "value": "small",
+                    "label": "Small"
+                    }]
+                },
+                {
                     "type": "header",
                     "content": "Column Details"
                 },
@@ -292,6 +428,39 @@
                     "type": "url",
                     "id": "column_button_link",
                     "label": "Column Button Link"
+                },
+                {
+                    "type":"color",
+                    "id": "button_text_color",
+                    "label": "Button Text Color",
+                    "default": "#001001"
+                },
+                {
+                    "type": "range",
+                    "id": "background_opacity",
+                    "label": "Background Opacity",
+                    "default": 100,
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "type":"color",
+                    "id": "button_bgcolor",
+                    "label": "Button BG Color",
+                    "default": "#c9c9c9"
+                },
+                {
+                    "type":"checkbox",
+                    "id": "has_border",
+                    "label": "Button Border",
+                    "default": true
+                },
+                {
+                    "type":"color",
+                    "id": "button_border_color",
+                    "label": "Button Border Color",
+                    "default": "#c9c9c9"
                 }
             ]
         }

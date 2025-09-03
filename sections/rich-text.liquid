@@ -16,24 +16,64 @@
 
 <section id="rich-text">
     <div id="rich-text-container" class="w-full" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
-        <div class="text-center px-4 py-2 mx-auto" style="width: {{ cont_width }};">
+        <div class="text-center px-4 py-2 mx-auto w-full lg:w-[{{ cont_width }}]">
             {% if section.settings.title != blank %}
-                <h2 class="text-3xl">{{ section.settings.title }}</h2>
+                <h2 class="text-2xl" style="color:{{ section.settings.title_color }} ;">{{ section.settings.title }}</h2>
             {% endif %}
             {% if section.settings.content != blank %}
-                <div class="mt-4 text-lg opacity-70 richtext-content">{{ section.settings.content }}</div>
+                <div class="mt-4 opacity-70 richtext-content">{{ section.settings.content }}</div>
             {% endif %}
             {% if section.settings.button_text1 != blank %}
                 <div id="button-container" class="p-6 flex gap-6 items-center justify-center">
-                    
+
+                    {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+
                     {% if section.settings.button_text1 != blank %}
-                        <a class="py-2 px-8 border-1 border-slate-800" href="{{ section.settings.button_link1 }}">{{ section.settings.button_text1 }}</a>
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
+                            <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                href="{{ section.settings.button_link1 }}"
+                                style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                        border-color: {{ section.settings.button_border_color }};
+                                        color: {{ section.settings.button_text_color }};
+                                        background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                <span class="button-span inline-block transform transition-all duration-150">
+                                    {{ section.settings.button_text1 }}
+                                </span>
+                            </a>
+
+                        </div>
                     {% endif %}
+
                     {% if section.settings.button_text2 != blank %}
-                        <a class="py-2 px-8 border-1 border-slate-800" href="{{ section.settings.button_link2 }}">{{ section.settings.button_text2 }}</a>
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
+                            <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                href="{{ section.settings.button_link2 }}"
+                                style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                        border-color: {{ section.settings.button_border_color }};
+                                        color: {{ section.settings.button_text_color }};
+                                        background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                <span class="button-span inline-block transform transition-all duration-150">
+                                    {{ section.settings.button_text2 }}
+                                </span>
+                            </a>
+
+                        </div>
                     {% endif %}
+
                     {% if section.settings.button_text3 != blank %}
-                        <a class="py-2 px-8 border-1 border-slate-800" href="{{ section.settings.button_link3 }}">{{ section.settings.button_text3 }}</a>
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
+                            <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                href="{{ section.settings.button_link3 }}"
+                                style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                        border-color: {{ section.settings.button_border_color }};
+                                        color: {{ section.settings.button_text_color }};
+                                        background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                <span class="button-span inline-block transform transition-all duration-150">
+                                    {{ section.settings.button_text3 }}
+                                </span>
+                            </a>
+
+                        </div>
                     {% endif %}
                 </div>
             {% endif %}
@@ -50,6 +90,12 @@
             "id": "title",
             "label": "Title",
             "default": "Welcome to Our Store"
+        },
+        {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Color",
+            "default": "#020202"
         },
         {
             "type": "richtext",
@@ -115,6 +161,39 @@
             "type": "url",
             "id": "button_link3",
             "label": "Button 3 Link"
+        },
+        {
+            "type":"color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#001001"
+        },
+        {
+            "type": "range",
+            "id": "background_opacity",
+            "label": "Background Opacity",
+            "default": 100,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type":"color",
+            "id": "button_bgcolor",
+            "label": "Button BG Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"checkbox",
+            "id": "has_border",
+            "label": "Button Border",
+            "default": true
+        },
+        {
+            "type":"color",
+            "id": "button_border_color",
+            "label": "Button Border Color",
+            "default": "#c9c9c9"
         },
         {
             "type":"header",
