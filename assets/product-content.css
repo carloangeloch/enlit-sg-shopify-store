@@ -1,0 +1,15 @@
+.accordion-title {
+    user-select: none;
+}
+.accordion-title {
+    cursor: pointer;
+}
+.accordion-content {
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    padding: 1rem;
+}
+.images-container{
+    left: 0%;
+}

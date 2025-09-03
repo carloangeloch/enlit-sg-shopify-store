@@ -25,12 +25,14 @@
 }
 
 #button-container button:hover .button-span {
-    transform: translateX(8px);
+    transform: translateX(4px);
 }
 
 
 /* modular-grid */
 /* featured-collection */
+/* product-content */
+/* rich-text */
 #column-btn a {
     transition: all 0.3s ease;
     opacity: 1;
@@ -42,9 +44,8 @@
 
 #column-btn a .button-span {
     transition: transform 0.3s ease;
-    display: inline-block;
 }
 
 #column-btn a:hover .button-span {
-    transform: translateX(8px);
+    transform: translateX(4px);
 }
