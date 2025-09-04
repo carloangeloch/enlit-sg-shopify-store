@@ -10,15 +10,26 @@
         </div>
         <div id="header-menu-desktop" class="hidden md:flex gap-x-2 items-center justify-center">
             {% for link in menu_link.links %}
-                <a href="{{ link.url }}" class="block decoration-0 px-4" title="{{ link.title }}">
-                    {{ link.title }}
-                </a>
-            {%  endfor %}
+                <div class="relative group p-4">
+                    <a href="{{ link.url }}" class="block decoration-0 w-full h-full" title="{{ link.title }}">
+                        {{ link.title }}
+                    </a>
+                    {% if link.links.size > 0 %}
+                        <div class="absolute left-0 top-full min-w-[160px] w-54 bg-white shadow-lg rounded transition-all duration-300 opacity-0 scale-y-95 group-hover:opacity-100 group-hover:scale-y-100 pointer-events-none group-hover:pointer-events-auto z-10">
+                            {% for sublink in link.links %}
+                                <a href="{{ sublink.url }}" class="block px-4 py-2 hover:bg-gray-100 transition-colors duration-200" title="{{ sublink.title }}">
+                                    {{ sublink.title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
         </div>
         <div id="header-menu-mobile" class="flex md:hidden items-center justify-center">
             <div id="menu-btn">
                 <div id="svg-wrapper">
-                    <svg fill="#000000" width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <svg fill="#000000" width="24px" height="24px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                         <title>bars</title>
                         <path d="M2 8.749h28c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0h-28c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0zM30 15.25h-28c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0h28c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0zM30 23.25h-28c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0h28c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0z"></path>
                     </svg>
@@ -32,9 +43,17 @@
                 </div>
                 <div id="menu-item" class="w-full flex flex-col gap-y-2 ">
                     {% for link in menu_link.links %}
-                        <a href="{{ link.url }}" class="py-2 text-center" title="{{ link.title }}">
+                        <a href="{{ link.url }}" class="py-2 text-center text-xl" title="{{ link.title }}">
                             {{ link.title }}
                         </a>
+                        {% if link.links.size > 0 %}
+                            {% for sublink in link.links %}
+                                <a href="{{ sublink.url }}" class="text-center my-2 opacity-70 text-sm" title="{{ sublink.title }}">
+                                    {{ sublink.title }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                        <hr class="opacity-50 w-5/6 mx-auto"/>
                     {%  endfor %} 
                 </div>
             </div>
@@ -51,7 +70,17 @@
     .side-panel.show-panel {
         right: 0%; 
     }
-
+    
+    /* Optional: Animate dropdown */
+    .dropdown-enter {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    .dropdown-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.2s ease;
+    }
 </style>
 
 <script>
@@ -67,7 +96,19 @@
     closeBtn.addEventListener('click', () => {
         menuModal.classList.toggle('show-panel');
     });
-        
+
+
+    document.querySelectorAll('#header-menu-desktop .group').forEach(function(group) {
+                const dropdown = group.querySelector('.absolute');
+                if (dropdown) {
+                    group.addEventListener('mouseenter', function() {
+                        gsap.to(dropdown, { opacity: 1, scaleY: 1, duration: 0.2, ease: "power2.out" });
+                    });
+                    group.addEventListener('mouseleave', function() {
+                        gsap.to(dropdown, { opacity: 0, scaleY: 0.95, duration: 0.2, ease: "power2.in" });
+                    });
+                }
+            });
 </script>
 
 

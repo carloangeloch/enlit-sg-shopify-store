@@ -1,41 +1,220 @@
-<div class="blog-article-container">
-  {% if article.image %}
-    <img 
-      src="{{ article.image | image_url: width: 1024 }}" 
-      alt="{{ article.title }}" 
-      class="blog-article-image"
-      width="{{ article.image.width }}"
-      height="{{ article.image.height }}"
-      loading="lazy"
-    >
+{{ 'blog-article.css' | asset_url | stylesheet_tag }}
+
+{% assign image_height = '' %}
+{% assign image_width = 1920 %}
+{% for block in section.blocks %}
+  {% if block.type == 'featured_image' %}
+    {% case block.settings.image_height %}
+      {% when 'large' %}
+        {% assign image_height = 540 %}
+      {% when 'medium' %}
+        {% assign image_height = 360 %}
+      {% when 'small' %}
+        {% assign image_height = 240 %}
+      {% else %}
+        {% assign image_height = 'auto' %}
+    {% endcase %}
   {% endif %}
+{% endfor %}
 
-  <h1 class="blog-article-title">{{ article.title }}</h1>
+{% assign cont_width = '' %}
+{% case section.settings.section_width %}
+  {% when 'xlarge' %}
+    {% assign cont_width = '1240px' %}
+  {% when 'large' %}
+    {% assign cont_width = '1024px' %}
+  {% when 'medium' %}
+    {% assign cont_width = '768px' %}
+  {% when 'small' %}
+    {% assign cont_width = '640px' %}
+  {% else %}
+    {% assign cont_width = '100%' %}
+{% endcase %}
 
-  <!-- Share buttons -->
-  <div class="blog-article-share">
-    <span>Share:</span>
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | prepend: shop.url }}" target="_blank" aria-label="Share on Facebook">
-      Facebook
-    </a>
-    <a href="https://twitter.com/intent/tweet?url={{ article.url | prepend: shop.url }}&text={{ article.title | url_encode }}" target="_blank" aria-label="Share on Twitter">
-      Twitter
-    </a>
-    <a href="https://pinterest.com/pin/create/button/?url={{ article.url | prepend: shop.url }}&media={{ article.image | image_url }}&description={{ article.title | url_encode }}" target="_blank" aria-label="Share on Pinterest">
-      Pinterest
-    </a>
+
+<section id="blog-article-container">
+  <div class="mx-auto flex flex-col gap-y-4" style="max-width: {{ cont_width }} ;">
+    <img
+        src="{{ article.image | image_url: height: image_width }}"
+        alt="{{ article.title }}"
+        class="object-cover  {% if image_height != 'auto' %}block{% endif %}"
+        width="100%"
+        loading="lazy"
+        height="{{ image_height }}"
+        {% if image_height != 'auto' %}
+            style="max-height: {{ image_height }}px;"
+        {% else %}
+            style="height: auto;"
+        {% endif %}
+    >  
+      
+    <div id="blog-article-share" class="flex flex-col gap-2 items-center justify-center px-4">
+      <h1 id="blog-article-title" class="text-4xl text-center px-4"><strong>{{ article.title }}</strong></h1>
+      {% if section.settings.show_date %}
+        <div class="text-center text-sm opacity-70">{{ article.published_at | date: "%B %d, %Y" }}</div>
+      {% endif %}
+      {% if section.settings.show_author %}
+      <div class="text-center text-sm opacity-70">By: {{ article.author }}</div>
+      {% endif %}
+      <div class="text-sm opacity-70 mt-2">Share</div>
+      <div class="flex gap-x-4">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | prepend: shop.url }}" target="_blank" aria-label="Share on Facebook">
+          <svg fill="{{ section.settings.button_color }}" width="18px" height="18px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg">
+              <title>Facebook icon</title>
+              <path d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/>
+          </svg>
+        </a>
+        <a href="https://twitter.com/intent/tweet?url={{ article.url | prepend: shop.url }}&text={{ article.title | url_encode }}" target="_blank" aria-label="Share on Twitter">
+          <svg fill="{{ section.settings.button_color }}" width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 462.799">
+            <path fill-rule="nonzero" d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"/>
+          </svg>
+        </a>
+        <a href="https://pinterest.com/pin/create/button/?url={{ article.url | prepend: shop.url }}&media={{ article.image | image_url }}&description={{ article.title | url_encode }}" target="_blank" aria-label="Share on Pinterest">
+          <svg fill="{{ section.settings.button_color }}" width="18px" height="18px" viewBox="-3 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m0 8.61c0-.015 0-.033 0-.051 0-1.038.199-2.029.56-2.938l-.019.054c.363-.928.868-1.725 1.497-2.405l-.005.005c1.283-1.37 2.931-2.383 4.789-2.884l.071-.016c.871-.238 1.871-.375 2.904-.375h.011-.001.073c1.516 0 2.95.355 4.222.985l-.056-.025c1.313.646 2.39 1.596 3.169 2.762l.018.029c.768 1.135 1.226 2.535 1.226 4.041 0 .034 0 .069-.001.103v-.005.016c0 .954-.1 1.885-.29 2.782l.015-.087c-.202.965-.501 1.819-.894 2.617l.029-.064c-.396.827-.877 1.538-1.447 2.168l.007-.008c-.576.621-1.272 1.123-2.051 1.47l-.04.016c-.78.351-1.691.556-2.65.556-.027 0-.053 0-.08 0h.004c-.71-.006-1.379-.175-1.973-.473l.026.012c-.596-.264-1.073-.705-1.377-1.255l-.008-.015q-.144.56-.4 1.622t-.339 1.37q-.08.31-.296 1.024c-.112.4-.24.74-.393 1.066l.018-.042-.462.902c-.224.437-.444.804-.686 1.154l.022-.034q-.361.526-.894 1.247l-.202.072-.13-.144q-.216-2.265-.216-2.711c.013-1.062.125-2.089.328-3.083l-.018.105q.31-1.651.96-4.146t.75-2.928c-.294-.654-.466-1.418-.466-2.223 0-.076.002-.151.005-.226v.011c0-.851.279-1.636.75-2.27l-.007.01c.405-.635 1.106-1.051 1.904-1.053.027-.002.058-.002.09-.002.511 0 .969.226 1.279.584l.002.002c.306.378.492.864.492 1.394 0 .03-.001.059-.002.089v-.004c-.073 1.01-.3 1.946-.656 2.816l.022-.061c-.329.791-.555 1.707-.632 2.665l-.002.032c0 .014-.001.031-.001.048 0 .578.25 1.098.648 1.457l.002.002c.399.371.935.599 1.525.599.017 0 .033 0 .05-.001h-.002.024c.53 0 1.028-.134 1.464-.369l-.016.008c.455-.244.834-.574 1.126-.972l.006-.009c.292-.396.561-.846.787-1.32l.021-.05c.219-.455.408-.986.537-1.54l.011-.053c.106-.425.208-.968.28-1.52l.009-.08c.058-.429.092-.927.094-1.433v-.002c.005-.082.008-.177.008-.273 0-1.428-.61-2.714-1.583-3.611l-.003-.003c-1.034-.87-2.38-1.398-3.85-1.398-.094 0-.188.002-.281.006h.013c-.057-.002-.123-.003-.19-.003-1.799 0-3.431.713-4.629 1.872l.002-.002c-1.194 1.149-1.936 2.761-1.936 4.546 0 .067.001.134.003.201v-.01.012c0 .433.066.85.188 1.243l-.008-.03c.102.357.235.669.401.958l-.011-.021q.209.346.39.656c.088.125.151.273.179.433l.001.007c-.019.383-.097.742-.224 1.077l.008-.024q-.216.649-.534.649-.029 0-.245-.043c-.517-.158-.958-.438-1.304-.806l-.001-.002c-.368-.381-.666-.832-.87-1.332l-.01-.028c-.184-.439-.346-.961-.459-1.5l-.01-.058c-.099-.46-.157-.99-.159-1.533v-.002z"/>
+          </svg>
+        </a>
+        <div class="share-to-clipboard relative">
+          <div id="copy-feedback" class="absolute top-8 -left-14 p-2 bg-green-500 text-white drop-shadow-gray-500 text-sm w-28 text-center" style="display: none; margin-left: 0.5rem;">Link copied!</div>
+          <button id="copy-link-btn" type="button" class="cursor-pointer">
+            <svg fill="{{ section.settings.button_color }}" width="18px" height="18px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="m12.922 16.587-3.671 3.671c-.693.645-1.626 1.041-2.651 1.041-2.152 0-3.896-1.744-3.896-3.896 0-1.025.396-1.958 1.043-2.654l-.002.002 3.671-3.671c.212-.23.341-.539.341-.878 0-.717-.582-1.299-1.299-1.299-.339 0-.647.13-.879.342l.001-.001-3.671 3.671c-1.108 1.162-1.789 2.74-1.789 4.476 0 3.586 2.907 6.494 6.494 6.494 1.738 0 3.316-.683 4.482-1.795l-.003.002 3.671-3.671c.212-.23.341-.539.341-.878 0-.717-.582-1.299-1.299-1.299-.339 0-.647.13-.879.342l.001-.001z"/><path d="m24.007 6.489c-.002-3.585-2.908-6.491-6.494-6.491-1.793 0-3.417.727-4.592 1.902l-3.671 3.671c-.259.238-.421.579-.421.958 0 .717.582 1.299 1.299 1.299.379 0 .719-.162.957-.42l.001-.001 3.671-3.671c.693-.645 1.626-1.041 2.651-1.041 2.152 0 3.896 1.744 3.896 3.896 0 1.025-.396 1.958-1.043 2.654l.002-.002-3.671 3.671c-.259.238-.421.579-.421.958 0 .717.582 1.299 1.299 1.299.379 0 .719-.162.957-.42l.001-.001 3.671-3.671c1.178-1.169 1.908-2.789 1.908-4.58 0-.003 0-.006 0-.009z"/><path d="m7.412 16.592c.235.235.559.38.918.38s.683-.145.918-.38l7.342-7.342c.212-.23.341-.539.341-.878 0-.717-.582-1.299-1.299-1.299-.339 0-.647.13-.879.342l.001-.001-7.342 7.342c-.235.235-.38.559-.38.918s.145.683.38.918z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="blog-article-content my-4 px-4">
+      {{ article.content }}
+    </div>
   </div>
+</section>
 
-  <!-- Article content -->
-  <div class="blog-article-content">
-    {{ article.content }}
-  </div>
-</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const copyBtn = document.getElementById('copy-link-btn');
+    const feedback = document.getElementById('copy-feedback');
+    const articleUrl = "{{ article.url | prepend: shop.url }}";
+
+    copyBtn.addEventListener('click', function () {
+      // Use the Clipboard API if available
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(articleUrl).then(function () {
+          feedback.style.display = 'inline';
+          setTimeout(() => feedback.style.display = 'none', 2000);
+        }).catch(function (err) {
+          console.error('Failed to copy:', err);
+        });
+      } else {
+        // Fallback for older browsers
+        const tempInput = document.createElement('input');
+        tempInput.value = articleUrl;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        feedback.style.display = 'inline';
+        setTimeout(() => feedback.style.display = 'none', 2000);
+      }
+    });
+  });
+</script>
+
 
 {% schema %}
 {
   "name": "Blog Article",
-  "settings": [],
+  "settings": [
+    {
+        "type":"select",
+        "id": "section_width",
+        "label": "Section Width",
+        "default": "large",
+        "options": [
+            {
+                "value": "full",
+                "label": "Full Width"
+            },
+            {
+                "value": "xlarge",
+                "label": "Extra Large (1240px)"
+            },
+            {
+                "value": "large",
+                "label": "Large (1024px)"
+            },
+            {
+                "value": "medium",
+                "label": "Medium (768px)"
+            },
+            {
+                "value": "small",
+                "label": "Small (640px)"
+            }
+        ]
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Share Button Color",
+      "default": "#2074d3"
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show Date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show Author",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_image",
+      "name": "Featured Image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "label": "Image Height",
+          "default": "large",
+          "options": [
+              {
+              "value": "auto",
+              "label": "Adapt to image height"
+              },
+              {
+              "value": "large",
+              "label": "Large"
+              },
+              {
+              "value": "medium",
+              "label": "Medium"
+              },
+              {
+              "value": "small",
+              "label": "Small"
+              }]
+        },
+      ]
+    },
+    {
+      "type": "share",
+      "name": "Share",
+      "settings": []
+    }
+  ],
   "presets": [
     {
         "name": "Blog Article",
@@ -44,32 +223,3 @@
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-.blog-article-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-.blog-article-image {
-  width: 100%;
-  height: auto;
-  margin-bottom: 1.5rem;
-}
-.blog-article-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-.blog-article-content {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-.blog-article-share {
-  margin-top: 2rem;
-}
-.blog-article-share a {
-  margin-right: 10px;
-  text-decoration: none;
-}
-{% endstylesheet %}
