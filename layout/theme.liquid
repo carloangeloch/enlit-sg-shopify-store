@@ -1,28 +1,63 @@
 <html>
-    <head>
-        <title>{{ page_title }}</title>
-        {{ content_for_header }}
-        {{ 'tailwind.output.css' | asset_url | stylesheet_tag }}
-        {% style %}
-          {{ settings.heading_font | font_face: font_display: 'swap' }}
-          {{ settings.body_font | font_face: font_display: 'swap' }}
-          :root{
-            --font-heading--family: {{ settings.heading_font }},{{ settings.heading_font.fallback_families }};
-            --font-body--family: {{ settings.body_font }},{{ settings.body_font.fallback_families }};
-          }
-        {% endstyle %}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-      <div class="min-h-screen w-full flex flex-col items-center justify-between">
-        <div class="w-full">
-          {% sections 'header-group' %}
+  <head>
+    <title>{{ page_title }}</title>
+    {{ content_for_header }}
+    {{ 'tailwind.output.css' | asset_url | stylesheet_tag }}
+
+    {% style %}
+      {{ settings.heading_font | font_face: font_display: 'swap' }}
+      {{ settings.body_font | font_face: font_display: 'swap' }}
+      :root {
+        --font-heading--family: {{ settings.heading_font }},{{ settings.heading_font.fallback_families }};
+        --font-body--family: {{ settings.body_font }},{{ settings.body_font.fallback_families }};
+      }
+    {% endstyle %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.shopify.com/s/files/1/0722/4141/4284/files/montserrat.css?v=1757063663">
+  </head>
+
+  <body>
+    <div class="min-h-screen w-full flex flex-col items-center justify-between">
+      <div class="w-full">
+        {% sections 'header-group' %}
+        <div class="section">
           {{ content_for_layout }}
         </div>
-        <div class="w-full" style="background-color: {{ settings.footer_bgcolor }}">
-          {% sections 'footer-group' %}
-        </div>
       </div>
-    </body>
+      <div class="w-full" style="background-color: {{ settings.footer_bgcolor }};color: {{ settings.footer_text_color }};">
+        <div class="w-full h-2 bg-gradient-to-t from-slate-300/30 to slate-100/30"></div>
+        {% sections 'footer-group' %}
+      </div>
+    </div>
+
+    <!-- Only use CDN or local script, not both -->
+    
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+
+    {% comment %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    {% endcomment %}
+
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.section').forEach(section => {
+          gsap.from(section, {
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
