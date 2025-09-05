@@ -1,10 +1,24 @@
 {{ 'base.css' | asset_url |stylesheet_tag }}
 
+{%  assign cont_width = '' %}
+{%  case section.settings.container-width %}
+    {% when 'full'%}
+        {%  assign cont_width = "100%"%}
+    {% when 'large'%}
+        {%  assign cont_width = "1440px"%}
+    {% when 'medium'%}
+        {%  assign cont_width = "1240px"%}
+    {% when 'small'%}
+        {%  assign cont_width = "1024px"%}
+    {% else %}
+        {%  assign cont_width = "100%"%}
+{%  endcase %}
+
 {% assign blog_handle = section.settings.selected_blog | default: 'news' %}
 {% assign blogposts = blogs[blog_handle] %}
 
 
-<section id="blog-pagination">
+<section id="blog-pagination" class="section">
     {% paginate blogposts.articles by section.settings.posts_per_page %}
         {% if section.settings.section_title != blank %}
             {% render 'section-title',
@@ -13,11 +27,11 @@
         {% endif %}
 
         {% if blogposts.articles.size > 0 %}
-          <div class="flex flex-wrap flex-row items-start justify-center mx-auto">
+          <div class="flex flex-wrap flex-row items-start justify-center mx-auto" style="max-width: {{ cont_width }};">
             {% for article in blogposts.articles%}
                 <div class="p-4 bg-white hover:bg-slate-100 duration-150 ease-in-out
                     " >
-                    <a href="{{ article.url }}" class="flex flex-col items-center justify-start w-[320]">
+                    <a href="{{ article.url }}" class="flex flex-col items-start justify-start w-[320]">
                         <div class=" max-w-[320] h-[320] overflow-hidden">
                             <img src="{{ article.image | image_url: width: 600}}" width="600" height="600" class="object-cover object-center max-w-[320] h-[320]">
                         </div>
@@ -83,6 +97,30 @@
         "id": "blog_title_color",
         "label": "Blog Title Color",
         "default": "#020202"
+    },
+    {
+        "type":"select",
+        "id": "container-width",
+        "label": "Container Width",
+        "default": "medium",
+        "options": [
+            {
+                "value": "full",
+                "label": "Full Width"
+            },
+            {
+                "value": "large",
+                "label": "Large (1440px)"
+            },
+            {
+                "value": "medium",
+                "label": "Medium (1240px)"
+            },
+            {
+                "value": "small",
+                "label": "Small (1024px)"
+            }
+        ]
     },
     {
       "type": "range",

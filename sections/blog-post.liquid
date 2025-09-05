@@ -17,7 +17,7 @@
     {% assign cont_width = '100%' %}
 {% endcase %}
 
-<section class="px-4 max-w-6xl mx-auto">
+<section class="section px-4 max-w-6xl mx-auto">
     <div id="margin-container" style="margin-top: {{ section.settings.margin_top }}; margin-bottom: {{ section.settings.margin_bottom }}">
         {%  render 'section-title',
             title: section.settings.heading
@@ -28,28 +28,34 @@
         
         {% if blog.articles.size > 0 %}
           {% comment %} Desktop Version {% endcomment %}
-          <div class="hidden lg:flex flex-wrap flex-row items-start justify-center" style="width: {{ cont_width }}">
+          <div id="items-container" class="hidden lg:flex mx-auto" style="width: {{ cont_width }};">
             {% for article in blog.articles limit: section.settings.post_limit %}
                 <div style="width: {{ column_width }}" class="p-4" >
-                    <a href="{{ article.url }}" class="flex flex-col items-center justify-center">
+                    <a href="{{ article.url }}" class="flex flex-col items-start justify-center">
                         
                         {% if article.url %}
                             <div id="article-img" style="background-image:url({{ article.image | image_url: height:500 }}); background-repeat: no-repeat; height: {{ 900 | divided_by: section.settings.columns }} "  class="object-cover object-center w-full">
                             </div>
                         {% endif %}
-                        <div id="content-container" class="mt-4">
-                             <h3 class="text-xl font-semibold mb-2">
-                                <a href="{{ article.url }}">{{ article.title }}</a>
-                            </h3>
-                
-                            <p class="text-sm text-gray-600 mb-4">
-                                {{ article.excerpt | strip_html | truncatewords: 20 }}
-                            </p>
+                        <div id="content-container" class="mt-4 text-left">
+                             <h3 class="text-xl font-semibold mb-2" style="color:{{ section.settings.title_color }};">{{ article.title }}</h3>
+                            
+                            {% if section.settings.show_date %}
+                              <p class="text-sm opacity-70">{{ article.published_at | date: "%B %d, %Y" }}</p>
+                            {% endif %}
+                            {% if section.settings.show_author %}
+                            <p class="text-sm opacity-70">By: {{ article.author }}</p>
+                            {% endif %}
+                            {% if section.settings.show_excerpt %}
+                              <p class="text-sm text-gray-600 mb-4">
+                                  {{ article.excerpt | strip_html | truncatewords: 20 }}
+                              </p>
+                            {% endif %}
                             <div id="column-btn">
                                 <a class="transition-all duration-300 hover:opacity-80"
                                     href="{{ article.url }}"
                                     style="color: {{ section.settings.button_text_color }};">
-                                    <span class="button-span flex flex-row items-center gap-x-2 transform transition-all duration-150">
+                                    <span class=" text-sm mt-2 button-span flex flex-row items-center gap-x-2 transform transition-all duration-150">
                                         {{ section.settings.read_more_label }}
                                     </span>
                                 </a>
@@ -61,7 +67,7 @@
           </div>
 
           {% comment %} Mobile Version {% endcomment %}
-          <div class="flex lg:hidden flex-col gap-y-4 items-start justify-center w-full">
+          <div class="flex lg:hidden flex-col gap-y-4 items-center justify-center w-full">
             {% for article in blog.articles limit: section.settings.post_limit %}
                 <div class="p-4 w-full" >
                     <a href="{{ article.url }}" class="flex flex-col items-center justify-center">
@@ -72,20 +78,23 @@
                             </div>
                         {% endif %}
                         <div id="content-container" class="mt-4">
-                             <h3 class="text-xl font-semibold mb-2">
-                                <a href="{{ article.url }}">{{ article.title }}</a>
-                            </h3>
-                
-                            <p class="text-sm text-gray-600 mb-4">
-                                {{ article.excerpt | strip_html | truncatewords: 20 }}
-                            </p>
-                            <div id="column-btn">
-                                <a class="transition-all duration-300 hover:opacity-80"
+                            <h3 class="text-xl font-semibold mb-2" style="color:{{ section.settings.title_color }};">{{ article.title }}</h3>
+                            {% if section.settings.show_date %}
+                              <p class="text-center text-sm opacity-70">{{ article.published_at | date: "%B %d, %Y" }}</p>
+                            {% endif %}
+                            {% if section.settings.show_author %}
+                            <p class="text-center text-sm opacity-70">By: {{ article.author }}</p>
+                            {% endif %}
+                            {% if section.settings.show_excerpt %}
+                              <p class="text-sm text-gray-600 mb-4">
+                                  {{ article.excerpt | strip_html | truncatewords: 20 }}
+                              </p>
+                            {% endif %}
+                            <div class="flex flex-col items-center text-sm ">
+                                <a class="text-center pt-2"
                                     href="{{ article.url }}"
                                     style="color: {{ section.settings.button_text_color }};">
-                                    <span class="button-span flex flex-row items-center gap-x-2 transform transition-all duration-150">
                                         {{ section.settings.read_more_label }}
-                                    </span>
                                 </a>
                             </div>
                         </div>
@@ -115,6 +124,30 @@
       "type": "blog",
       "id": "blog",
       "label": "Select Blog"
+    },
+    {
+      "type":"color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#202020"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show Date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show Author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show Exceprt",
+      "default": true
     },
     {
         "type":"select",

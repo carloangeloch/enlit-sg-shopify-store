@@ -25,10 +25,10 @@
         <div id="menu-links-desktop" class="hidden lg:flex">
             {% for block in section.blocks %}
                 <div id="menu-column" class="flex-auto">
-                    <div><em>{{ block.settings.menu_title }}</em></div>
+                    <div><strong style="color: {{ section.settings.title_color }};">{{ block.settings.menu_title }}</strong></div>
                     <div id="menu-links-container" >
                         {% for link in block.settings.menu_links.links %}
-                            <a class="block my-2 hover:translate-x-1.5 duration-150 ease-in-out" href="{{ link.url }}">{{ link.title }}</a>
+                            <a class="block my-2 hover:translate-x-1.5 duration-150 ease-in-out text-sm" href="{{ link.url }}">{{ link.title }}</a>
                         {% endfor %}
                     </div>
                 </div>
@@ -38,7 +38,7 @@
             {% for block in section.blocks %}   
                 <div class="w-full mb-2 accordion">
                     <div class="accordion-title flex justify-between p-4">
-                        <div><em>{{ block.settings.menu_title }}</em></div>
+                        <div><strong style="color: {{ section.settings.title_color }};">{{ block.settings.menu_title }}</strong></div>
                         <strong class="accordion-plus">+</strong>
                     </div>
                     <div class="accordion-content bg-slate-50">
@@ -169,6 +169,12 @@
             "id": "title",
             "label": "Title",
             "default": "Footer Links"
+        },
+        {
+            "type": "color",
+            "id": "title_color",
+            "label": "Menu Title Color",
+            "default": "#020202"
         },
         {
             "type":"header",

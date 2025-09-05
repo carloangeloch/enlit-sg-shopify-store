@@ -1,47 +1,11 @@
-{% assign content_align = '' %}
-{% assign content_justify = '' %}
 {% assign text_justify = '' %}
 {% case section.settings.content_position%}
-    {% when 'top-left' %}
-        {% assign content_align = 'start' %}
-        {% assign content_justify = 'start' %}
+    {% when 'left' %}
         {% assign text_justify = 'left' %}
-    {% when 'top-center' %}
-        {% assign content_align = 'start' %}
-        {% assign content_justify = 'center' %}
+    {% when 'center' %}
         {% assign text_justify = 'center' %}
-    {% when 'top-right' %}
-        {% assign content_align = 'start' %}
-        {% assign content_justify = 'end' %}
+    {% when 'right' %}
         {% assign text_justify = 'right' %}
-    {% when 'middle-left' %}
-        {% assign content_align = 'center' %}
-        {% assign content_justify = 'start' %}
-        {% assign text_justify = 'left' %}
-    {% when 'middle-center' %}
-        {% assign content_align = 'center' %}
-        {% assign content_justify = 'center' %}
-        {% assign text_justify = 'center' %}
-    {% when 'middle-right' %}
-        {% assign content_align = 'center' %}
-        {% assign content_justify = 'end' %}
-        {% assign text_justify = 'right' %}
-    {% when 'bottom-left' %}
-        {% assign content_align = 'end' %}
-        {% assign content_justify = 'start' %}
-        {% assign text_justify = 'left' %}
-    {% when 'bottom-center' %}
-        {% assign content_align = 'end' %}
-        {% assign content_justify = 'center' %}
-        {% assign text_justify = 'center' %}
-    {% when 'bottom-right' %}
-        {% assign content_align = 'end' %}
-        {% assign content_justify = 'end' %}
-        {% assign text_justify = 'right' %}
-    {% else %}
-        {% assign content_align = 'center' %}
-        {% assign content_justify = 'center' %}
-        {% assign text_justify = 'center' %}
 {% endcase %}
 
 {% assign cbgcolor = 'none' %}
@@ -65,9 +29,134 @@
         {% assign tsize = '1rem' %}
 {% endcase %} 
 
-<section id="hero-banner" >
-    <div id="margin-container" class="relative" style="margin-top: {{ section.settings.top-margin }}; margin-bottom: {{ section.settings.bottom-margin }}">
-        <div id="hero-content-control"
+{% assign tsize_mobile = '1rem' %}
+{% case section.settings.title_size_mobile %}
+    {% when 'heading_1' %}
+        {% assign tsize_mobile = '3rem' %}
+    {% when 'heading_2' %}
+        {% assign tsize_mobile = '2.25rem' %}
+    {% when 'heading_3' %}
+        {% assign tsize_mobile = '1.875rem' %}
+    {% when 'heading_4' %}
+        {% assign tsize_mobile = '1.48rem' %}
+    {% else %}
+        {% assign tsize_mobile = '1rem' %}
+{% endcase %} 
+
+{% assign img_height = 0 %}
+{% case section.settings.image_height %}
+    {% when 'small' %}
+        {% assign img_height = 480 %}
+    {% when 'medium' %}
+        {% assign img_height = 540 %}
+    {% when 'large' %}
+        {% assign img_height = 680 %}
+{% endcase %} 
+
+{% assign img_height_mobile = 0 %}
+{% case section.settings.image_height_mobile %}
+    {% when 'small' %}
+        {% assign img_height_mobile = 480 %}
+    {% when 'medium' %}
+        {% assign img_height_mobile = 540 %}
+    {% when 'large' %}
+        {% assign img_height_mobile = 680 %}
+{% endcase %} 
+
+
+
+<section id="hero-banner" class="section" >
+    <div id="margin-container" style="margin-top: {{ section.settings.top-margin }}; margin-bottom: {{ section.settings.bottom-margin }}">
+        
+        {% comment %} Desktop {% endcomment %}
+        <div class="w-full p-4 hidden lg:flex"
+            style="background-image: url({{ section.settings.background_image | image_url: width: 2048}});
+                background-position: center;
+                items-align: center;
+                justify-content: center;
+                height: {{ img_height }}"
+            id="image-container"
+        >
+            {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+            <div class="max-w-[95%] lg:max-w-[60%] flex flex-col justify-center">
+                <div class="p-4 flex flex-col justify-center" style="text-align: {{ text_justify }};
+                    background-color: {{ cbgcolor | color_modify: 'alpha', bg_opacity }};
+                    color: {{ section.settings.text_color }};">
+                    {% if section.settings.title != blank%}
+                        <div style="font-size: {{ tsize }}; color: {{ section.settings.title_color }}">
+                            <strong>
+                                {{ section.settings.title }}
+                            </strong>
+                        </div>
+                    {% endif %}                    
+                    {% if section.settings.subtitle != blank%}
+                        <p>{{ section.settings.subtitle }}</p>
+                    {% endif %}
+                    {% if section.settings.button_text != blank%}
+
+                        {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center w-full" style="justify-content: {{ section.settings.button_alignment }}">
+                            <a class="w-full lg:w-auto group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                href="{{ section.settings.button_link }}"
+                                style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                        border-color: {{ section.settings.button_border_color }};
+                                        color: {{ section.settings.button_text_color }};
+                                        background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                <span class="button-span inline-block transform transition-all duration-150 w-full lg:w-auto ">
+                                    {{ section.settings.button_text }}
+                                </span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% comment %} Mobile {% endcomment %}
+        <div class="w-full p-4 flex lg:hidden"
+            style="background-image: url({{ section.settings.background_image | image_url: width: 2048}});
+                background-position: center;
+                items-align: center;
+                justify-content: center;
+                height: {{ img_height_mobile }}"
+            id="image-container-mobile"
+        >
+            {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+            <div class="max-w-[95%] lg:max-w-[60%] flex flex-col justify-center">
+                <div class="p-4 flex flex-col justify-center" style="text-align: {{ text_justify }};
+                    background-color: {{ cbgcolor | color_modify: 'alpha', bg_opacity }};
+                    color: {{ section.settings.text_color }};">
+                    {% if section.settings.title != blank%}
+                        <div style="font-size: {{ tsize_mobile }}; color: {{ section.settings.title_color }}">
+                            <strong>
+                                {{ section.settings.title }}
+                            </strong>
+                        </div>
+                    {% endif %}                    
+                    {% if section.settings.subtitle != blank%}
+                        <p>{{ section.settings.subtitle }}</p>
+                    {% endif %}
+                    {% if section.settings.button_text != blank%}
+
+                        {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center w-full lg:w-auto text-center" style="justify-content: {{ section.settings.button_alignment }}">
+                            <a class="w-full lg:w-auto group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                                href="{{ section.settings.button_link }}"
+                                style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                        border-color: {{ section.settings.button_border_color }};
+                                        color: {{ section.settings.button_text_color }};
+                                        background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                                <span class="button-span inline-block transform transition-all duration-150 w-full lg:w-auto ">
+                                    {{ section.settings.button_text }}
+                                </span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        {% comment %} <div id="hero-content-control"
             class="p-8 flex flex-col w-full h-full"
             style="align-items: {{ content_align }}; justify-content: {{ content_justify }};
                     background:url({{ section.settings.background_image | image_url: height: 1600 }}) no-repeat center;
@@ -93,7 +182,7 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 </section>
 
@@ -122,21 +211,22 @@
             "default": "Welcome to Our Store"
         },
         {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Color",
+            "default": "#020202"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Subtitle Color",
+            "default": "#020202"
+        },
+        {
             "type": "text",
             "id": "subtitle",
             "label": "Subtitle",
             "default": "Discover the latest trends and exclusive deals."
-        },
-        {
-            "type": "text",
-            "id": "button_text",
-            "label": "Button Text",
-            "default": "Shop Now"
-        },
-        {
-            "type": "url",
-            "id": "button_link",
-            "label": "Button Link"
         },
         {
         "type": "select",
@@ -144,22 +234,39 @@
         "label": "Image Height",
         "default": "large",
         "options": [
-            {
-            "value": "auto",
-            "label": "Adapt to image height"
-            },
-            {
-            "value": "large",
-            "label": "Large"
-            },
-            {
-            "value": "medium",
-            "label": "Medium"
-            },
-            {
-            "value": "small",
-            "label": "Small"
-            }]
+                {
+                "value": "small",
+                "label": "Small"
+                },
+                {
+                "value": "medium",
+                "label": "Medium"
+                },
+                {
+                "value": "large",
+                "label": "Large"
+                }
+            ]
+        },
+        {
+        "type": "select",
+        "id": "image_height_mobile",
+        "label": "Mobile Image Height",
+        "default": "medium",
+        "options": [
+                {
+                "value": "small",
+                "label": "Small"
+                },
+                {
+                "value": "medium",
+                "label": "Medium"
+                },
+                {
+                "value": "large",
+                "label": "Large"
+                },
+            ]
         },
         {
             "type": "select",
@@ -190,13 +297,76 @@
             ]
         },
         {
+            "type": "select",
+            "id": "title_size_mobile",
+            "label":"Mobile Title Size",
+            "default": "heading_4",
+            "options":[
+                {
+                    "label":"Heading 1",
+                    "value": "heading_1"
+                },
+                {
+                    "label":"Heading 2",
+                    "value": "heading_2"
+                },
+                {
+                    "label":"Heading 3",
+                    "value": "heading_3"
+                },
+                {
+                    "label":"Heading 4",
+                    "value": "heading_4"
+                },
+                {
+                    "label":"Paragraph",
+                    "value": "paragraph"
+                }
+            ]
+        },
+        {
             "type": "header",
-            "content": "Content Settings"
+            "content": "Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type":"color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#001001"
+        },
+        {
+            "type":"color",
+            "id": "button_bgcolor",
+            "label": "Button BG Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"checkbox",
+            "id": "has_border",
+            "label": "Button Border",
+            "default": true
+        },
+        {
+            "type":"color",
+            "id": "button_border_color",
+            "label": "Button Border Color",
+            "default": "#c9c9c9"
         },
         {
             "type":"select",
-            "id": "content-alignment",
-            "label": "Content Alignment",
+            "id": "button_alignment",
+            "label": "Button Alignment",
             "default": "center",
             "options": [
                 {
@@ -212,6 +382,10 @@
                     "label": "Right"
                 }
             ]
+        },
+        {
+            "type": "header",
+            "content": "Content Settings"
         },
         {
             "type": "checkbox",
@@ -238,51 +412,22 @@
             "type": "select",
             "id":"content_position",
             "label": "Content Position",
-            "default":"middle-center",
+            "default":"left",
+            "info": "Controls the position of your content like title, subtitle and button",
             "options": [
                 {
-                    "label": "Top Left",
-                    "value": "top-left"
+                    "label": "Left",
+                    "value": "left"
                 },
                 {
-                    "label": "Top Center",
-                    "value": "top-center"
+                    "label": "Center",
+                    "value": "center"
                 },
                 {
-                    "label": "Top Right",
-                    "value": "top-right"
-                },
-                {
-                    "label": "Middle Left",
-                    "value": "middle-left"
-                },
-                {
-                    "label": "Middle Center",
-                    "value": "middle-center"
-                },
-                {
-                    "label": "Middle Right",
-                    "value": "middle-right"
-                },
-                {
-                    "label": "Bottm Left",
-                    "value": "bottom-left"
-                },
-                {
-                    "label": "Bottom Center",
-                    "value": "bottom-center"
-                },
-                {
-                    "label": "Bottom Right",
-                    "value": "bottom-right"
+                    "label": "Right",
+                    "value": "right"
                 }
             ]
-        },
-        {
-            "type": "color",
-            "id": "text_color",
-            "label": "Text Color",
-            "default": "#020202"
         },
         {
             "type":"header",

@@ -11,8 +11,21 @@
     {% assign image_height = 'auto' %}
 {% endcase %}
 
-<section id="hero-banner" class="relative">
-    <div id="margin-container" style="margin-top: {{ section.settings.top-margin }}; margin-bottom: {{ section.settings.bottom-margin }}">
+{% assign cont_width = '' %}
+{% case section.settings.section_width %}
+  {% when 'large' %}
+    {% assign cont_width = '1024px' %}
+  {% when 'medium' %}
+    {% assign cont_width = '768px' %}
+  {% when 'small' %}
+    {% assign cont_width = '640px' %}
+  {% else %}
+    {% assign cont_width = '100%' %}
+{% endcase %}
+
+
+<section id="hero-banner" class="relative section">
+    <div id="margin-container" class="mx-auto" style="margin-top: {{ section.settings.top-margin }}; margin-bottom: {{ section.settings.bottom-margin }}; max-width: {{ cont_width }};">
         {% if section.settings.image_link != blank %}
             <a href="{{ section.settings.image_link }}">
                 <img
@@ -63,6 +76,30 @@
             "type": "url",
             "id": "image_link",
             "label": "Button Link"
+        },
+        {
+            "type":"select",
+            "id": "section_width",
+            "label": "Section Width",
+            "default": "full",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full Width"
+                },
+                {
+                    "value": "large",
+                    "label": "Large (1024px)"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium (768px)"
+                },
+                {
+                    "value": "small",
+                    "label": "Small (640px)"
+                }
+            ]
         },
         {
         "type": "select",

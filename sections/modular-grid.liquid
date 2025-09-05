@@ -31,7 +31,7 @@
 {% endcase %}
 
 
-<section id="modular-grid">
+<section id="modular-grid" class="section">
     <div id="section-container" class="p-2 lg:p-4" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
         {% if section.settings.title != blank %}
             {% render 'section-title',
@@ -43,7 +43,7 @@
             {% for block in section.blocks %}
                 <div class="p-4" style="width:{{ column_width }}; height:{{ column_width }};">
                     <div class="p-4 flex flex-col justify-end w-full h-full border-0 hover:border-3 border-slate-100 duration-150 ease-in-out"
-                        style="background-image: url({{ block.settings.column_image | image_url: width: 300 }});
+                        style="background-image: url({{ block.settings.column_image | image_url: width: 1600 }});
                         background-size: cover; background-position: center; align-items:{{ section.settings.content_alignment }};
                         color: {{ block.settings.column_text_color }};"
                     >

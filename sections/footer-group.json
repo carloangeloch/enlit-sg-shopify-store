@@ -11,6 +11,26 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "section_width": "full",
+        "items_color": "#1e40af",
+        "show_newsletter": true,
+        "newsletter_heading": "Join Our Newsletter",
+        "newsletter_subheading": "Get updates on new products and sales directly to your inbox.",
+        "border_color": "#1e40af",
+        "button_bgcolor": "#1e40af",
+        "button_text": "Subscribe",
+        "button_textcolor": "#ffffff",
+        "social_media_title": "Our Social",
+        "show_social_icons": false,
+        "facebook_link": "https://www.facebook.com/profile.php?id=61577692885285",
+        "instagram_link": "https://www.facebook.com/profile.php?id=61577692885285",
+        "tiktok_link": "https://www.facebook.com/profile.php?id=61577692885285",
+        "linkedin_link": "https://www.facebook.com/profile.php?id=61577692885285"
+      }
+    },
     "footer_link_qpy3ja": {
       "type": "footer-link",
       "blocks": {
@@ -51,31 +71,16 @@
       ],
       "name": "Footer Link Menu",
       "settings": {
-        "title": "Footer Links"
-      }
-    },
-    "footer": {
-      "type": "footer",
-      "settings": {
-        "items_color": "#020202",
-        "show_newsletter": true,
-        "newsletter_heading": "Join Our Newsletter",
-        "newsletter_subheading": "Get updates on new products and sales directly to your inbox.",
-        "border_color": "#6d7175",
-        "button_bgcolor": "#0c0c0c",
-        "button_text": "Subscribe",
-        "button_textcolor": "#ffffff",
-        "social_media_title": "Our Social",
-        "show_social_icons": true,
-        "facebook_link": "https://www.facebook.com/profile.php?id=61577692885285",
-        "instagram_link": "https://www.facebook.com/profile.php?id=61577692885285",
-        "tiktok_link": "https://www.facebook.com/profile.php?id=61577692885285",
-        "linkedin_link": "https://www.facebook.com/profile.php?id=61577692885285"
+        "section_width": "large",
+        "title": "",
+        "title_color": "#1e40af",
+        "margin_top": 16,
+        "margin_bottom": 16
       }
     }
   },
   "order": [
-    "footer_link_qpy3ja",
-    "footer"
+    "footer",
+    "footer_link_qpy3ja"
   ]
 }

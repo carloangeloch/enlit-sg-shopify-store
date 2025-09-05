@@ -14,29 +14,29 @@
         {%  assign cont_width = "100%"%}
 {%  endcase %}
 
-<section id="rich-text">
+<section id="rich-text" class="section">
     <div id="rich-text-container" class="w-full" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
-        <div class="text-center px-4 py-2 mx-auto w-full lg:w-[{{ cont_width }}]">
+        <div class="text-center px-4 py-2 mx-auto" style="max-width: {{ cont_width }};">
             {% if section.settings.title != blank %}
-                <h2 class="text-2xl" style="color:{{ section.settings.title_color }} ;">{{ section.settings.title }}</h2>
+                <h2 class="text-3xl" style="color:{{ section.settings.title_color }} ;">{{ section.settings.title }}</h2>
             {% endif %}
             {% if section.settings.content != blank %}
                 <div class="mt-4 opacity-70 richtext-content">{{ section.settings.content }}</div>
             {% endif %}
             {% if section.settings.button_text1 != blank %}
-                <div id="button-container" class="p-6 flex gap-6 items-center justify-center">
+                <div id="button-container" class="p-2 flex flex-col lg:flex-row gap-x-6 gap-y-2 items-center justify-center">
 
                     {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
 
                     {% if section.settings.button_text1 != blank %}
-                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
-                            <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start w-full lg:w-auto ">
+                            <a class="w-full lg:w-auto group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
                                 href="{{ section.settings.button_link1 }}"
                                 style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
                                         border-color: {{ section.settings.button_border_color }};
                                         color: {{ section.settings.button_text_color }};
                                         background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
-                                <span class="button-span inline-block transform transition-all duration-150">
+                                <span class="button-span inline-block transform transition-all duration-150 w-full lg:w-auto">
                                     {{ section.settings.button_text1 }}
                                 </span>
                             </a>
@@ -45,14 +45,14 @@
                     {% endif %}
 
                     {% if section.settings.button_text2 != blank %}
-                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
-                            <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start w-full lg:w-auto ">
+                            <a class="w-full lg:w-auto group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
                                 href="{{ section.settings.button_link2 }}"
                                 style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
                                         border-color: {{ section.settings.button_border_color }};
                                         color: {{ section.settings.button_text_color }};
                                         background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
-                                <span class="button-span inline-block transform transition-all duration-150">
+                                <span class="button-span inline-block transform transition-all duration-150 w-full lg:w-auto ">
                                     {{ section.settings.button_text2 }}
                                 </span>
                             </a>
@@ -61,14 +61,14 @@
                     {% endif %}
 
                     {% if section.settings.button_text3 != blank %}
-                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start">
-                            <a class="group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                        <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start w-full lg:w-auto ">
+                            <a class="w-full lg:w-auto group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
                                 href="{{ section.settings.button_link3 }}"
                                 style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
                                         border-color: {{ section.settings.button_border_color }};
                                         color: {{ section.settings.button_text_color }};
                                         background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
-                                <span class="button-span inline-block transform transition-all duration-150">
+                                <span class="button-span inline-block transform transition-all duration-150 w-full lg:w-auto ">
                                     {{ section.settings.button_text3 }}
                                 </span>
                             </a>

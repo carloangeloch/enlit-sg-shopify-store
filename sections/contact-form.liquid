@@ -1,7 +1,7 @@
 {{ 'base.css' | asset_url | stylesheet_tag }}
 {% assign form_id = 'CustomContactForm' %}
 
-<section class="w-full mx-auto px-4">
+<section class="section w-full mx-auto px-4">
     <div id="margin-container" style="margin-top: {{ section.settings.margin_top }}; margin-bottom: {{ section.settings.margin_bottom }}">
         {% if section.settings.heading != blank %}
             {% render 'section-title',

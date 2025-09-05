@@ -5,10 +5,7 @@
 {% assign whybuy = product.metafields.custom.why_shop_with_us | split: '|' %}
 {% assign care_ints = product.metafields.custom.care_instructions | split: '|' %}
 
-
-<script src="{{ 'product-content.js' | asset_url }}" defer="defer"></script>
-
-<section id="product-content" class="relative">
+<section id="product-content" class="relative section">
     <div class="w-full absolute -z-[5]">
         <img src="{{ section.settings.bgimage | image_url: width: 2048 }}" width="100%" height="auto">
     </div>
@@ -26,7 +23,7 @@
             {% endif %}
             <div id="product-item" class="flex flex-col lg:flex-row justify-center">
                 <div class="images-container shrink max-w-[600] p-2 bg-white mx-auto">
-                    <img id="image-box" src="{{ product.featured_image | image_url: width: 600 }}" width="600" height="600"/>
+                    <img id="image-box" src="{{ product.featured_image | image_url: width: 1600 }}" width="600" height="600"/>
                     
                     <div class="flex gap-2 overflow-x-scroll mt-4">
                         {% for image in product.images %}
@@ -38,10 +35,12 @@
                 
                 <div class="product-details w-full lg:w-1/2 ml-auto lg:ml-4 p-4 lg:min-w-[500px]" style="background-color: {{ section.settings.description_bgcolor }};">
                     <div class="text-4xl mb-4" style="color: {{ section.settings.product_name_color }}">{{ product.title }}</div>
-                    {% if product.price != blank %}
-                        <div id="price-container"><strong class="text-xl" style="color:{{ section.settings.price_color }} ;">{{ product.price | money }}</strong> <span class="line-through" style="color:{{ section.settings.compare_price_color }};">{{ product.compare_at_price | money }}</span></div>
-                    {% else %}
-                        <div id="price-container"><strong class="text-xl"  style="color:{{ section.settings.price_color }};">{{ product.compare_at_price | money }}</strong></div>
+                    {% if section.settings.show_prices %}
+                        {% if product.price != blank %}
+                            <div id="price-container"><strong class="text-xl" style="color:{{ section.settings.price_color }} ;">{{ product.price | money }}</strong> <span class="line-through" style="color:{{ section.settings.compare_price_color }};">{{ product.compare_at_price | money }}</span></div>
+                        {% else %}
+                            <div id="price-container"><strong class="text-xl"  style="color:{{ section.settings.price_color }};">{{ product.compare_at_price | money }}</strong></div>
+                        {% endif %}
                     {% endif %}
 
                     <div id="button-container" class="w-full flex gap-2 mt-4">
@@ -88,50 +87,71 @@
                     <div id="product_description" class="my-4">
                         {{ product.description | default: "No description available." }}
                     </div>
-                    <div id="accordion-container" class="my-2">                        
+                    <div id="accordion-container" class="my-2">
+
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}; color:{{ section.settings.accordion_text_color }};">
                                 <div class="">How to Use</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
-                                {{ product.metafields.custom.how_to_use | default: "No how to use information available." }}
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}; color:{{ section.settings.accordion_content_text_color }};">
+                                <div class="py-4">
+                                    {{ product.metafields.custom.how_to_use | default: "No how to use instruction available." }}
+                                </div>
                             </div>
                         </div>
-                        
+
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}; color:{{ section.settings.accordion_text_color }};">
                                 <div>Care Instructions</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
-                                {% for item in care_ints %}
-                                    <p>{{ item }}</p>
-                                {% endfor %}
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}; color:{{ section.settings.accordion_content_text_color }};">
+                                <div class="py-4">
+                                    {% if care_ints.size > 0 %}
+                                        {% for item in care_ints %}
+                                            <p>{{ item }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>No care instruction available.</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
     
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}; color:{{ section.settings.accordion_text_color }};">
                                 <div>Why Shop with Us</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
-                                {% for item in whybuy %}
-                                    <p>{{ item }}</p>
-                                {% endfor %}
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}; color:{{ section.settings.accordion_content_text_color }};">
+                                <div class="py-4">
+                                    {% if whybuy.size > 0 %}
+                                        {% for item in whybuy %}
+                                            <p>{{ item }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>No information available.</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
     
                         <div class="w-full mb-2 accordion">
-                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}">
+                            <div class="accordion-title flex justify-between p-4" style="background-color: {{ section.settings.accordion_color }}; color:{{ section.settings.accordion_text_color }};">
                                 <div>Product Specification</div>
                                 <strong class="accordion-plus">+</strong>
                             </div>
-                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}">
-                                {% for item in specs %}
-                                    <p>{{ item }}</p>
-                                {% endfor %}
+                            <div class="accordion-content" style="background-color: {{ section.settings.accordion_content_color }}; color:{{ section.settings.accordion_content_text_color }};">
+                                <div class="py-4">
+                                    {% if specs.size > 0 %}
+                                        {% for item in specs %}
+                                            <p>{{ item }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>No specifications available.</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -216,6 +236,12 @@
             "id": "product_name_color",
             "label": "Product Name Color",
             "default": "#084d9b"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_prices",
+            "label": "Show Prices",
+            "default": true
         },
         {
             "type": "color",
@@ -351,9 +377,21 @@
         },
         {
             "type": "color",
+            "id": "accordion_text_color",
+            "label": "Accordion Color",
+            "default": "#020202"
+        },
+        {
+            "type": "color",
             "id": "accordion_content_color",
             "label": "Content Color",
             "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "accordion_content_text_color",
+            "label": "Content Color",
+            "default": "#020202"
         },
         {
             "type":"header",
