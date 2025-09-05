@@ -9,29 +9,12 @@
  */
 {
   "sections": {
-    "hero_banner_xKaA79": {
-      "type": "hero-banner",
-      "name": "Hero Banner",
-      "settings": {
-        "background_image": "shopify://shop_images/Main-BAnner.png",
-        "title": "",
-        "subtitle": "",
-        "button_text": "",
-        "button_link": "shopify://collections/all",
-        "image_height": "medium",
-        "content-alignment": "center",
-        "has_container": false,
-        "content-bgcolor": "#ffffff",
-        "content_position": "middle-center",
-        "top-margin": 0,
-        "bottom-margin": 0
-      }
-    },
     "rich_text_ftagFj": {
       "type": "rich-text",
       "name": "Rich Text",
       "settings": {
-        "title": "What we Offer",
+        "title": "Our Blog",
+        "title_color": "#1E40AF",
         "content": "",
         "container-width": "medium",
         "button_text1": "",
@@ -40,13 +23,29 @@
         "button_link2": "",
         "button_text3": "",
         "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
         "margin_top": 40,
         "margin_bottom": 16
+      }
+    },
+    "blog_pagination_NGkgJt": {
+      "type": "blog-pagination",
+      "name": "Blog Post List",
+      "settings": {
+        "section_title": "",
+        "selected_blog": "blog-articles",
+        "blog_title_color": "#1E40AF",
+        "container-width": "large",
+        "posts_per_page": 8
       }
     }
   },
   "order": [
-    "hero_banner_xKaA79",
-    "rich_text_ftagFj"
+    "rich_text_ftagFj",
+    "blog_pagination_NGkgJt"
   ]
 }

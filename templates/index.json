@@ -14,15 +14,8 @@
       "name": "Hero Banner",
       "settings": {
         "background_image": "shopify://shop_images/Main-BAnner.png",
-        "title": "",
-        "subtitle": "",
-        "button_text": "",
-        "button_link": "shopify://collections/all",
+        "image_link": "",
         "image_height": "medium",
-        "content-alignment": "center",
-        "has_container": false,
-        "content-bgcolor": "#ffffff",
-        "content_position": "middle-center",
         "top-margin": 0,
         "bottom-margin": 0
       }
@@ -32,6 +25,7 @@
       "name": "Rich Text",
       "settings": {
         "title": "What we Offer",
+        "title_color": "#1E40AF",
         "content": "",
         "container-width": "medium",
         "button_text1": "",
@@ -40,6 +34,11 @@
         "button_link2": "",
         "button_text3": "",
         "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
         "margin_top": 40,
         "margin_bottom": 16
       }
@@ -51,12 +50,18 @@
         "background_image": "shopify://shop_images/bb12_cleaning.png",
         "image_height": "medium",
         "section_bgcolor": "#ffffff",
+        "title_color": "#1E40AF",
         "text-alignment": "start",
         "caption": "B2B",
         "title": "Industrial Solution",
         "description": "<p>Trusted by commercial and industrial clients across sectors:</p><ul><li>High-efficiency, low-residue formulas</li><li>Heavy-duty performance with eco-conscious ingredients</li><li>For F&B, manufacturing, and public facilities</li><li>Tailored cleaning solutions for your business</li></ul>",
         "button_text": "Check our Cleaning Products →",
         "button_link": "shopify://collections/industrial-cleaning",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#1E40AF",
+        "has_border": false,
+        "button_border_color": "#c9c9c9",
         "is_image_first": true,
         "is_fullwidth": false,
         "top_margin": 0,
@@ -70,12 +75,18 @@
         "background_image": "shopify://shop_images/2_aa050a9f-eb1a-4d9b-a0b0-19b54f06b887.png",
         "image_height": "medium",
         "section_bgcolor": "#ffffff",
+        "title_color": "#1E40AF",
         "text-alignment": "start",
         "caption": "B2C",
         "title": "Everyday Essentials",
         "description": "<p>Elevated care for your home and skin. Our consumer range includes:</p><ul><li>Sulphate-free, pH-balanced cleansers</li><li>Gentle, moisturizing, dermatologist-formulated</li><li>Lightweight hydration with Vitamin E & botanical oils</li><li>Tough on grease, soft on skin</li></ul>",
         "button_text": "Check our Everyday Care Products →",
         "button_link": "shopify://collections/everyday-essentials",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#1E40AF",
+        "has_border": false,
+        "button_border_color": "#c9c9c9",
         "is_image_first": false,
         "is_fullwidth": false,
         "top_margin": 0,
@@ -87,6 +98,7 @@
       "name": "Rich Text",
       "settings": {
         "title": "Our Latest Blogs",
+        "title_color": "#1E40AF",
         "content": "",
         "container-width": "medium",
         "button_text1": "",
@@ -95,6 +107,11 @@
         "button_link2": "",
         "button_text3": "",
         "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
         "margin_top": 40,
         "margin_bottom": 16
       }
@@ -105,9 +122,15 @@
       "settings": {
         "heading": "",
         "blog": "blog-articles",
+        "title_color": "#1E40AF",
+        "show_date": true,
+        "show_author": true,
+        "show_excerpt": true,
+        "section_width": "large",
         "post_limit": 3,
         "columns": 3,
         "read_more_label": "Read More →",
+        "button_text_color": "#335be1",
         "margin_top": 16,
         "margin_bottom": 16
       }
@@ -117,6 +140,7 @@
       "name": "Rich Text",
       "settings": {
         "title": "Ready to experience the future of clean?",
+        "title_color": "#1E40AF",
         "content": "<p>Discover how Enlit is redefining hygiene for homes and businesses alike.</p>",
         "container-width": "full",
         "button_text1": "Check our Lazada Store",
@@ -125,8 +149,13 @@
         "button_link2": "",
         "button_text3": "Book a B2B Consultation",
         "button_link3": "",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#1E40AF",
+        "has_border": false,
+        "button_border_color": "#c9c9c9",
         "margin_top": 40,
-        "margin_bottom": 16
+        "margin_bottom": 24
       }
     }
   },

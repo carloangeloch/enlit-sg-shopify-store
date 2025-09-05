@@ -1,24 +1,112 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "rich_text_uVEwWx": {
-        "type": "rich-text",
-        "name": "Rich Text",
-        "settings": {
-            "title": "Our Latest Blogs",
-            "content": "",
-            "container-width": "medium",
-            "button_text1": "",
-            "button_link1": "",
-            "button_text2": "",
-            "button_link2": "",
-            "button_text3": "",
-            "button_link3": "",
-            "margin_top": 40,
-            "margin_bottom": 16
-        }
-        }
+  "sections": {
+    "rich_text_uVEwWx": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "We’re here to help, whether you're a customer, partner, or curious mind.",
+        "title_color": "#1E40AF",
+        "content": "<p>Got a question about our products? Need a custom formulation for your business? Want to collaborate with us? Let’s connect.</p>",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 40,
+        "margin_bottom": 16
+      }
     },
-    "order": [
-        "rich_text_uVEwWx"
-    ]
+    "contact_form_R8KfRp": {
+      "type": "contact-form",
+      "name": "Contact Form",
+      "settings": {
+        "heading": "",
+        "label_color": "#1E40AF",
+        "submit_text": "Send Message",
+        "button_position": "start",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#1E40AF",
+        "has_border": false,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "multicolum_EKg3xj": {
+      "type": "multicolum",
+      "blocks": {
+        "column_idrJgR": {
+          "type": "column",
+          "settings": {
+            "image_height": "medium",
+            "image_height_mobile": "small",
+            "column_title": "📍 Head Office",
+            "column_content": "<p><strong>Enlit SG (Enlipsium Pte. Ltd.)</strong></p><p>Block 22 Woodlands Link, #03-54, Singapore 738734<br/>Operating Hours: Monday to Friday, 9AM–6PM (SGT)</p>",
+            "column_button_text": "",
+            "column_button_link": "",
+            "button_text_color": "#001001",
+            "background_opacity": 100,
+            "button_bgcolor": "#c9c9c9",
+            "has_border": true,
+            "button_border_color": "#c9c9c9"
+          }
+        },
+        "column_FAcjEG": {
+          "type": "column",
+          "settings": {
+            "image_height": "medium",
+            "image_height_mobile": "small",
+            "column_title": "📞 Get in Touch",
+            "column_content": "<p><strong>Consumer Inquiries (B2C)</strong><br/>For product questions, skincare concerns, or order issues:</p><p><a href=\"mailto:sales@enlit.sg\">sales@enlit.sg</a> | <a href=\"mailto:info@mysite.com\" target=\"_self\">+65 8099 4078</a></p>",
+            "column_button_text": "",
+            "column_button_link": "",
+            "button_text_color": "#001001",
+            "background_opacity": 100,
+            "button_bgcolor": "#c9c9c9",
+            "has_border": true,
+            "button_border_color": "#c9c9c9"
+          }
+        }
+      },
+      "block_order": [
+        "column_idrJgR",
+        "column_FAcjEG"
+      ],
+      "name": "Multicolumn",
+      "settings": {
+        "title": "",
+        "section_width": "large",
+        "column_alignment": "start",
+        "column_postition": "center",
+        "content_alignment": "center",
+        "columns": 2,
+        "column_bgcolor": "#ffffff",
+        "mobile_alignment": "center",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "rich_text_uVEwWx",
+    "contact_form_R8KfRp",
+    "multicolum_EKg3xj"
+  ]
 }
