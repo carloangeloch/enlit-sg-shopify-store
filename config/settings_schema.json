@@ -102,7 +102,13 @@
         "type": "color",
         "id": "footer_bgcolor",
         "label": "Background Color",
-        "default": "#dcdfe1"  // Gray
+        "default": "#ffffff"  // Gray
+      },
+      {
+        "type": "color",
+        "id": "footer_text_color",
+        "label": "Font Color",
+        "default": "#020202"  // Black
       }
     ]
   }
