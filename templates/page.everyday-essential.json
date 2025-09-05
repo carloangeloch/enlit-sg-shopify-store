@@ -1,0 +1,231 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_banner_xKKA79a": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Main-BAnner.png",
+        "image_link": "",
+        "section_width": "full",
+        "image_height": "medium",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "rich_text_dy9Vpfa": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "Check our Everyday Essential Products",
+        "title_color": "#1e40af",
+        "content": "",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 40,
+        "margin_bottom": 16
+      }
+    },
+    "featured_collection_Vgc3pTa": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "title": "",
+        "show_collection": true,
+        "collection_title_color": "#ffffff",
+        "collection_title_pos": "center",
+        "featured_collection": "body-wash",
+        "section_width": "full",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 98,
+        "section_bgcolor": "#1e40af",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "product_text_color": "#ffffff",
+        "show_product_price": false,
+        "bold_price": false,
+        "price_color": "",
+        "compare_price_color": "",
+        "margin_top": 16,
+        "margin_bottom": 0
+      }
+    },
+    "featured_collection_6fLRiw": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "title": "",
+        "show_collection": true,
+        "collection_title_color": "#ffffff",
+        "collection_title_pos": "center",
+        "featured_collection": "dishwashing-liquid",
+        "section_width": "full",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 98,
+        "section_bgcolor": "#1e40af",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "product_text_color": "#ffffff",
+        "show_product_price": false,
+        "bold_price": false,
+        "price_color": "",
+        "compare_price_color": "",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "featured_collection_4PnmUX": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "title": "",
+        "show_collection": true,
+        "collection_title_color": "#ffffff",
+        "collection_title_pos": "center",
+        "featured_collection": "hand-wash",
+        "section_width": "full",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 98,
+        "section_bgcolor": "#1e40af",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "product_text_color": "#ffffff",
+        "show_product_price": false,
+        "bold_price": false,
+        "price_color": "",
+        "compare_price_color": "",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "featured_collection_pGjJQK": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "title": "",
+        "show_collection": true,
+        "collection_title_color": "#ffffff",
+        "collection_title_pos": "center",
+        "featured_collection": "body-lotion",
+        "section_width": "full",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 98,
+        "section_bgcolor": "#1e40af",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "product_text_color": "#ffffff",
+        "show_product_price": false,
+        "bold_price": false,
+        "price_color": "",
+        "compare_price_color": "",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "featured_collection_839xkU": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "title": "",
+        "show_collection": true,
+        "collection_title_color": "#ffffff",
+        "collection_title_pos": "center",
+        "featured_collection": "baby-wash",
+        "section_width": "full",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 98,
+        "section_bgcolor": "#1e40af",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "product_text_color": "#ffffff",
+        "show_product_price": false,
+        "bold_price": false,
+        "price_color": "",
+        "compare_price_color": "",
+        "margin_top": 0,
+        "margin_bottom": 16
+      }
+    },
+    "rich_text_mBzkx4a": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "Bring Enlit’s Care Into Your Home",
+        "title_color": "#1e40af",
+        "content": "<p>From your morning shower to your evening cleanup, our everyday essentials keep your family clean, fresh, and protected, without compromising on quality or the environment.</p>",
+        "container-width": "medium",
+        "button_text1": "Show on Lazada →",
+        "button_link1": "",
+        "button_text2": "Show on Shopee→",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#1e40af",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "hero_banner_xKKA79a",
+    "rich_text_dy9Vpfa",
+    "featured_collection_Vgc3pTa",
+    "featured_collection_6fLRiw",
+    "featured_collection_4PnmUX",
+    "featured_collection_pGjJQK",
+    "featured_collection_839xkU",
+    "rich_text_mBzkx4a"
+  ]
+}

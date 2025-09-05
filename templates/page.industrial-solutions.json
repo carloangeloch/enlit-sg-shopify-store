@@ -1,0 +1,144 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_banner_xKKA79": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Main-BAnner.png",
+        "image_link": "",
+        "section_width": "full",
+        "image_height": "medium",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "rich_text_dy9Vpf": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "Check our Finest Cleaning Solutions",
+        "title_color": "#1e40af",
+        "content": "",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 40,
+        "margin_bottom": 16
+      }
+    },
+    "featured_collection_Vgc3pT": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "title": "",
+        "show_collection": false,
+        "collection_title_color": "#ffffff",
+        "collection_title_pos": "center",
+        "featured_collection": "industrial-cleaning",
+        "section_width": "full",
+        "column_postition": "center",
+        "content_alignment": "start",
+        "products_limit": 98,
+        "section_bgcolor": "#1e40af",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "product_text_color": "#ffffff",
+        "show_product_price": false,
+        "bold_price": false,
+        "price_color": "",
+        "compare_price_color": "",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "rich_text_ftkgFj": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "Check our finest Cleaning Products",
+        "title_color": "#1e40af",
+        "content": "",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 40,
+        "margin_bottom": 16
+      }
+    },
+    "hero_banner_RA9aEq": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Table1.png",
+        "image_link": "",
+        "section_width": "large",
+        "image_height": "auto",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "rich_text_mBzkx4": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "Partner With Enlit for Your Industrial Cleaning Needs",
+        "title_color": "#1e40af",
+        "content": "<p>Whether you operate in hospitality, manufacturing, marine, automotive, or facilities maintenance, Enlit SG can supply high-performance, sustainable cleaning solutions tailored to your requirements.</p>",
+        "container-width": "medium",
+        "button_text1": "Contact Us for B2B Inquiries →",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#1e40af",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "hero_banner_xKKA79",
+    "rich_text_dy9Vpf",
+    "featured_collection_Vgc3pT",
+    "rich_text_ftkgFj",
+    "hero_banner_RA9aEq",
+    "rich_text_mBzkx4"
+  ]
+}

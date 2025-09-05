@@ -1,0 +1,49 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product-content_lasdn5a5a": {
+      "type": "product-content",
+      "settings": {
+        "section_title": "",
+        "product_name_color": "#084d9b",
+        "show_prices": false,
+        "price_color": "#2272ce",
+        "compare_price_color": "#e8161a",
+        "is_bgimage": false,
+        "bgcolor": "#ffffff",
+        "description_bgcolor": "#ffffff",
+        "button1_img": "shopify://shop_images/lazada-icon.png",
+        "button1_text": "",
+        "button1_link": "{{ product.metafields.custom.lazada_product_link.value }}",
+        "button1_text_color": "#ffffff",
+        "button1_bgcolor": "#7c3aed",
+        "button1_border_color": "#7c3aed",
+        "button2_img": "shopify://shop_images/shopee-bag-logo-free-transparent-icon-17.png",
+        "button2_text": "",
+        "button2_link": "{{ product.metafields.custom.shopee_product_link.value }}",
+        "button2_text_color": "#ffffff",
+        "button2_bgcolor": "#fc954d",
+        "button2_border_color": "#c9c9c9",
+        "has_border": false,
+        "background_opacity": 100,
+        "accordion_color": "#1e40af",
+        "accordion_text_color": "#ffffff",
+        "accordion_content_color": "#e8edf2",
+        "accordion_content_text_color": "#020202",
+        "margin-top": 0,
+        "margin-bottom": 0
+      }
+    }
+  },
+  "order": [
+    "product-content_lasdn5a5a"
+  ]
+}
