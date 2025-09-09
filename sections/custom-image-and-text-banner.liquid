@@ -1,0 +1,270 @@
+{% assign image_height = '' %}
+{% assign image_width = 1600 %}
+{% case section.settings.image_height %}
+  {% when 'large' %}
+    {% assign image_height = 540 %}
+  {% when 'medium' %}
+    {% assign image_height = 360 %}
+  {% when 'small' %}
+    {% assign image_height = 240 %}
+  {% else %}
+    {% assign image_height = 'auto' %}
+{% endcase %}
+
+{% assign text_align = '' %}
+{% case section.settings.text-alignment %}
+    {% when 'start' %}
+        {% assign text_align = 'left' %}
+    {% when 'center' %}
+        {% assign text_align = 'center' %}
+    {% when 'end' %}
+        {% assign text_align = 'left' %}
+    {% else %}
+        {% assign text_align = 'left' %}
+{% endcase %}
+
+
+<section id="image-text-banner" class="w-full section">
+    <div id="section-container"
+        style="margin-top: {{ section.settings.top_margin }}px;
+        margin-bottom: {{ section.settings.bottom_margin }}px;
+        max-width: {% if section.settings.is_fullwidth%} 100% {% else %} 1240px {% endif %};
+        background-color: {{ section.settings.section_bgcolor  }};
+        flex-direction: {% if section.settings.is_image_first %} row {% else %} row-reverse {% endif %};"
+        class="flex flex-wrap lg:flex-nowrap items-center p-4 lg:p-0 mx-auto justify-center"
+    >
+        <div class="max-w-[500]">
+            <img
+                src="{{ section.settings.background_image | image_url: width: image_width }}"
+                alt="Banner Background"
+                class="{% if image_height != 'auto' %}block{% endif %}"
+                width="{{ image_width }}"
+                height="{{ image_height }}"
+                {% if image_height != 'auto' %}
+                    style="max-height: {{ image_height }}px;"
+                {% else %}
+                    style="height: auto;"
+                {% endif %}
+            />
+
+        </div>
+        <div class="w-full lg:w-1/2 px-0 lg:px-0 py-4 lg:py-0 flex flex-col justify-center gap-2" style="align-items: {{ section.settings.text-alignment }};">
+            {% if section.settings.caption != blank %}
+                <div class="text-sm opacity-70">{{ section.settings.caption }}</div>
+            {% endif %}
+            {% if section.settings.title_1 or section.settings.title_2 != blank %}
+                <div class="text-3xl font-semibold" >
+                    <span style="color: {{ section.settings.title_1_color }};">{{ section.settings.title_1 }}</span>
+                    
+                    <span style="color: {{ section.settings.title_2_color }};">{{ section.settings.title_2 }}</span>
+                </div>
+            {% endif %}
+            {% if section.settings.description != blank %}
+                <div class="opacity-70 richtext-content" style="text-align:{{ text_align }}">{{ section.settings.description }}</div>
+            {% endif %}
+            {% if section.settings.button_text != blank %}
+                {% assign bg_opacity = section.settings.background_opacity | divided_by: 100.0 %}
+                <div id="column-btn" class="pt-4 flex gap-4 items-center justify-start w-full lg:w-auto ">
+                    <a class="w-full lg:w-auto group py-2 px-8 inline-block transition-all duration-300 hover:opacity-80"
+                        href="{{ section.settings.button_link }}"
+                        style="border: {% if section.settings.has_border %} solid {% else %} none {% endif %} 1px;
+                                border-color: {{ section.settings.button_border_color }};
+                                color: {{ section.settings.button_text_color }};
+                                background-color: {{ section.settings.button_bgcolor | color_modify: 'alpha', bg_opacity }};">
+                        <span class="button-span inline-block transform transition-all duration-150 w-full lg:w-auto ">
+                            {{ section.settings.button_text }}
+                        </span>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Custom Image Text Banner",
+    "settings":[
+        {
+            "type": "header",
+            "content": "Banner Contents"
+        },
+        {
+            "type":"image_picker",
+            "id": "background_image",
+            "label": "Background Image"
+        },
+        {
+        "type": "select",
+        "id": "image_height",
+        "label": "Image Height",
+        "default": "large",
+        "options": [
+            {
+            "value": "auto",
+            "label": "Adapt to image height"
+            },
+            {
+            "value": "large",
+            "label": "Large"
+            },
+            {
+            "value": "medium",
+            "label": "Medium"
+            },
+            {
+            "value": "small",
+            "label": "Small"
+            }]
+        },
+        {
+            "type":"color",
+            "id": "section_bgcolor",
+            "label": "Section BG Color",
+            "default": "#ffffff"
+        },
+        {
+            "type":"select",
+            "id": "text-alignment",
+            "label": "Text Alignment",
+            "default": "start",
+            "options": [
+                {
+                    "value": "start",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "end",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+           "type": "text",
+           "id": "caption",
+           "default": "Caption",
+           "label": "Caption"
+        },
+        {
+            "type": "text",
+            "id": "title_1",
+            "default": "First title part",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "title_2",
+            "default": "Second title part",
+            "label": " Part"
+        },
+        {
+            "type":"color",
+            "id": "title_1_color",
+            "label": "Title Color",
+            "default": "#ea6b0f"
+        },
+        {
+            "type":"color",
+            "id": "title_2_color",
+            "label": "Title 2 Color",
+            "default": "#317dd4"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+            "label": "Description"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "default": "Button Text",
+            "label": "Button Text"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "default": "/collections/all",
+            "label": "Button Link"
+        },
+        {
+            "type":"color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#001001"
+        },
+        {
+            "type": "range",
+            "id": "background_opacity",
+            "label": "Background Opacity",
+            "default": 100,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type":"color",
+            "id": "button_bgcolor",
+            "label": "Button BG Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"checkbox",
+            "id": "has_border",
+            "label": "Button Border",
+            "default": true
+        },
+        {
+            "type":"color",
+            "id": "button_border_color",
+            "label": "Button Border Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type": "header",
+            "content": "Banner Setting"
+        },
+        {
+            "type":"checkbox",
+            "id": "is_image_first",
+            "label": "Image First",
+            "default": true
+        },
+        {
+            "type":"checkbox",
+            "id": "is_fullwidth",
+            "label": "Full Width",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "top_margin",
+            "label": "Top Margin",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 5
+        },
+        {
+            "type": "range",
+            "id": "bottom_margin",
+            "label": "Bottom Margin",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 5
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Image Text Banner",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
