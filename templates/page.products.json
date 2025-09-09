@@ -1,26 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "featured_collection_y72Yxt": {
-        "type": "featured-collection",
-        "name": "Featured Collection",
-        "settings": {
-            "title": "Featured Collection",
-            "featured_collection": "hand-and-body-wash",
-            "columns": 4,
-            "section_width": "large",
-            "column_postition": "center",
-            "content_alignment": "start",
-            "products_limit": 4,
-            "section_bgcolor": "#ffffff",
-            "show_product_price": true,
-            "button_text": "Button Text",
-            "button_link": "",
-            "margin_top": 16,
-            "margin_bottom": 16
-        }
-        }
+  "sections": {
+    "hero_banner_with_text_frV4d4": {
+      "type": "hero-banner-with-text",
+      "name": "Hero Banner with Text",
+      "settings": {
+        "background_image": "shopify://shop_images/getty-images-W9KNSN6VN1s-unsplash.jpg",
+        "title": "Everyday & Industrial Cleaning, Engineered for Care and Performance",
+        "title_color": "#ffffff",
+        "text_color": "#020202",
+        "subtitle": "",
+        "image_height": "medium",
+        "image_height_mobile": "small",
+        "title_size": "heading_2",
+        "title_size_mobile": "heading_4",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "button_alignment": "center",
+        "has_container": false,
+        "content-bgcolor": "#ffffff",
+        "background_opacity": 100,
+        "content_position": "center",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
     },
-    "order": [
-        "featured_collection_y72Yxt"
-    ]
+    "rich_text_EawjLe": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "title_color": "#020202",
+        "content": "<p>From skin-safe body care to powerful industrial cleaning solutions, Enlit SG delivers scientifically formulated products you can trust, at home or in the workplace.</p>",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 16,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_gLrzYt": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "title_color": "#020202",
+        "content": "<p>At Enlit, we bring together our heritage in industrial-grade cleaning with our passion for creating eco-friendly, skin-safe essentials for daily life.<br/><br/>Our products are divided into two main ranges:</p>",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 16
+      }
+    },
+    "modular_grid_apcBpQ": {
+      "type": "modular-grid",
+      "blocks": {
+        "column_T6jWkm": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/cj-joW0X7sWNfA-unsplash.jpg",
+            "image_height": "medium",
+            "column_caption": "B2B",
+            "column_title": "Industrial Solution",
+            "column_content": "",
+            "column_text_color": "#ffffff",
+            "column_button_text": "View All Industrial Solutions →",
+            "column_button_link": "shopify://pages/industrial-cleaners",
+            "button_text_color": "#ffffff",
+            "background_opacity": 100,
+            "button_bgcolor": "#1E40AF",
+            "has_border": false,
+            "button_border_color": "#c9c9c9"
+          }
+        },
+        "column_FfpbPh": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/getty-images-XszIh0bBwAE-unsplash_933f5c7f-03ca-48a1-8b71-6e9ca7fb070d.jpg",
+            "image_height": "medium",
+            "column_caption": "B2C",
+            "column_title": "Industrial Solution",
+            "column_content": "",
+            "column_text_color": "#1E40AF",
+            "column_button_text": "View Everyday Essentials →",
+            "column_button_link": "shopify://pages/everyday-care-essensials",
+            "button_text_color": "#ffffff",
+            "background_opacity": 100,
+            "button_bgcolor": "#1E40AF",
+            "has_border": false,
+            "button_border_color": "#c9c9c9"
+          }
+        }
+      },
+      "block_order": [
+        "column_T6jWkm",
+        "column_FfpbPh"
+      ],
+      "name": "Modular Grid",
+      "settings": {
+        "title": "",
+        "section_width": "large",
+        "column_alignment": "center",
+        "column_position": "center",
+        "content_alignment": "start",
+        "columns": 2,
+        "column_bgcolor": "#91a1ba",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "rich_text_i4y4rX": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "One Standard: Excellence, in Every Drop",
+        "title_color": "#1E40AF",
+        "content": "<p>Whether you’re looking for a trusted cleaning partner for your business or skin-safe care for your family, Enlit SG is here to deliver sustainable, effective, and elegant solutions.</p>",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "hero_banner_with_text_frV4d4",
+    "rich_text_EawjLe",
+    "rich_text_gLrzYt",
+    "modular_grid_apcBpQ",
+    "rich_text_i4y4rX"
+  ]
 }

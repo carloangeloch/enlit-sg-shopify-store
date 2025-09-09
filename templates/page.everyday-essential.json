@@ -9,14 +9,30 @@
  */
 {
   "sections": {
-    "hero_banner_xKKA79a": {
-      "type": "hero-banner",
-      "name": "Hero Banner",
+    "hero_banner_with_text_ixT4Hx": {
+      "type": "hero-banner-with-text",
+      "name": "Hero Banner with Text",
       "settings": {
-        "background_image": "shopify://shop_images/Main-BAnner.png",
-        "image_link": "",
-        "section_width": "full",
+        "background_image": "shopify://shop_images/getty-images-zs6VwGHF3RA-unsplash_4527033c-ac24-4e03-a27e-967ce07d5c66.jpg",
+        "title": "Everyday Essentials",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "subtitle": "Elevating Daily Needs Through Engineering",
         "image_height": "medium",
+        "image_height_mobile": "small",
+        "title_size": "heading_2",
+        "title_size_mobile": "heading_4",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "button_alignment": "center",
+        "has_container": false,
+        "content-bgcolor": "#ffffff",
+        "background_opacity": 100,
+        "content_position": "center",
         "top-margin": 0,
         "bottom-margin": 0
       }
@@ -203,9 +219,9 @@
         "content": "<p>From your morning shower to your evening cleanup, our everyday essentials keep your family clean, fresh, and protected, without compromising on quality or the environment.</p>",
         "container-width": "medium",
         "button_text1": "Show on Lazada →",
-        "button_link1": "",
+        "button_link1": "https://www.lazada.sg/shop/enlit-home-body",
         "button_text2": "Show on Shopee→",
-        "button_link2": "",
+        "button_link2": "https://shopee.sg/enlitsg",
         "button_text3": "",
         "button_link3": "",
         "button_text_color": "#ffffff",
@@ -219,7 +235,7 @@
     }
   },
   "order": [
-    "hero_banner_xKKA79a",
+    "hero_banner_with_text_ixT4Hx",
     "rich_text_dy9Vpfa",
     "featured_collection_Vgc3pTa",
     "featured_collection_6fLRiw",

@@ -9,14 +9,30 @@
  */
 {
   "sections": {
-    "hero_banner_xKKA79": {
-      "type": "hero-banner",
-      "name": "Hero Banner",
+    "hero_banner_with_text_BAR7He": {
+      "type": "hero-banner-with-text",
+      "name": "Hero Banner with Text",
       "settings": {
-        "background_image": "shopify://shop_images/Main-BAnner.png",
-        "image_link": "",
-        "section_width": "full",
+        "background_image": "shopify://shop_images/getty-images-sqcJHiEjJOE-unsplash.png",
+        "title": "Industrial Solution",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "subtitle": "Professional-Grade Cleaning Solutions for Businesses and Industry",
         "image_height": "medium",
+        "image_height_mobile": "small",
+        "title_size": "heading_2",
+        "title_size_mobile": "heading_4",
+        "button_text": "",
+        "button_link": "",
+        "button_text_color": "#001001",
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "button_alignment": "center",
+        "has_container": false,
+        "content-bgcolor": "#ffffff",
+        "background_opacity": 100,
+        "content_position": "center",
         "top-margin": 0,
         "bottom-margin": 0
       }
@@ -118,7 +134,7 @@
         "content": "<p>Whether you operate in hospitality, manufacturing, marine, automotive, or facilities maintenance, Enlit SG can supply high-performance, sustainable cleaning solutions tailored to your requirements.</p>",
         "container-width": "medium",
         "button_text1": "Contact Us for B2B Inquiries →",
-        "button_link1": "",
+        "button_link1": "shopify://pages/contact-page",
         "button_text2": "",
         "button_link2": "",
         "button_text3": "",
@@ -134,7 +150,7 @@
     }
   },
   "order": [
-    "hero_banner_xKKA79",
+    "hero_banner_with_text_BAR7He",
     "rich_text_dy9Vpf",
     "featured_collection_Vgc3pT",
     "rich_text_ftkgFj",
