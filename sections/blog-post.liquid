@@ -4,20 +4,20 @@
 {% assign column_width = '' %}
 {% case section.settings.section_width %}
   {% when 'large' %}
+    {% assign cont_width = '1240px' %}
+    {% assign column_width = 'calc(1240px / ' | append: section.settings.columns | append: ')' %}
+  {% when 'medium' %}
     {% assign cont_width = '1024px' %}
     {% assign column_width = 'calc(1024px / ' | append: section.settings.columns | append: ')' %}
-  {% when 'medium' %}
-    {% assign cont_width = '768px' %}
-    {% assign column_width = 'calc(768px / ' | append: section.settings.columns | append: ')' %}
   {% when 'small' %}
-    {% assign cont_width = '640px' %}
-    {% assign column_width = 'calc(640px / ' | append: section.settings.columns | append: ')' %}
+    {% assign cont_width = '960px' %}
+    {% assign column_width = 'calc(960px / ' | append: section.settings.columns | append: ')' %}
   {% else %}
     {% assign column_width = 'calc(100% / ' | append: section.settings.columns | append: ')' %}
     {% assign cont_width = '100%' %}
 {% endcase %}
 
-<section class="section px-4 max-w-6xl mx-auto">
+<section class="section px-4 mx-auto">
     <div id="margin-container" style="margin-top: {{ section.settings.margin_top }}; margin-bottom: {{ section.settings.margin_bottom }}">
         {%  render 'section-title',
             title: section.settings.heading
@@ -28,14 +28,15 @@
         
         {% if blog.articles.size > 0 %}
           {% comment %} Desktop Version {% endcomment %}
-          <div id="items-container" class="hidden lg:flex mx-auto" style="width: {{ cont_width }};">
+          <div id="items-container" class="hidden lg:flex justify-between mx-auto" style="width:{{cont_width}};">
             {% for article in blog.articles limit: section.settings.post_limit %}
-                <div style="width: {{ column_width }}" class="p-4" >
+                <div style="width: {{ column_width }}" class="p-4 lg:p-8" >
                     <a href="{{ article.url }}" class="flex flex-col items-start justify-center">
                         
                         {% if article.url %}
-                            <div id="article-img" style="background-image:url({{ article.image | image_url: height:500 }}); background-repeat: no-repeat; height: {{ 900 | divided_by: section.settings.columns }} "  class="object-cover object-center w-full">
-                            </div>
+                            {% comment %} <div id="article-img" style="background-image:url({{ article.image | image_url: height:600 }}); background-repeat: no-repeat; height: {{ 900 | divided_by: section.settings.columns }} "  class="object-cover object-center w-full">
+                            </div> {% endcomment %}
+                            <img class="object-cover object-center" src="{{ article.image | image_url: height:600 }}" width="600" height="600" style=" height: {{ 900 | divided_by: section.settings.columns }} ">
                         {% endif %}
                         <div id="content-container" class="mt-4 text-left">
                              <h3 class="text-xl font-semibold mb-2" style="color:{{ section.settings.title_color }};">{{ article.title }}</h3>
