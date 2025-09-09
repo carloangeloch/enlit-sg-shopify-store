@@ -1,0 +1,270 @@
+{{ 'base.css' | asset_url | stylesheet_tag }}
+
+{%  assign cont_width = '' %}
+{%  case section.settings.container-width %}
+    {% when 'full'%}
+        {%  assign cont_width = "100%"%}
+    {% when 'large'%}
+        {%  assign cont_width = "1024px"%}
+    {% when 'medium'%}
+        {%  assign cont_width = "768px"%}
+    {% when 'small'%}
+        {%  assign cont_width = "640px"%}
+    {% else %}
+        {%  assign cont_width = "100%"%}
+{%  endcase %}
+
+{% assign tape1 = "https://cdn.shopify.com/s/files/1/0722/4141/4284/files/5_0f0aff24-acde-4ba3-b245-280f8d5e0394.png?v=1757142192" %}
+{% assign tape2 = "https://cdn.shopify.com/s/files/1/0722/4141/4284/files/4_7fd244e3-4fc3-4234-aa6d-d600af7b8067.png?v=1757142192" %}
+{% assign tape3 = "https://cdn.shopify.com/s/files/1/0722/4141/4284/files/6_05ba8c50-6542-4963-b733-4847afeaf278.png?v=1757142192" %}
+
+<section id="rich-text" class="section">
+    <div id="rich-text-container" class="w-full" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
+        <div class="text-center px-6 lg:px-4 py-10 mx-auto" style="max-width: {{ cont_width }};">
+            {% if section.settings.design_type == "1" %}
+                <div class="bg-slate-50 px-4 py-8 relative drop-shadow-sm rotate-1">
+                    <img src="{{ tape1 }}" width=120 height=120 class="absolute top-0 -left-8 lg:-left-10 -rotate-[40deg]">
+                    <img src="{{ tape3 }}" width=150 height=150 class="absolute -bottom-5 -right-6 lg:-right-15 -rotate-12">
+                {% if section.settings.caption != blank %}
+                        <div class="text-sm opacity-70">{{ section.settings.caption }}</div>
+                    {% endif %}
+                    {% if section.settings.title_1 or section.settings.title_2 != blank %}
+                        <div class="text-3xl font-semibold" >
+                            <span style="color: {{ section.settings.title_1_color }};">{{ section.settings.title_1 }}</span>
+                            
+                            <span style="color: {{ section.settings.title_2_color }};">{{ section.settings.title_2 }}</span>
+                        </div>
+                    {% endif %}
+                    {% if section.settings.content != blank %}
+                        <div class="mt-4 opacity-70 richtext-content">{{ section.settings.content }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if section.settings.design_type == "2" %}
+                <div class="bg-slate-50 px-4 py-8 relative drop-shadow-sm">
+                    <img src="{{ tape3 }}" width=120 height=120 class="absolute top-0 -left-8 lg:-left-10 -rotate-[40deg]">
+                    <img src="{{ tape1 }}" width=100 height=100 class="absolute top-1 -right-6 lg:-right-8 rotate-[30deg]">
+                    <img src="{{ tape2 }}" width=150 height=150 class="absolute -bottom-5 right-32 md:right-60 lg:right-65 -rotate-4">
+                {% if section.settings.caption != blank %}
+                        <div class="text-sm opacity-70">{{ section.settings.caption }}</div>
+                    {% endif %}
+                    {% if section.settings.title_1 or section.settings.title_2 != blank %}
+                        <div class="text-3xl font-semibold" >
+                            <span style="color: {{ section.settings.title_1_color }};">{{ section.settings.title_1 }}</span>
+                            
+                            <span style="color: {{ section.settings.title_2_color }};">{{ section.settings.title_2 }}</span>
+                        </div>
+                    {% endif %}
+                    {% if section.settings.content != blank %}
+                        <div class="mt-4 opacity-70 richtext-content">{{ section.settings.content }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if section.settings.design_type == "3" %}
+                <div class="bg-slate-50 px-4 py-8 relative drop-shadow-sm -rotate-2">
+                    <img src="{{ tape2 }}" width=120 height=120 class="absolute bottom-5 -left-14 lg:-left-15 rotate-[80deg]">
+                    <img src="{{ tape3 }}" width=150 height=150 class="absolute top-0 -right-6 rotate-12">
+                {% if section.settings.caption != blank %}
+                        <div class="text-sm opacity-70">{{ section.settings.caption }}</div>
+                    {% endif %}
+                    {% if section.settings.title_1 or section.settings.title_2 != blank %}
+                        <div class="text-3xl font-semibold" >
+                            <span style="color: {{ section.settings.title_1_color }};">{{ section.settings.title_1 }}</span>
+                            
+                            <span style="color: {{ section.settings.title_2_color }};">{{ section.settings.title_2 }}</span>
+                        </div>
+                    {% endif %}
+                    {% if section.settings.content != blank %}
+                        <div class="mt-4 opacity-70 richtext-content">{{ section.settings.content }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Custom Rich Text",
+    "settings":[
+        {
+           "type": "text",
+           "id": "caption",
+           "default": "Caption",
+           "label": "Caption"
+        },
+        {
+            "type": "text",
+            "id": "title_1",
+            "default": "First title part",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "title_2",
+            "default": "Second title part",
+            "label": " Part"
+        },
+        {
+            "type":"color",
+            "id": "title_1_color",
+            "label": "Title Color",
+            "default": "#ea6b0f"
+        },
+        {
+            "type":"color",
+            "id": "title_2_color",
+            "label": "Title 2 Color",
+            "default": "#317dd4"
+        },
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+        },
+        {
+            "type":"select",
+            "id": "container-width",
+            "label": "Container Width",
+            "default": "medium",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full Width"
+                },
+                {
+                    "value": "large",
+                    "label": "Large (1024px)"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium (768px)"
+                },
+                {
+                    "value": "small",
+                    "label": "Small (640px)"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "design_type",
+            "label": "Design Type",
+            "default": "1",
+            "options": [
+                {
+                    "label":"1",
+                    "value": "1"
+                },
+                {
+                    "label":"2",
+                    "value": "2"
+                },
+                {
+                    "label":"3",
+                    "value": "3"
+                }
+            ]
+        },
+        {
+            "type":"header",
+            "content": "Buttons"
+        },
+        {
+            "type":"text",
+            "id": "button_text1",
+            "label": "Button 1 Text",
+            "default": "Button 1"
+        },
+        {
+            "type": "url",
+            "id": "button_link1",
+            "label": "Button 1 Link"
+        },
+        {
+            "type":"text",
+            "id": "button_text2",
+            "label": "Button 2 Text"
+        },
+        {
+            "type": "url",
+            "id": "button_link2",
+            "label": "Button 2 Link"
+        },
+        {
+            "type":"text",
+            "id": "button_text3",
+            "label": "Button 3 Text"
+        },
+        {
+            "type": "url",
+            "id": "button_link3",
+            "label": "Button 3 Link"
+        },
+        {
+            "type":"color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#001001"
+        },
+        {
+            "type": "range",
+            "id": "background_opacity",
+            "label": "Background Opacity",
+            "default": 100,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type":"color",
+            "id": "button_bgcolor",
+            "label": "Button BG Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"checkbox",
+            "id": "has_border",
+            "label": "Button Border",
+            "default": true
+        },
+        {
+            "type":"color",
+            "id": "button_border_color",
+            "label": "Button Border Color",
+            "default": "#c9c9c9"
+        },
+        {
+            "type":"header",
+            "content": "Section Margin"
+        },
+        {
+            "type": "range",
+            "id": "margin_top",
+            "label": "Top Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Bottom Margin",
+            "default": 16,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Rich Text",
+            "category": "Custom"
+        }
+    ]
+}
+{% endschema %}
