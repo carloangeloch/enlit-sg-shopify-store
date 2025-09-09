@@ -21,6 +21,9 @@ Done with mobile responsivenes
 [x]: Product Content
 [x]: Blog Post
 [x]: Blog Pagination
+[x]: Absolute Element
+[x]: Custom Image and Text Banner
+[x]: Custom Rich Text
 
 templates:
 [x]: Pages
