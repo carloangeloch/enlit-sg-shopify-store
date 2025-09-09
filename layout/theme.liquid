@@ -32,13 +32,13 @@
 
     <!-- Only use CDN or local script, not both -->
     
-    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+    {% comment %} <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script> {% endcomment %}
 
-    {% comment %}
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    {% endcomment %}
+    
 
     <script defer>
       document.addEventListener("DOMContentLoaded", function () {
