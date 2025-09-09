@@ -1,0 +1,77 @@
+<section class="w-full relative">
+    <div class="absolute z-10"
+        style="width: {{ section.settings.image_ratio }};
+        height: {{ section.settings.image_ratio }};
+        top:{{ section.settings.top_control  | append: '%' }};
+        left: {{ section.settings.left_control  | append: '%' }};"
+    >
+    <img src="{{ section.settings.image_element | image_url: width: section.settings.image_ratio }}"
+        width="{{ section.settings.image_ratio }}" height="{{ section.settings.image_ratio }}"
+        style="transform: rotate({% if section.settings.rotate_negative %}-{% else %}+{% endif %}{{ section.settings.image_rotate | append: "deg" }})"
+    />
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Absolute Element",
+    "settings": [
+        {
+            "type": "paragraph",
+            "content": "This section gives you control to an image that can be move freely by using top and left control. Please use a 1:1 ration (square image for this section)."
+        },
+        {
+            "type":"image_picker",
+            "id": "image_element",
+            "label": "Select Image"
+        },
+        {
+            "type": "number",
+            "id": "image_ratio",
+            "label" : "Image Ratio (px)",
+            "default": 120
+        },
+        {
+            "type": "range",
+            "id": "top_control",
+            "label": "Top Control",
+            "default": 0,
+            "min": -30,
+            "max": 150,
+            "step": 1.8
+        },
+        {
+            "type": "range",
+            "id": "left_control",
+            "label": "Left Control",
+            "default": 27,
+            "min": -30,
+            "max": 150,
+            "step": 1.8
+        },
+        {
+            "type": "range",
+            "id": "image_rotate",
+            "label": "Image Rotation",
+            "info": "steps are multiplied by 1.8. Max 180",
+            "default": 0,
+            "min": 0,
+            "max": 180,
+            "step": 1.8
+        },
+        {
+            "type": "checkbox",
+            "id": "rotate_negative",
+            "label": "Negative Rotation",
+            "default": false
+        }
+    ],
+    "presets":[
+        {
+            "name": "Absolute Element",
+            "category": "General"
+        }
+    ]
+}
+{% endschema %}
