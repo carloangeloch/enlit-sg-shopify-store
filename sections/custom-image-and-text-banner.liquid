@@ -33,7 +33,7 @@
         flex-direction: {% if section.settings.is_image_first %} row {% else %} row-reverse {% endif %};"
         class="flex flex-wrap lg:flex-nowrap items-center p-4 lg:p-0 mx-auto justify-center"
     >
-        <div class="max-w-[500]">
+        <div class="max-w-[400] lg:max-w-[300]">
             <img
                 src="{{ section.settings.background_image | image_url: width: image_width }}"
                 alt="Banner Background"
@@ -48,7 +48,7 @@
             />
 
         </div>
-        <div class="w-full lg:w-1/2 px-0 lg:px-0 py-4 lg:py-0 flex flex-col justify-center gap-2" style="align-items: {{ section.settings.text-alignment }};">
+        <div class="w-full lg:w-1/2 px-0 lg:px-4 py-4 lg:py-0 flex flex-col justify-center gap-2" style="align-items: {{ section.settings.text-alignment }};">
             {% if section.settings.caption != blank %}
                 <div class="text-sm opacity-70">{{ section.settings.caption }}</div>
             {% endif %}
