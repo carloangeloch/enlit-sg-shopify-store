@@ -13,8 +13,40 @@
       "type": "hero-banner",
       "name": "Hero Banner",
       "settings": {
+        "section_fadein": true,
         "background_image": "shopify://shop_images/Untitled-1_3ab9dcb3-bdca-4a9b-87d0-f907f4aa62ce.png",
         "image_link": "",
+        "section_width": "full",
+        "image_height": "auto",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "hero_banner_9V9NjD": {
+      "type": "hero-banner",
+      "disabled": true,
+      "name": "Hero Banner",
+      "settings": {
+        "section_fadein": true,
+        "background_image": "shopify://shop_images/9x1-9.png",
+        "image_link": "shopify://pages/12-12-2025-year-end-sale",
+        "section_width": "full",
+        "image_height": "auto",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "hero_banner_XtXQRi": {
+      "type": "hero-banner",
+      "disabled": true,
+      "custom_css": [
+        "@media screen and (min-width: 749px) {#margin-container {display: none; /* Show the banner on mobile screens */ }}"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "section_fadein": true,
+        "background_image": "shopify://shop_images/1x1.png",
+        "image_link": "shopify://pages/12-12-2025-year-end-sale",
         "section_width": "full",
         "image_height": "auto",
         "top-margin": 0,
@@ -26,8 +58,11 @@
       "name": "Rich Text",
       "settings": {
         "title": "What we Offer",
+        "section_fadein": false,
         "title_color": "#1e40af",
+        "bgcolor": "#ffffff",
         "content": "",
+        "content_color": "#020202",
         "container-width": "medium",
         "button_text1": "",
         "button_link1": "",
@@ -99,8 +134,11 @@
       "name": "Rich Text",
       "settings": {
         "title": "Our Latest Blogs",
+        "section_fadein": true,
         "title_color": "#1e40af",
+        "bgcolor": "#ffffff",
         "content": "",
+        "content_color": "#020202",
         "container-width": "medium",
         "button_text1": "",
         "button_link1": "",
@@ -141,8 +179,11 @@
       "name": "Rich Text",
       "settings": {
         "title": "Ready to experience the future of clean?",
+        "section_fadein": true,
         "title_color": "#1e40af",
+        "bgcolor": "#ffffff",
         "content": "<p>Discover how Enlit is redefining hygiene for homes and businesses alike.</p>",
+        "content_color": "#020202",
         "container-width": "full",
         "button_text1": "Check our Lazada Store →",
         "button_link1": "https://www.lazada.sg/shop/enlit-home-body",
@@ -162,6 +203,8 @@
   },
   "order": [
     "hero_banner_xKKA79",
+    "hero_banner_9V9NjD",
+    "hero_banner_XtXQRi",
     "rich_text_ftkgFj",
     "image_and_text_banner_R3wE9Q",
     "image_and_text_banner_Jcyqtr",

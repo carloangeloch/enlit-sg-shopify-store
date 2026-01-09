@@ -14,8 +14,11 @@
       "name": "Rich Text",
       "settings": {
         "title": "We’re here to help, whether you're a customer, partner, or curious mind.",
-        "title_color": "#1E40AF",
+        "section_fadein": true,
+        "title_color": "#1e40af",
+        "bgcolor": "#ffffff",
         "content": "<p>Got a question about our products? Need a custom formulation for your business? Want to collaborate with us? Let’s connect.</p>",
+        "content_color": "#020202",
         "container-width": "medium",
         "button_text1": "",
         "button_link1": "",
@@ -37,12 +40,12 @@
       "name": "Contact Form",
       "settings": {
         "heading": "",
-        "label_color": "#1E40AF",
+        "label_color": "#1e40af",
         "submit_text": "Send Message",
         "button_position": "start",
         "button_text_color": "#ffffff",
         "background_opacity": 100,
-        "button_bgcolor": "#1E40AF",
+        "button_bgcolor": "#1e40af",
         "has_border": false,
         "button_border_color": "#c9c9c9",
         "margin_top": 16,
@@ -55,6 +58,8 @@
         "column_idrJgR": {
           "type": "column",
           "settings": {
+            "title_color": "#000000",
+            "content_color": "#000000",
             "image_height": "medium",
             "image_height_mobile": "small",
             "column_title": "📍 Head Office",
@@ -71,6 +76,8 @@
         "column_FAcjEG": {
           "type": "column",
           "settings": {
+            "title_color": "#000000",
+            "content_color": "#000000",
             "image_height": "medium",
             "image_height_mobile": "small",
             "column_title": "📞 Get in Touch",
@@ -92,6 +99,8 @@
       "name": "Multicolumn",
       "settings": {
         "title": "",
+        "section_fadein": true,
+        "bgcolor": "#ffffff",
         "section_width": "large",
         "column_alignment": "start",
         "column_postition": "center",

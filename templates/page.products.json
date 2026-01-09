@@ -99,7 +99,7 @@
             "column_button_link": "shopify://pages/industrial-cleaners",
             "button_text_color": "#ffffff",
             "background_opacity": 100,
-            "button_bgcolor": "#1E40AF",
+            "button_bgcolor": "#1e40af",
             "has_border": false,
             "button_border_color": "#c9c9c9"
           }
@@ -110,14 +110,14 @@
             "column_image": "shopify://shop_images/getty-images-XszIh0bBwAE-unsplash_933f5c7f-03ca-48a1-8b71-6e9ca7fb070d.jpg",
             "image_height": "medium",
             "column_caption": "B2C",
-            "column_title": "Industrial Solution",
+            "column_title": "Everyday Essentials",
             "column_content": "",
-            "column_text_color": "#1E40AF",
+            "column_text_color": "#1e40af",
             "column_button_text": "View Everyday Essentials →",
             "column_button_link": "shopify://pages/everyday-care-essensials",
             "button_text_color": "#ffffff",
             "background_opacity": 100,
-            "button_bgcolor": "#1E40AF",
+            "button_bgcolor": "#1e40af",
             "has_border": false,
             "button_border_color": "#c9c9c9"
           }
@@ -145,7 +145,7 @@
       "name": "Rich Text",
       "settings": {
         "title": "One Standard: Excellence, in Every Drop",
-        "title_color": "#1E40AF",
+        "title_color": "#1e40af",
         "content": "<p>Whether you’re looking for a trusted cleaning partner for your business or skin-safe care for your family, Enlit SG is here to deliver sustainable, effective, and elegant solutions.</p>",
         "container-width": "medium",
         "button_text1": "",

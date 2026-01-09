@@ -1,0 +1,321 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_banner_9T6Q8G": {
+      "type": "hero-banner",
+      "custom_css": [
+        "@media screen and (max-width: 749px) {#margin-container {display: none; /* Show the banner on mobile screens */ }}"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "section_fadein": false,
+        "background_image": "shopify://shop_images/11-11-2025-big-campaign-promo-1920-628.png",
+        "image_link": "",
+        "section_width": "full",
+        "image_height": "auto",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "hero_banner_9zgMwm": {
+      "type": "hero-banner",
+      "custom_css": [
+        "@media screen and (min-width: 749px) {#margin-container {display: none; /* Show the banner on mobile screens */ }}"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "section_fadein": true,
+        "background_image": "shopify://shop_images/11-11-2025-big-campaign-promo.png",
+        "image_link": "",
+        "section_width": "full",
+        "image_height": "auto",
+        "top-margin": 0,
+        "bottom-margin": 0
+      }
+    },
+    "rich_text_DaBnm9": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#020202",
+        "bgcolor": "#ffffff",
+        "content": "<p> </p>",
+        "content_color": "#020202",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_7FyYkx": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#ffffff",
+        "bgcolor": "#ffffff",
+        "content": "<p>Mark your calendars! Your favorite self-care and home-care essentials are going on sale! From <strong>November 10</strong> <strong>at 9PM until November 17</strong>, enjoy <strong>up to 10% off</strong> on selected Enlit products, exclusively on <strong>Lazada</strong> and <strong>Shopee</strong>.</p>",
+        "content_color": "#06227e",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_WXQaGq": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#ffffff",
+        "bgcolor": "#ffffff",
+        "content": "<p>Whether you’re restocking your everyday essentials or trying something new, now’s the perfect time to bring home the care you deserve.</p>",
+        "content_color": "#06227e",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "multicolum_L8LLJU": {
+      "type": "multicolum",
+      "blocks": {
+        "column_CbLaCM": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/madison-oren-TwvjeD8cxX0-unsplash.jpg",
+            "title_color": "#06227e",
+            "content_color": "#06227e",
+            "image_height": "small",
+            "image_height_mobile": "small",
+            "column_title": "Scented Body Washes",
+            "column_content": "<p>Gentle hydration for every skin type</p>",
+            "column_button_text": "",
+            "column_button_link": "",
+            "button_text_color": "#001001",
+            "background_opacity": 100,
+            "button_bgcolor": "#c9c9c9",
+            "has_border": true,
+            "button_border_color": "#c9c9c9"
+          }
+        },
+        "column_Rak4tW": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/karolina-grabowska-bOm2Pt_H8Rw-unsplash.jpg",
+            "title_color": "#06227e",
+            "content_color": "#06227e",
+            "image_height": "small",
+            "image_height_mobile": "small",
+            "column_title": "Dishwashing Liquids",
+            "column_content": "<p>Tough on grease, kind to skin</p>",
+            "column_button_text": "",
+            "column_button_link": "",
+            "button_text_color": "#001001",
+            "background_opacity": 100,
+            "button_bgcolor": "#c9c9c9",
+            "has_border": true,
+            "button_border_color": "#c9c9c9"
+          }
+        },
+        "column_xWRmj4": {
+          "type": "column",
+          "settings": {
+            "column_image": "shopify://shop_images/getty-images-xcSzTQWn2vc-unsplash.jpg",
+            "title_color": "#06227e",
+            "content_color": "#06227e",
+            "image_height": "small",
+            "image_height_mobile": "small",
+            "column_title": "Body Lotions",
+            "column_content": "<p>Deep nourishment, naturally engineered</p>",
+            "column_button_text": "",
+            "column_button_link": "",
+            "button_text_color": "#001001",
+            "background_opacity": 100,
+            "button_bgcolor": "#c9c9c9",
+            "has_border": true,
+            "button_border_color": "#c9c9c9"
+          }
+        }
+      },
+      "block_order": [
+        "column_CbLaCM",
+        "column_Rak4tW",
+        "column_xWRmj4"
+      ],
+      "name": "Multicolumn",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "bgcolor": "#ffffff",
+        "section_width": "large",
+        "column_alignment": "start",
+        "column_postition": "center",
+        "content_alignment": "center",
+        "columns": 3,
+        "column_bgcolor": "#ffffff",
+        "mobile_alignment": "center",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_b79UM7": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#ffffff",
+        "bgcolor": "#ffffff",
+        "content": "<p>Each Enlit product is <strong>lovingly formulated by engineers</strong> and <strong>crafted in small batches</strong> to ensure top-quality care for your skin and home.</p><p>Don’t miss out! Add to cart early and check out during the 10.10 Grand Sale to enjoy exclusive discounts before they’re gone!</p>",
+        "content_color": "#06227e",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_iajAn9": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#ffffff",
+        "bgcolor": "#ffffff",
+        "content": "<p>Shop now on our following stores:</p>",
+        "content_color": "#06227e",
+        "container-width": "medium",
+        "button_text1": "Lazada",
+        "button_link1": "https://www.lazada.sg/shop/enlit-home-body/?path=promotion-437456-0.htm&tab=promotion",
+        "button_text2": "Shopee",
+        "button_link2": "https://shopee.sg/enlitsg",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#ffffff",
+        "background_opacity": 100,
+        "button_bgcolor": "#FACC15",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_PFraC3": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#ffffff",
+        "bgcolor": "#ffffff",
+        "content": "<p>Enlit, Everyday Essentials, Elevated with Care.</p>",
+        "content_color": "#06227e",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "rich_text_WY77zD": {
+      "type": "rich-text",
+      "name": "Rich Text",
+      "settings": {
+        "title": "",
+        "section_fadein": false,
+        "title_color": "#020202",
+        "bgcolor": "#ffffff",
+        "content": "<p> </p>",
+        "content_color": "#020202",
+        "container-width": "medium",
+        "button_text1": "",
+        "button_link1": "",
+        "button_text2": "",
+        "button_link2": "",
+        "button_text3": "",
+        "button_link3": "",
+        "button_text_color": "#001001",
+        "background_opacity": 100,
+        "button_bgcolor": "#c9c9c9",
+        "has_border": true,
+        "button_border_color": "#c9c9c9",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "hero_banner_9T6Q8G",
+    "hero_banner_9zgMwm",
+    "rich_text_DaBnm9",
+    "rich_text_7FyYkx",
+    "rich_text_WXQaGq",
+    "multicolum_L8LLJU",
+    "rich_text_b79UM7",
+    "rich_text_iajAn9",
+    "rich_text_PFraC3",
+    "rich_text_WY77zD"
+  ]
+}
