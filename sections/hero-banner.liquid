@@ -24,7 +24,7 @@
 {% endcase %}
 
 
-<section id="hero-banner" class="relative section">
+<section id="hero-banner" class="relative {% if section.settings.section_fadein %} section {% endif %}">
     <div id="margin-container" class="mx-auto" style="margin-top: {{ section.settings.top-margin }}; margin-bottom: {{ section.settings.bottom-margin }}; max-width: {{ cont_width }};">
         {% if section.settings.image_link != blank %}
             <a href="{{ section.settings.image_link }}">
@@ -66,6 +66,12 @@
         {
             "type": "paragraph",
             "content": "This section only allows you to add a clickable banner image only. If you need a banner with contents, you can use the Hero Banner with Text template."
+        },
+        {
+            "type":"checkbox",
+            "id": "section_fadein",
+            "label":"Fade in section?",
+            "default": true
         },
         {
             "type": "image_picker",

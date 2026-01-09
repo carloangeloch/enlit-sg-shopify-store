@@ -14,14 +14,14 @@
         {%  assign cont_width = "100%"%}
 {%  endcase %}
 
-<section id="rich-text" class="section">
-    <div id="rich-text-container" class="w-full" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
+<section id="rich-text" class="{% if section.settings.section_fadein %} section {% endif %}">
+    <div id="rich-text-container" class="w-full" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}}; background-color: {{ section.settings.bgcolor }}">
         <div class="text-center px-4 py-2 mx-auto" style="max-width: {{ cont_width }};">
             {% if section.settings.title != blank %}
                 <h2 class="text-3xl" style="color:{{ section.settings.title_color }} ;">{{ section.settings.title }}</h2>
             {% endif %}
             {% if section.settings.content != blank %}
-                <div class="mt-4 opacity-70 richtext-content">{{ section.settings.content }}</div>
+                <div class="mt-4 opacity-70 richtext-content" style="color:{{ section.settings.content_color }}">{{ section.settings.content }}</div>
             {% endif %}
             {% if section.settings.button_text1 != blank %}
                 <div id="button-container" class="p-2 flex flex-col lg:flex-row gap-x-6 gap-y-2 items-center justify-center">
@@ -92,16 +92,34 @@
             "default": "Welcome to Our Store"
         },
         {
+            "type":"checkbox",
+            "id": "section_fadein",
+            "label":"Fade in section?",
+            "default": true
+        },
+        {
             "type": "color",
             "id": "title_color",
             "label": "Title Color",
             "default": "#020202"
         },
         {
+            "type": "color",
+            "id": "bgcolor",
+            "label": "Background Color",
+            "default": "#ffffff"
+        },
+        {
             "type": "richtext",
             "id": "content",
             "label": "Content",
             "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+        },
+        {
+            "type": "color",
+            "id": "content_color",
+            "label": "Content Color",
+            "default": "#020202"
         },
         {
             "type":"select",

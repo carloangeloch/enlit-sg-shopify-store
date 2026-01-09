@@ -39,8 +39,8 @@
 
 
 
-<section id="multicolumn"  class="section">
-    <div id="section-container" class="p-4" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}};">
+<section id="multicolumn"  class="{% if section.settings.section_fadein %} section {% endif %}">
+    <div id="section-container" class="p-4" style="margin-top: {{ section.settings.margin_top | append:'px' }}; margin-bottom: {{ section.settings.margin_bottom | append: 'px'}}; background-color: {{ section.settings.bgcolor }};">
         {% if section.settings.title != blank %}
             <h1 id="section-title" class="text-2xl">{{ section.settings.title }}</h1>
         {% endif %}
@@ -80,14 +80,14 @@
                         <div id="column-content" class="flex flex-col justify-center" style="align-items:{{ section.settings.content_alignment }};">
                             {% if block.settings.column_title != blank %}
                                 <div id="column-title">
-                                    <h2 class="text-xl mt-4 mb-2">
+                                    <h2 class="text-xl mt-4 mb-2" style="color: {{ block.settings.title_color }};">
                                         {{ block.settings.column_title }}
                                     </h2>
                                 </div>
                             {% endif %}
                             
                             {% if block.settings.column_content != blank %}
-                                <div id="column-content" class="opacity-70 richtext-content" style="text-align: {{ content_align }};">
+                                <div id="column-content" class="opacity-70 richtext-content" style="text-align: {{ content_align }}; color: {{block.settings.content_color}};">
                                     {{ block.settings.column_content }}
                                 </div>
                             {% endif %}
@@ -150,14 +150,14 @@
                         <div id="column-content" class="flex flex-col justify-center" style="align-items:{{ section.settings.mobile_alignment }};">
                             {% if block.settings.column_title != blank %}
                                 <div id="column-title">
-                                    <h2 class="text-xl mt-4 mb-2">
+                                    <h2 class="text-xl mt-4 mb-2" style="color: {{ block.settings.title_color }};">
                                         {{ block.settings.column_title }}
                                     </h2>
                                 </div>
                             {% endif %}
                             
                             {% if block.settings.column_content != blank %}
-                                <div id="column-content" class="opacity-70 richtext-content" style="text-align: {{ content_align_mobile }};">
+                                <div id="column-content" class="opacity-70 richtext-content" style="text-align: {{ content_align_mobile }}; color:{{ block.settings.content_color }};">
                                     {{ block.settings.column_content }}
                                 </div>
                             {% endif %}
@@ -197,6 +197,18 @@
             "id": "title",
             "label": "Title",
             "default": "Multicolumn Section"
+        },
+        {
+            "type":"checkbox",
+            "id": "section_fadein",
+            "label":"Fade in section?",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "bgcolor",
+            "label": "Background Color",
+            "default": "#ffffff"
         },
         {
             "type":"select",
@@ -357,6 +369,18 @@
                     "type":"image_picker",
                     "id": "column_image",
                     "label": "Column Image"
+                },
+                {
+                    "type": "color",
+                    "id": "title_color",
+                    "label": "Title Color",
+                    "default": "#ffffff"
+                },
+                {
+                    "type": "color",
+                    "id": "content_color",
+                    "label": "Content Color",
+                    "default": "#ffffff"
                 },
                 {
                 "type": "select",
